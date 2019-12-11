@@ -44,6 +44,7 @@ _進入新聞首頁時，打此 api，即每天精選 5 篇文章輪播 **（以
 
 - WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
 
+
 ## 1.2 取得最新列表 
 _進入新聞首頁時，打此 api，文章列表即採用**最新發佈時間順序由上至下**排列。_ 
 
@@ -51,24 +52,95 @@ _一次 loading 十篇內容。_
 
 - WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
 
+- Schema
+  //如果要以最新文章在上要怎麼撰寫？
+
+```json 
+
+    type News {
+        id: ID! 
+        title: String! //新聞標題
+        date: String //新聞日期
+        category: [String] //新聞 tag
+        preview: String //預覽文字
+        img: String //圖片url
+    }
+    type Query {
+        news:[News!]!
+    }
+
+```
+
+- Query
+ 
+```json
+ 
+    query {
+       news{
+          id
+          title
+          date
+          category
+          preview
+          img 
+       }
+    }
+
+```
+
+- Server Response
+
+```json
+{ 
+    "data": {
+        "news":[
+            {
+            "id": 1,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-23 2:37:56",
+            "category": ["愛情", "古裝"],
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-20 2:37:56",
+            "category": ["愛情", "古裝"],
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-20 2:37:56",
+            "category": ["愛情", "古裝"],
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+
 ## 1.3 取得詳細資料
 _點選新聞首頁任一新聞後，打此 api，即取得該篇文章詳細資料。_ 
 
 _採集資源來自：尋夢新聞_
 
 - WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
-- 
+
+
 ## 1.4 取得熱門列表（等待後端資料齊全後開發）
 _在新聞首頁點選「排序」按鈕時，點選熱門排序，打此 API，即依據一週內新聞按 **尋夢新聞觀看次數由多至少** 排序。_ 
 
-- Param
-  
-    | 參數 | 敘述 | 資料型態 | 必填 |
-    | -- | -- | -- | -- | 
-    | authtoken| 通行碼 <li>第一次：帶空值</li><li>自動登入：帶入儲存的通行碼</li>| string | Y |
-    | otpw| 自動登入時回傳的欄位 | string | Y |
+- Schema
 
-- Example Request
+```json
+
+```
+
+- Query
  
 ```json
 { 
@@ -76,7 +148,7 @@ _在新聞首頁點選「排序」按鈕時，點選熱門排序，打此 API，
 }
 ```
 
-- Example Response
+- Server Response
 
 ```json
 { 
@@ -110,7 +182,6 @@ _點選戲劇首頁任一齣戲劇後，打此 api，即取得該部戲劇詳細
 主要戲劇收集的來源來自「PTT」、「Dcard」兩大平台。
 
 _戲劇地區共為 5 區：美劇、陸劇、韓劇、台劇、日劇_
-
 
 ## 3.1 取得美劇最新列表 
 _進入討論首頁時，依據各地區打此 api，討論列表即 **以發文時間最新至舊排序**。_
