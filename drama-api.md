@@ -36,6 +36,62 @@ _進入新聞首頁時，打此 api，即每天精選 5 篇文章輪播 **（以
 
 - WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
 
+- Schema 
+
+``` 
+
+    type News {
+        id: ID! 
+        title: String! //新聞標題
+        img: String //圖片url
+    }
+    type Query {
+        news:[News!]!
+    }
+
+```
+
+- Query 
+ 
+```
+
+    query {
+       carosell (where: {type: {_eq: “news“}})
+       {
+          id
+          title
+          img
+       }
+    }
+
+```
+
+- Server Response
+
+```json
+{ 
+    "data": {
+        "carosell":[
+            {
+            "id": 1,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+
 
 ## 1.2 新聞列表
 _進入新聞首頁時，打此 api，即顯示新聞列表。會依據 **最新、熱門** 條件顯示新聞列表。_
@@ -53,37 +109,17 @@ _進入新聞首頁時，打此 api，即顯示新聞列表。會依據 **最新
 ### 最新列表
 _預設採用 **最新發佈時間順序由上至下** 排列_
 
-- Schema 
-  //如果要以最新文章在上要怎麼撰寫？
-
-``` 
-
-    type News {
-        id: ID! 
-        title: String! //新聞標題
-        date: String //新聞日期
-        category: [String] //新聞 tag
-        preview: String //預覽文字
-        img: String //圖片url
-    }
-    type Query {
-        news:[News!]!
-    }
-
-```
-
 - Query
  
 ```
-
     query {
-       news {
+       news (limit: 10, order_by: {post_date: desc}, offset: 10)  // limit:一次取10筆，order_by:最新順序由上至下，offset: 取第10筆之後
+       {
           id
           title
           date
-          category
           preview
-          img 
+          img
        }
     }
 
@@ -142,7 +178,18 @@ _採集資源來自：尋夢新聞_
 _進入戲劇首頁時，打此 api，即每天精選 5 齣戲劇輪播 **（以平台最新上映戲劇為主）**。_
 
 - WF [https://whimsical.com/S597ibFZnpwWm87yw8j6Dv]
+```
 
+    query {
+       carosell (where: {type: {_eq: “drama“}})
+       {
+          id
+          title
+          img
+       }
+    }
+
+```
 ## 2.2 戲劇列表
 _進入戲劇首頁時，點選「最新」排序時，打此 api，即顯示戲劇列表資料。會依據 **最新、熱門** 條件顯示新聞列表。_
 
@@ -255,9 +302,10 @@ _當用戶透過輸入關鍵字、點選 Tag 搜尋戲劇相關資料，輸入�
 ### 關鍵字搜尋
 _用戶直接在 search bar 關鍵字，點選送出，即可依據關鍵字顯示結果列表。_
 
-- 新聞
-- 戲劇
-- 討論
+- 新聞（title）
+- 戲劇 (title)
+- 討論 (title)
+
 
 ### Tag 搜尋
 _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯示結果列表。_
@@ -281,6 +329,7 @@ _用戶點選搜尋後，打此 api 即顯示近期熱門搜尋關鍵字，用�
     <li>目前採用人工方式，每週（每天）更新。</li>
     <li>一次顯示 10 個關鍵字。</li>
   </ol>
+
 ## 4.3 相關結果列表
 當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關新聞、戲劇、討論結果列表。
 
@@ -292,9 +341,23 @@ _用戶點選搜尋後，打此 api 即顯示近期熱門搜尋關鍵字，用�
     <li>結果列表請以 最新發佈時間 排序，由上至下排序。</li>
   </ol>
 
-- 相關新聞
-- 相關戲劇
-- 相關討論
+- 相關新聞(title)
+
+```
+    query {
+       news (where: {post_title: {_ilike: "%九%"},limit: 3, order_by: {post_date: desc})  
+       {
+          id
+          title
+          date
+          preview
+          img
+       }
+    }
+
+```
+- 相關戲劇(title)
+- 相關討論(title)
 
 
 
