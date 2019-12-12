@@ -53,8 +53,7 @@ _預設採用 **最新發佈時間順序由上至下** 排列_
 - Schema 
   //如果要以最新文章在上要怎麼撰寫？
 
-```json 
-
+``` 
     type News {
         id: ID! 
         title: String! //新聞標題
@@ -71,10 +70,9 @@ _預設採用 **最新發佈時間順序由上至下** 排列_
 
 - Query
  
-```json
- 
+```
     query {
-       news{
+       news {
           id
           title
           date
