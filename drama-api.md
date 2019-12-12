@@ -32,24 +32,11 @@
 主要文章來源來自「尋夢新聞」、「自產文章」。
 
 ## 1.1 新聞輪播列表
-_進入新聞首頁時，打此 api，即每天精選 5 篇文章輪播 **（以尋夢新聞點擊高為主）**。_ 
+_進入新聞首頁時，打此 api，即顯示輪播列表。_ 
+
+_不限內容數量，採用人工調整。_
 
 - WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
-
-- Schema 
-
-``` 
-
-    type News {
-        id: ID! 
-        title: String! //新聞標題
-        img: String //圖片url
-    }
-    type Query {
-        news:[News!]!
-    }
-
-```
 
 - Query 
  
@@ -107,7 +94,6 @@ _進入新聞首頁時，打此 api，即顯示新聞列表。會依據 **最新
     </ol>
 
 ### 最新列表
-_預設採用 **最新發佈時間順序由上至下** 排列_
 
 - Query
  
@@ -135,7 +121,6 @@ _預設採用 **最新發佈時間順序由上至下** 排列_
             "id": 1,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
             "date": "2019-05-23 2:37:56",
-            "category": ["愛情", "古裝"],
             "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
@@ -143,15 +128,62 @@ _預設採用 **最新發佈時間順序由上至下** 排列_
             "id": 2,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
             "date": "2019-05-20 2:37:56",
-            "category": ["愛情", "古裝"],
             "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-20 2:37:56",
-            "category": ["愛情", "古裝"],
+            "date": "2019-05-19 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 4,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-18 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 5,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-17 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 6,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-16 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 7,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-15 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 8,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-14 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 9,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-13 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 10,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-12 2:37:56",
             "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
@@ -169,15 +201,50 @@ _採集資源來自：尋夢新聞_
 
 - WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
 
+- Query
+ 
+```
+    query {
+       news (id: "1")
+       {
+          title
+          date
+          content
+          img
+       }
+    }
+```
+
+- Server Response
+
+```json
+{ 
+    "data": {
+        "news":[
+            {
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-23 2:37:56",
+            "content": "<p>內容</p><img src=“url/abc.png” alt=“”/>",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
 ---
 
 # 2. 戲劇區
 主要戲劇收集的區間先從 2019/12月~2020/01月。
 
 ## 2.1 戲劇輪播列表
-_進入戲劇首頁時，打此 api，即每天精選 5 齣戲劇輪播 **（以平台最新上映戲劇為主）**。_
+_進入戲劇首頁時，打此 api，即顯示戲劇輪播列表。_
+
+_不限戲劇輪播數量，目前以手工為主？_
 
 - WF [https://whimsical.com/S597ibFZnpwWm87yw8j6Dv]
+
+- Query 
+ 
 ```
 
     query {
@@ -190,8 +257,34 @@ _進入戲劇首頁時，打此 api，即每天精選 5 齣戲劇輪播 **（以
     }
 
 ```
+
+- Server Response
+
+```json
+{ 
+    "data": {
+        "carosell":[
+            {
+            "id": 1,
+            "title":"長安十二時辰",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"綠豆傳",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"親愛的，熱愛的",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
 ## 2.2 戲劇列表
-_進入戲劇首頁時，點選「最新」排序時，打此 api，即顯示戲劇列表資料。會依據 **最新、熱門** 條件顯示新聞列表。_
+_進入戲劇首頁時，打此 api，即顯示戲劇列表資料。會依據 **最新、熱門** 條件顯示新聞列表。_
 
 - WF [https://whimsical.com/S597ibFZnpwWm87yw8j6Dv]
 
@@ -204,6 +297,107 @@ _進入戲劇首頁時，點選「最新」排序時，打此 api，即顯示戲
 
 ### 最新列表
 _進入戲劇首頁時，打此 api，列表即依據 **最新更新時間順序由上至下** 顯示。_
+
+- Query
+ 
+```
+    query {
+       drama (limit: 15, order_by: {post_date: desc}, offset: 15)  // limit:一次取10筆，order_by:最新順序由上至下，offset: 取第10筆之後
+       {
+          id
+          title
+          img
+       }
+    }
+
+```
+
+- Server Response
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+            "id": 1,
+            "title":"抓住幽靈",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"那一天",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"忠孝節義路遙知馬力",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 4,
+            "title":"HIStory3-那一天",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 5,
+            "title":"忠孝節義斷機教子",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 6,
+            "title":"鶴唳華亭",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 7,
+            "title":"十年三月三十日",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 8,
+            "title":"Healer/治癒者",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 9,
+            "title":"偶然發現的一天",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 10,
+            "title":"山茶花開時",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 11,
+            "title":"當你沉睡時",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 12,
+            "title":"東京大飯店",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 13,
+            "title":"求婚大作戰",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 14,
+            "title":"不能結婚的男人",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 15,
+            "title":"還是不能結婚的男人",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+
 
 ### 熱門列表[等待後端資料齊全再開發]
 _進入戲劇首頁時，打此 api，戲劇列表即以 **一個月內戲劇按評分（依據酷播爬評分）由高至低** 顯示。_
@@ -218,6 +412,47 @@ _點選戲劇首頁任一齣戲劇後，打此 api，即取得該部戲劇詳細
   <ol>
   <li> 有預告link先顯示預告，沒有預告link則顯示封面</li>
   </ol>
+
+- Query
+ 
+```
+    query {
+       drama (id: "1")
+       {
+          title
+          content
+          episode
+          region
+          year
+          type
+          actor         
+          img
+          video
+       }
+    }
+```
+
+- Server Response [有預告 link]
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+          "title": "偶然發現的一天",
+          "content": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
+          "episode": "32集",
+          "region": "韓國",
+          "year": "2019",
+          "type": ["愛情","喜劇"],
+          "actor" : ["張東尹","金所泫"] ,      
+          "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+          "video": "https://github.com/uiuxcafe/firstbank-landingpage/blob/master/video/eros.mp4"
+       }
+        ]
+    }
+}
+```
 
 
 ## 2.4 分集大綱列表
