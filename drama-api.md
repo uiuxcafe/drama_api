@@ -989,22 +989,20 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面img。_
  
 ```
     query {
+        
        drama (id: "1")
        {
             title
             content
+            episode
             region
             year
             type
             actor         
             img
             video
-            episode (limit: 10, order_by: {episode_number: desc}) {
-                title
-                time
         }
        }
-    }
 ```
 
 - Server Response [有預告 link]
