@@ -31,7 +31,6 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
 - Query [新聞]
  
 ```
-
     query {
        carosell (where: {type: {_eq: "news"}})
        {
@@ -46,7 +45,6 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
 - Query [戲劇]
  
 ```
-
     query {
        carosell (where: {type: {_eq: "drama"}})
        {
@@ -83,6 +81,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
     }
 }
 ```
+
 ---
 
 ## 1.2 首頁列表
@@ -90,7 +89,6 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 
 - 新聞 WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
 - 戲劇 WF [https://whimsical.com/S597ibFZnpwWm87yw8j6Dv]
-- 分集大綱 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
 - 討論 WF [https://whimsical.com/JFAQ65FCGBdjmua5EDxENp]
 
 
@@ -138,48 +136,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
-        {
-            "id": 4,
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-18 2:37:56",
-            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 5,
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-17 2:37:56",
-            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 6,
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-16 2:37:56",
-            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 7,
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-15 2:37:56",
-            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 8,
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-14 2:37:56",
-            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 9,
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-13 2:37:56",
-            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
+        ...
         {
             "id": 10,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
@@ -191,6 +148,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
     }
 }
 ```
+
 ### 戲劇
 - Query
  
@@ -227,61 +185,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "title":"忠孝節義路遙知馬力",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
-        {
-            "id": 4,
-            "title":"HIStory3-那一天",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 5,
-            "title":"忠孝節義斷機教子",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 6,
-            "title":"鶴唳華亭",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 7,
-            "title":"十年三月三十日",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 8,
-            "title":"Healer/治癒者",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 9,
-            "title":"偶然發現的一天",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 10,
-            "title":"山茶花開時",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 11,
-            "title":"當你沉睡時",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 12,
-            "title":"東京大飯店",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 13,
-            "title":"求婚大作戰",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 14,
-            "title":"不能結婚的男人",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
+        ...
         {
             "id": 15,
             "title":"還是不能結婚的男人",
@@ -404,48 +308,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "region": "ptt",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
-        {
-            "id": 4,
-            "title":"[情報] 紙房子第四季",
-            "date": "2019-05-18 2:37:56",
-            "region": "dcard",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 5,
-            "title":"[情報] 紙房子第四季",
-            "date": "2019-05-17 2:37:56",
-            "region": "ptt",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 6,
-            "title":"[情報] 紙房子第四季",
-            "date": "2019-05-16 2:37:56",
-            "region": "dcard",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 7,
-            "title":"[情報] 紙房子第四季",
-            "date": "2019-05-15 2:37:56",
-            "region": "dcard",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 8,
-            "title":"[情報] 紙房子第四季",
-            "date": "2019-05-14 2:37:56",
-            "region": "dcard",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        {
-            "id": 9,
-            "title":"[情報] 紙房子第四季",
-            "date": "2019-05-13 2:37:56",
-            "region": "dcard",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
+        ...
         {
             "id": 10,
             "title":"[情報] 紙房子第四季",
@@ -459,13 +322,15 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 ```
 
 ## 1.3 分集大綱列表
+_進入戲劇詳細頁後，點選下方分頁「分集大綱」，即打此 api 顯示該劇分集大綱。_
 // 1.按照集數排序應該如何寫？ 2.要從戲劇裡頭抓分集大綱出來嗎？（告訴 where？）
 
+- 分集大綱 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
+- 
 - Query 
- 
 ```
     query {
-       outline (limit: 10, order_by: {post_date: desc}, offset: 10) 
+       outline (where: {drama_id:1}limit: 10, order_by: {post_date: desc}, offset: 10) 
        {
           id
           title
@@ -476,7 +341,6 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
     }
 
 ```
-
 - Server Response
 
 ```json
@@ -559,11 +423,11 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 ```
 
 ## 1.4 熱門關鍵字列表
-_用戶點選搜尋後，打此 api 即顯示近期熱門搜尋關鍵字，用戶可點選任一關鍵字進行搜尋。_
+_用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，用戶可點選任一關鍵字進行搜尋。_
 
 - 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
 
-- query // 取得keyword 的地方目前設為人工方式，該如何設定取得位置。
+- query // 取得keyword 的地方目前設為人工方式，該如何設定取得位置? 是新增一個table？
 
 ```
     query {
@@ -574,6 +438,34 @@ _用戶點選搜尋後，打此 api 即顯示近期熱門搜尋關鍵字，用�
        }
     }
     
+```
+
+- Server Response
+
+```json
+{ 
+    "data": {
+        "hot":[
+            {
+            "id": 1,
+            "keyword":"延禧攻略",
+        },
+        {
+            "id": 2,
+            "keyword":"2019",
+        },
+        {
+            "id": 3,
+            "keyword":"金所炫",
+        },
+        ...
+        {
+            "id": 10,
+            "keyword":"延禧",
+        },
+        ]
+    }
+}
 ```
 
 - mutation [新增] //不太確定如何打
@@ -627,6 +519,7 @@ _當用戶透過輸入關鍵字、點選 Tag 搜尋戲劇相關資料，輸入�
     <li> 結果列表請以 最新發佈時間 排序，由上至下排序。</li> 
   </ol>
 
+
 ### 關鍵字搜尋 | Tag 搜尋
 _用戶直接在 search bar 關鍵字，點選送出，即可依據關鍵字顯示結果列表。_
 
@@ -648,6 +541,46 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
 
 ```
 
+- Server Response [新聞]
+
+```json
+{ 
+    "data": {
+        "news":[
+            {
+            "id": 1,
+            "title":"延禧攻略",
+            "date": "2019-05-23 2:37:56",
+            "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"延禧攻略",
+            "date": "2019-05-22 2:37:56",
+            "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"延禧攻略",
+            "date": "2019-05-21 2:37:56",
+            "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 10,
+            "title":"延禧攻略",
+            "date": "2019-05-15 2:37:56",
+            "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+
 - query [戲劇]
 ```
     query {
@@ -661,6 +594,46 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
        }
     }
 
+```
+
+- Server Response [戲劇]
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+            "id": 1,
+            "title":"延禧攻略",
+            "year": "2019-05-23 2:37:56",
+            "actor": ["鄭家藍","金所泫"],
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"延禧",
+            "year": "2019-05-23 2:37:56",
+            "actor": ["鄭家藍","金所泫"],
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"延禧攻",
+            "year": "2019-05-23 2:37:56",
+            "actor": ["鄭家藍","金所泫"],
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 10,
+            "title":"延禧攻略x略",
+            "year": "2019-05-23 2:37:56",
+            "actor": ["鄭家藍","金所泫"],
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
 ```
 
 - query [討論]
@@ -677,6 +650,42 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
 
 ```
 
+- Server Response [討論]
+
+```json
+{ 
+    "data": {
+        "chat":[
+            {
+            "id": 1,
+            "title":"[情報] XXX 有望演出《延禧攻略》",
+            "region": "PTT",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
+            "region": "PTT",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
+            "region": "Dcard",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 10,
+            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
+            "region": "PTT",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+
 ### 篩選搜尋
 _用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，篩選完畢即可打此 api，更新戲劇列表資料。_
 
@@ -685,7 +694,7 @@ _用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，�
 
 ```
     query {
-       drama (where: {type: {_ilike: "%愛情%","%ˋ劇情%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
+       drama (where: {type: {_ilike: "%愛情%","%ˋ劇情%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
        {
           id
           title
@@ -698,7 +707,7 @@ _用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，�
 - query [地區]
 ```
     query {
-       drama (where: {region: {_ilike: "%美劇%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
+       drama (where: {region: {_ilike: "%美劇%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
        {
           id
           title
@@ -706,6 +715,38 @@ _用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，�
        }
     }
 
+```
+
+- Server Response 
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+            "id": 1,
+            "title":"喜歡的話請響鈴",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"喜歡的話請響鈴",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"喜歡的話請響鈴",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 15,
+            "title":"喜歡的話請響鈴",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
 ```
 
 ### 相關結果搜尋
@@ -726,6 +767,42 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
     }
 
 ```
+- Server Response [相關新聞]
+  
+```json
+{ 
+    "data": {
+        "news":[
+            {
+            "id": 1,
+            "title":"綠豆傳撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-23 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"閨蜜撕破臉！綠豆傳到底發生過什麼恩怨?",
+            "date": "2019-05-20 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨綠豆傳?",
+            "date": "2019-05-19 2:37:56",
+            "preview": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+
+
+
+
+
 
 - query [相關戲劇]
 ```
@@ -742,6 +819,34 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
 
 ```
 
+- Server Response [相關戲劇]
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+            "id": 1,
+            "title": "抓住幽靈",
+            "year": "2019",
+            "actor": ["金所炫","張東尹"],
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"那一天",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"忠孝節義路遙知馬力",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        }
+        ]
+    }
+}
+```
+
 - query [相關討論]
 ```
     query {
@@ -754,6 +859,35 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
        }
     }
     
+```
+
+- Server Response [相關討論]
+
+```json
+{ 
+    "data": {
+        "chat":[
+            {
+            "id": 1,
+            "title":"[情報] XXX 有望演出《延禧攻略》",
+            "region": "PTT",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
+            "region": "PTT",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
+            "region": "Dcard",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
 ```
 
 
