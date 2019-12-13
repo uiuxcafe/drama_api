@@ -6,17 +6,17 @@
     - [新聞](#新聞)
     - [戲劇](#戲劇)
     - [討論](#討論)
-  - [1.3 分集大綱](#13-分集大綱)
-  - [1.4 熱門關鍵字](#14-熱門關鍵字)
-  - [2.1 詳細頁](#21-詳細頁)
-    - [新聞](#新聞-1)
-    - [戲劇](#戲劇-1)
-  - [2.2 分集大綱](#22-分集大綱)
-- [3. 搜尋](#3-搜尋)
-  - [3.1 結果列表](#31-結果列表)
+  - [1.3 分集大綱列表](#13-分集大綱列表)
+  - [1.4 熱門關鍵字列表](#14-熱門關鍵字列表)
+  - [1.5 搜尋結果列表](#15-搜尋結果列表)
     - [關鍵字搜尋 | Tag 搜尋](#關鍵字搜尋--tag-搜尋)
     - [篩選搜尋](#篩選搜尋)
     - [相關結果搜尋](#相關結果搜尋)
+- [2. 詳細](#2-詳細)
+  - [2.1 首頁詳細頁](#21-首頁詳細頁)
+    - [新聞](#新聞-1)
+    - [戲劇](#戲劇-1)
+  - [2.2 分集大綱詳細頁](#22-分集大綱詳細頁)
 
 <!-- /TOC -->
 # 1.列表
@@ -458,7 +458,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 }
 ```
 
-## 1.3 分集大綱
+## 1.3 分集大綱列表
 // 1.按照集數排序應該如何寫？ 2.要從戲劇裡頭抓分集大綱出來嗎？（告訴 where？）
 
 - Query 
@@ -558,7 +558,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 }
 ```
 
-## 1.4 熱門關鍵字
+## 1.4 熱門關鍵字列表
 _用戶點選搜尋後，打此 api 即顯示近期熱門搜尋關鍵字，用戶可點選任一關鍵字進行搜尋。_
 
 - 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
@@ -612,153 +612,7 @@ _用戶點選搜尋後，打此 api 即顯示近期熱門搜尋關鍵字，用�
     
 ```
 
-
----
-
-2 詳細
-## 2.1 詳細頁
-_點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該篇新聞、戲劇詳細資料。_ 
-
-- 新聞 WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
-- 戲劇 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
-- 分集大綱 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
-
-### 新聞
-
-- Query 
-  
-```
-    query {
-       news (id: "1")
-       {
-          title
-          date
-          content
-          img
-       }
-    }
-```
-
-- Server Response 
-
-```json
-{ 
-    "data": {
-        "news":[
-            {
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-23 2:37:56",
-            "content": "<p>內容</p><img src=“url/abc.png” alt=“”/>",
-            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-        },
-        ]
-    }
-}
-```
-
-### 戲劇
-_有預告link 先顯示預告，沒有 預告link 則顯示封面img。_
-
-- Query
- 
-```
-    query {
-       drama (id: "1")
-       {
-          title
-          content
-          episode
-          region
-          year
-          type
-          actor         
-          img
-          video
-       }
-    }
-```
-
-- Server Response [有預告 link]
-
-```json
-{ 
-    "data": {
-        "drama":[
-            {
-          "title": "偶然發現的一天",
-          "content": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
-          "episode": "32集",
-          "region": "韓國",
-          "year": "2019",
-          "type": ["愛情","喜劇"],
-          "actor" : ["張東尹","金所泫"] ,      
-          "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-          "video": "https://github.com/uiuxcafe/firstbank-landingpage/blob/master/video/eros.mp4"
-       }
-        ]
-    }
-}
-```
-
-- Server Response [無預告 link]
-
-```json
-{ 
-    "data": {
-        "drama":[
-            {
-          "title": "偶然發現的一天",
-          "content": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
-          "episode": "32集",
-          "region": "韓國",
-          "year": "2019",
-          "type": ["愛情","喜劇"],
-          "actor" : ["張東尹","金所泫"] ,      
-          "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
-          "video": null
-       }
-        ]
-    }
-}
-```
-
-## 2.2 分集大綱
-_點選分集大綱，即打此 api，取得該集大綱詳細頁資訊。_ 
-
-- Query
- 
-```
-    query {
-       outline (id: "1")
-       {
-          title
-          episode 
-          content
-          img
-       }
-    }
-```
-
-- Server Response
-
-```json
-{ 
-    "data": {
-        "outline":[
-        {
-          "title": "端午發現記憶片斷化自我意識開始覺醒",
-          "episode": "1",
-          "content": "殷端午，一個富裕家庭的獨生女，Three貴族高中的風雲人物，父親是當地有名的企業會長，雖然身患先天心臟病，卻在經歷了幾次手術後奇跡般地活了下來，而且還在兩家父親的撮合下，與同學白經早早地訂了婚。不過，雖然端午暗戀白經已長達十年之久，可白經對她這個病秧子卻絲毫沒有感覺。",
-          "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png"
-       }
-        ]
-    }
-}
-```
----
-
-# 3. 搜尋
-## 3.1 結果列表
+## 1.5 搜尋結果列表
 _當用戶透過輸入關鍵字、點選 Tag 搜尋戲劇相關資料，輸入完畢點選送出，即可打此 API。_
 
 - 關鍵字/ Tag 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
@@ -901,6 +755,152 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
     }
     
 ```
+
+
+---
+
+# 2. 詳細
+## 2.1 首頁詳細頁
+_點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該篇新聞、戲劇詳細資料。_ 
+
+- 新聞 WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
+- 戲劇 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
+- 分集大綱 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
+
+### 新聞
+
+- Query 
+  
+```
+    query {
+       news (id: "1")
+       {
+          title
+          date
+          content
+          img
+       }
+    }
+```
+
+- Server Response 
+
+```json
+{ 
+    "data": {
+        "news":[
+            {
+            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+            "date": "2019-05-23 2:37:56",
+            "content": "<p>內容</p><img src=“url/abc.png” alt=“”/>",
+            "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+
+### 戲劇
+_有預告link 先顯示預告，沒有 預告link 則顯示封面img。_
+
+- Query
+ 
+```
+    query {
+       drama (id: "1")
+       {
+          title
+          content
+          episode
+          region
+          year
+          type
+          actor         
+          img
+          video
+       }
+    }
+```
+
+- Server Response [有預告 link]
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+          "title": "偶然發現的一天",
+          "content": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
+          "episode": "32集",
+          "region": "韓國",
+          "year": "2019",
+          "type": ["愛情","喜劇"],
+          "actor" : ["張東尹","金所泫"] ,      
+          "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+          "video": "https://github.com/uiuxcafe/firstbank-landingpage/blob/master/video/eros.mp4"
+       }
+        ]
+    }
+}
+```
+
+- Server Response [無預告 link]
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+          "title": "偶然發現的一天",
+          "content": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
+          "episode": "32集",
+          "region": "韓國",
+          "year": "2019",
+          "type": ["愛情","喜劇"],
+          "actor" : ["張東尹","金所泫"] ,      
+          "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+          "video": null
+       }
+        ]
+    }
+}
+```
+
+## 2.2 分集大綱詳細頁
+_進入分集大綱列表後，點選任一分集大綱，即打此 api，取得該集大綱詳細頁資訊。_ 
+
+- Query
+ 
+```
+    query {
+       outline (id: "1")
+       {
+          title
+          episode 
+          content
+          img
+       }
+    }
+```
+
+- Server Response
+
+```json
+{ 
+    "data": {
+        "outline":[
+        {
+          "title": "端午發現記憶片斷化自我意識開始覺醒",
+          "episode": "1",
+          "content": "殷端午，一個富裕家庭的獨生女，Three貴族高中的風雲人物，父親是當地有名的企業會長，雖然身患先天心臟病，卻在經歷了幾次手術後奇跡般地活了下來，而且還在兩家父親的撮合下，與同學白經早早地訂了婚。不過，雖然端午暗戀白經已長達十年之久，可白經對她這個病秧子卻絲毫沒有感覺。",
+          "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png"
+       }
+        ]
+    }
+}
+```
+---
+
 
 
 
