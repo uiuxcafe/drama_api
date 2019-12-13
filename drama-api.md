@@ -1,4 +1,26 @@
-<!-- TOC -->autoauto- [1.列表](#1列表)auto    - [1.1 輪播列表](#11-輪播列表)auto        - [新聞](#新聞)auto        - [戲劇](#戲劇)auto    - [1.2 首頁列表](#12-首頁列表)auto        - [新聞](#新聞-1)auto        - [戲劇](#戲劇-1)auto        - [討論](#討論)auto    - [1.3 分集大綱列表](#13-分集大綱列表)auto    - [1.4 熱門關鍵字列表](#14-熱門關鍵字列表)auto    - [1.5 搜尋結果列表](#15-搜尋結果列表)auto        - [關鍵字搜尋 | Tag 搜尋](#關鍵字搜尋--tag-搜尋)auto        - [篩選搜尋](#篩選搜尋)auto        - [相關結果搜尋](#相關結果搜尋)auto- [2. 詳細](#2-詳細)auto    - [2.1 首頁詳細頁](#21-首頁詳細頁)auto        - [新聞](#新聞-2)auto        - [戲劇](#戲劇-2)auto    - [2.2 分集大綱詳細頁](#22-分集大綱詳細頁)autoauto<!-- /TOC -->
+<!-- TOC -->
+
+- [1.列表](#1列表)
+  - [1.1 輪播列表](#11-輪播列表)
+    - [新聞](#新聞)
+    - [戲劇](#戲劇)
+  - [1.2 首頁列表](#12-首頁列表)
+    - [新聞](#新聞-1)
+    - [戲劇](#戲劇-1)
+    - [討論](#討論)
+  - [1.3 分集大綱列表](#13-分集大綱列表)
+  - [1.4 熱門關鍵字列表](#14-熱門關鍵字列表)
+  - [1.5 搜尋結果列表](#15-搜尋結果列表)
+    - [關鍵字搜尋 | Tag 搜尋](#關鍵字搜尋--tag-搜尋)
+    - [篩選搜尋](#篩選搜尋)
+    - [相關結果搜尋](#相關結果搜尋)
+- [2. 詳細](#2-詳細)
+  - [2.1 首頁詳細頁](#21-首頁詳細頁)
+    - [新聞](#新聞-2)
+    - [戲劇](#戲劇-2)
+  - [2.2 分集大綱詳細頁](#22-分集大綱詳細頁)
+
+<!-- /TOC -->
 # 1.列表
 ## 1.1 輪播列表
 
@@ -219,17 +241,11 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 ### 討論 
 
 
-<font color=#FFAA33>
-Q:
-1.是否要加入 where 取得哪一區的討論列表？（where？） 
-2.如果有兩個來源 ptt dcard 能將列表資訊合併在一起？以最新發佈時間排序？
-</font>
-
 - Query [美劇] 
  
 ```
     query {
-       forum (where: {region_us}, limit: 10, order_by: {post_date: desc}, offset: 10) 
+       forum (where: {region: {_eq: "us"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
        {
           id
           title
@@ -240,12 +256,11 @@ Q:
     }
 
 ```
-
 - Query [陸劇]
  
 ```
     query {
-       forum (where: {region_china}, limit: 10, order_by: {post_date: desc}, offset: 10) 
+       forum (where: {region: {_eq: "china"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
        {
           id
           title
@@ -261,7 +276,7 @@ Q:
  
 ```
     query {
-       forum (where: {region_korea}, limit: 10, order_by: {post_date: desc}, offset: 10)
+       forum (where: {region: {_eq: "korea"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
        {
           id
           title
@@ -277,7 +292,7 @@ Q:
  
 ```
     query {
-       forum (where: {region_japan}, limit: 10, order_by: {post_date: desc}, offset: 10)  
+       forum (where: {region: {_eq: "japan"}}, limit: 10, order_by: {post_date: desc}, offset: 10)  
        {
           id
           title
@@ -293,7 +308,7 @@ Q:
  
 ```
     query {
-       forum (where: {region_taiwan}, limit: 10, order_by: {post_date: desc}, offset: 10) 
+       forum (where: {region: {_eq: "taiwan"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
        {
           id
           title
@@ -351,7 +366,6 @@ _進入戲劇詳細頁後，點選下方分頁「分集大綱」，即打此 api
 <font color=#FFAA33>
 Q:
 1.按照集數排序應該如何寫？ 
-2.要從戲劇裡頭抓分集大綱出來嗎？（告訴 where？）
 </font>
 
 - 分集大綱 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
@@ -359,17 +373,22 @@ Q:
 - Query 
 ```
     query {
-       outline (where: {drama_id:1}limit: 10, order_by: {post_date: desc}, offset: 10) 
-       {
-          id
-          title
-          episode // 集數
-          preview // 預覽資訊
-          img
+       drama (id: "1") 
+       { 
+           outline (limit: 10, order_by: {episode_number: desc}) 
+            {
+                id
+                title
+                episode // 集數
+                preview // 預覽資訊
+                img
+            }
        }
     }
 
 ```
+
+
 - Server Response
 
 ```json
@@ -455,8 +474,7 @@ Q:
 _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，用戶可點選任一關鍵字進行搜尋。_
 
 <font color=#FFAA33>
-Q:
-1.取得keyword 的地方目前設為人工方式，該如何設定取得位置? 是新增一個table？
+
 </font>
 
 - 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
@@ -465,7 +483,7 @@ Q:
 
 ```
     query {
-       hot (where: {type: {_eq: "news"}},limit: 10) 
+       hot  
        {
           id
           keyword
@@ -1040,15 +1058,18 @@ _進入分集大綱列表後，點選任一分集大綱，即打此 api，取得
  
 ```
     query {
-       outline (id: "1")
+       drama (id: "1") 
        {
-          title
-          episode 
-          content
-          img
-       }
-    }
+           outline (id: "1")
+            {
+                title
+                episode 
+                content
+                img
+            }
+        }
 ```
+
 
 - Server Response
 
