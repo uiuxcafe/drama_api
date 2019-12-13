@@ -1,22 +1,9 @@
 <!-- TOC -->
 
-- [1.列表](#1列表)
-  - [1.1 輪播列表](#11-輪播列表)
-  - [1.2 首頁列表](#12-首頁列表)
-    - [新聞](#新聞)
-    - [戲劇](#戲劇)
-    - [討論](#討論)
-  - [1.3 分集大綱列表](#13-分集大綱列表)
-  - [1.4 熱門關鍵字列表](#14-熱門關鍵字列表)
-  - [1.5 搜尋結果列表](#15-搜尋結果列表)
-    - [關鍵字搜尋 | Tag 搜尋](#關鍵字搜尋--tag-搜尋)
-    - [篩選搜尋](#篩選搜尋)
-    - [相關結果搜尋](#相關結果搜尋)
-- [2. 詳細](#2-詳細)
-  - [2.1 首頁詳細頁](#21-首頁詳細頁)
-    - [新聞](#新聞-1)
-    - [戲劇](#戲劇-1)
-  - [2.2 分集大綱詳細頁](#22-分集大綱詳細頁)
+- [1.列表](#1%e5%88%97%e8%a1%a8)
+  - [1.1 輪播列表](#11-%e8%bc%aa%e6%92%ad%e5%88%97%e8%a1%a8)
+    - [新聞](#%e6%96%b0%e8%81%9e)
+  - [```](#)
 
 <!-- /TOC -->
 # 1.列表
@@ -27,8 +14,8 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
 - 新聞 WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
 - 戲劇 WF [https://whimsical.com/S597ibFZnpwWm87yw8j6Dv]
 
-
-- Query [新聞]
+### 新聞
+- Query
  
 ```
     query {
@@ -41,7 +28,46 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
     }
 
 ```
+<!-- - mutation [新增] //不太確定如何打，如何加入帶入要新增的位置 news/drama?
 
+```
+    insert_carosell {
+       {
+          id: 6
+          title: 閨蜜撕破臉！?,
+          img: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png,
+       }
+    }
+    
+```
+
+- mutation [更新] //不太確定如何打
+
+```
+    update_carosell {
+       {
+          id: 6
+          title: 閨蜜撕破臉！?,
+          img: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png,
+       }
+    }
+    
+```
+
+- mutation [刪除] //不太確定如何打
+
+```
+    delete_carosell {
+       {
+          id: 6
+          title: 閨蜜撕破臉！?,
+          img: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png,
+       }
+    }
+     -->
+<!-- ``` -->
+
+### 戲劇
 - Query [戲劇]
  
 ```
@@ -199,7 +225,10 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 
 
 ### 討論 
-// 1.是否要加入 where 取得哪一區的討論列表？（where？） 2.如果有兩個來源 ptt dcard 能將列表資訊合併在一起？以最新發佈時間排序？
+
+Q:
+1.是否要加入 where 取得哪一區的討論列表？（where？） 
+2.如果有兩個來源 ptt dcard 能將列表資訊合併在一起？以最新發佈時間排序？
 
 - Query [美劇] 
  
@@ -323,10 +352,13 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
 
 ## 1.3 分集大綱列表
 _進入戲劇詳細頁後，點選下方分頁「分集大綱」，即打此 api 顯示該劇分集大綱。_
-// 1.按照集數排序應該如何寫？ 2.要從戲劇裡頭抓分集大綱出來嗎？（告訴 where？）
+
+Q:
+1.按照集數排序應該如何寫？ 
+2.要從戲劇裡頭抓分集大綱出來嗎？（告訴 where？）
 
 - 分集大綱 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
-- 
+
 - Query 
 ```
     query {
@@ -425,9 +457,12 @@ _進入戲劇詳細頁後，點選下方分頁「分集大綱」，即打此 api
 ## 1.4 熱門關鍵字列表
 _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，用戶可點選任一關鍵字進行搜尋。_
 
+Q:
+1.取得keyword 的地方目前設為人工方式，該如何設定取得位置? 是新增一個table？
+
 - 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
 
-- query // 取得keyword 的地方目前設為人工方式，該如何設定取得位置? 是新增一個table？
+- query 
 
 ```
     query {
@@ -468,7 +503,7 @@ _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，�
 }
 ```
 
-- mutation [新增] //不太確定如何打
+<!-- - mutation [新增] //不太確定如何打
 
 ```
     insert_hot {
@@ -502,7 +537,7 @@ _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，�
        }
     }
     
-```
+``` -->
 
 ## 1.5 搜尋結果列表
 _當用戶透過輸入關鍵字、點選 Tag 搜尋戲劇相關資料，輸入完畢點選送出，即可打此 API。_
@@ -510,14 +545,6 @@ _當用戶透過輸入關鍵字、點選 Tag 搜尋戲劇相關資料，輸入�
 - 關鍵字/ Tag 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
 - 篩選結果 WF [https://whimsical.com/4WBuD65bkGkLVhESwb4pY1]
 - 相關結果 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
-
-- 條件
-  <ol>
-    <li> 依據搜尋關鍵字，分別顯示三種類型的結果列表。</li> 
-    <li> 搜尋類型分為三種：新聞、戲劇、討論。</li> 
-    <li> 每一類型搜尋結果均回傳 10 筆資料。</li> 
-    <li> 結果列表請以 最新發佈時間 排序，由上至下排序。</li> 
-  </ol>
 
 
 ### 關鍵字搜尋 | Tag 搜尋
@@ -549,21 +576,21 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
         "news":[
             {
             "id": 1,
-            "title":"延禧攻略",
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-23 2:37:56",
             "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 2,
-            "title":"延禧攻略",
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-22 2:37:56",
             "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 3,
-            "title":"延禧攻略",
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-21 2:37:56",
             "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
@@ -571,7 +598,7 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
         ...
         {
             "id": 10,
-            "title":"延禧攻略",
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-15 2:37:56",
             "preview": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
@@ -689,8 +716,10 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
 ### 篩選搜尋
 _用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，篩選完畢即可打此 api，更新戲劇列表資料。_
 
+Q:
+//複選的表示方法？
 
-- query [類別] //複選的表示方法？
+- query [類別] 
 
 ```
     query {
