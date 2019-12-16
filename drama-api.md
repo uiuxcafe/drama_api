@@ -250,7 +250,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           id
           title
           date
-          region // 來源
+          source // 來源
           img
        }
     }
@@ -265,7 +265,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           id
           title
           date
-          region // 來源
+          source // 來源
           img
        }
     }
@@ -281,7 +281,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           id
           title
           date
-          region // 來源
+          source // 來源
           img
        }
     }
@@ -297,7 +297,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           id
           title
           date
-          region // 來源
+          source // 來源
           img
        }
     }
@@ -313,7 +313,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           id
           title
           date
-          region // 來源
+          source // 來源
           img
        }
     }
@@ -330,21 +330,21 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "id": 1,
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-23 2:37:56",
-            "region": "ptt",
+            "source": "ptt",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-20 2:37:56",
-            "region": "dcard",
+            "source": "dcard",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-19 2:37:56",
-            "region": "ptt",
+            "source": "ptt",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         ...
@@ -352,7 +352,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "id": 10,
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-12 2:37:56",
-            "region": "dcard",
+            "source": "dcard",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         ]
@@ -687,7 +687,7 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
        {
           id
           title
-          region
+          source
           img
        }
     }
@@ -703,26 +703,26 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             {
             "id": 1,
             "title":"[情報] XXX 有望演出《延禧攻略》",
-            "region": "PTT",
+            "source": "PTT",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
-            "region": "PTT",
+            "source": "PTT",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"[心得] 出不了坑的延禧攻略 (有雷)",
-            "region": "Dcard",
+            "source": "Dcard",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         ...
         {
             "id": 10,
             "title":"[心得] 出不了坑的延禧攻略 (有雷)",
-            "region": "PTT",
+            "source": "PTT",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         ]
@@ -735,14 +735,14 @@ _用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，�
 
 <font color=#FFAA33>
 Q:
-//複選的表示方法？
+//複選的表示方法？用 "","" 分開表示嗎？
 </font>
 
 - query [類別] 
 
 ```
     query {
-       drama (where: {type: {_ilike: "%愛情%","%ˋ劇情%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
+       drama (where: {type: {_ilike: "%愛情%","%劇情%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
        {
           id
           title
@@ -902,7 +902,7 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
        {
           id
           title
-          region
+          source
           img
        }
     }
@@ -918,19 +918,19 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
             {
             "id": 1,
             "title":"[情報] XXX 有望演出《延禧攻略》",
-            "region": "PTT",
+            "source": "PTT",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
-            "region": "PTT",
+            "source": "PTT",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"[心得] 出不了坑的延禧攻略 (有雷)",
-            "region": "Dcard",
+            "source": "Dcard",
             "img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
         },
         ]
