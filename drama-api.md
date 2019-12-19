@@ -379,7 +379,7 @@ Q:
     query {
        drama (id: "1", season:"1") 
        { 
-           outline (limit: 10, order_by: {episode: desc}) 
+           episode (limit: 10, order_by: {episode: desc}) 
             {
                 id
                 title
