@@ -38,7 +38,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
        {
           id
           title
-          feature_img
+          cover
        }
     }
 
@@ -50,7 +50,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
        {
           id: 6
           title: 閨蜜撕破臉！?,
-          feature_img: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png,
+          cover: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png,
        }
     }
     
@@ -63,7 +63,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
        {
           id: 6
           title: 閨蜜撕破臉！?,
-          feature_img: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png,
+          cover: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png,
        }
     }
     
@@ -76,7 +76,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
        {
           id: 6
           title: 閨蜜撕破臉！?,
-          feature_img: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png,
+          cover: https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png,
        }
     }
 ``` -->
@@ -90,7 +90,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
        {
           id
           title
-          feature_img
+          cover
        }
     }
 
@@ -105,17 +105,17 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
             {
             "id": 1,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -143,7 +143,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           title
           date
           excerpt
-          feature_img
+          cover
        }
     }
 
@@ -160,21 +160,21 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
             "date": "2019-05-23 2:37:56",
             "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
             "date": "2019-05-20 2:37:56",
             "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
             "date": "2019-05-19 2:37:56",
             "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
         {
@@ -182,7 +182,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
             "date": "2019-05-12 2:37:56",
             "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -198,7 +198,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
        {
           id
           title
-          feature_img
+          cover
        }
     }
 
@@ -213,23 +213,23 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             {
             "id": 1,
             "title":"抓住幽靈",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"那一天",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"忠孝節義路遙知馬力",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
         {
             "id": 15,
             "title":"還是不能結婚的男人",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -251,7 +251,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           title
           date
           source // 來源
-          feature_img
+          cover
        }
     }
 
@@ -266,7 +266,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           title
           date
           source // 來源
-          feature_img
+          cover
        }
     }
 
@@ -282,7 +282,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           title
           date
           source // 來源
-          feature_img
+          cover
        }
     }
 
@@ -298,7 +298,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           title
           date
           source // 來源
-          feature_img
+          cover
        }
     }
 
@@ -314,7 +314,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
           title
           date
           source // 來源
-          feature_img
+          cover
        }
     }
 
@@ -331,21 +331,21 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-23 2:37:56",
             "source": "ptt",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-20 2:37:56",
             "source": "dcard",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-19 2:37:56",
             "source": "ptt",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
         {
@@ -353,7 +353,7 @@ _進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。
             "title":"[情報] 紙房子第四季",
             "date": "2019-05-12 2:37:56",
             "source": "dcard",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -380,8 +380,9 @@ Q:
                 id
                 title
                 episode // 集數
+                season
                 content // 預覽資訊 限制只顯示前20字 
-                feature_img
+                cover
             }
        }
     }
@@ -399,71 +400,81 @@ Q:
             "id": 1,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"1",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"2",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"3",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 4,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"4",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 5,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"5",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 6,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"6",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 7,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"7",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 8,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"8",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 9,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"9",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 10,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
             "epoisode":"10",
+            "season":"1",
             "content":"殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",  
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         }        
         ]
     }
@@ -485,7 +496,6 @@ _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，�
     query {
        hot  
        {
-          id
           name
        }
     }
@@ -499,20 +509,16 @@ _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，�
     "data": {
         "hot":[
             {
-            "id": 1,
             "name":"延禧攻略",
         },
         {
-            "id": 2,
             "name":"2019",
         },
         {
-            "id": 3,
             "name":"金所炫",
         },
         ...
         {
-            "id": 10,
             "name":"延禧",
         },
         ]
@@ -573,13 +579,13 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
 - query [新聞]
 ```
     query {
-       news (where: {post_title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)
+       news (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)
        {
           id
           title
           date
           excerpt
-          feature_img
+          cover
        }
     }
 
@@ -596,21 +602,21 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-23 2:37:56",
             "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-22 2:37:56",
             "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-21 2:37:56",
             "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
         {
@@ -618,7 +624,7 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
             "date": "2019-05-15 2:37:56",
             "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -628,13 +634,13 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
 - query [戲劇]
 ```
     query {
-       drama (where: {drama_title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
+       drama (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
        {
           id
           title
           year
           actor
-          feature_img
+          cover
        }
     }
 
@@ -651,21 +657,21 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "title":"延禧攻略",
             "year": "2019",
             "actor": ["鄭家藍","金所泫"],
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"延禧",
             "year": "2019",
             "actor": ["鄭家藍","金所泫"],
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"延禧攻",
             "year": "2019",
             "actor": ["鄭家藍","金所泫"],
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
         {
@@ -673,7 +679,7 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "title":"延禧攻略x略",
             "year": "2019",
             "actor": ["鄭家藍","金所泫"],
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -683,13 +689,13 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
 - query [討論]
 ```
     query {
-       forum (where: {forum_title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
+       forum (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
        {
           id
           title
           date
           source
-          feature_img
+          cover
        }
     }
 
@@ -706,21 +712,21 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "title":"[情報] XXX 有望演出《延禧攻略》",
             "date": "2019-05-23 2:37:56",
             "source": "PTT",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
             "date": "2019-05-23 2:37:56",
             "source": "PTT",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"[心得] 出不了坑的延禧攻略 (有雷)",
             "date": "2019-05-23 2:37:56",
             "source": "Dcard",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
         {
@@ -728,7 +734,7 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "title":"[心得] 出不了坑的延禧攻略 (有雷)",
             "date": "2019-05-23 2:37:56",
             "source": "PTT",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -751,7 +757,7 @@ Q:
        {
           id
           title
-          feature_img
+          cover
        }
     }
 
@@ -764,7 +770,7 @@ Q:
        {
           id
           title
-          feature_img
+          cover
        }
     }
 
@@ -779,23 +785,23 @@ Q:
             {
             "id": 1,
             "title":"喜歡的話請響鈴",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"喜歡的話請響鈴",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"喜歡的話請響鈴",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
         {
             "id": 15,
             "title":"喜歡的話請響鈴",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -809,13 +815,13 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
 - query [相關新聞]
 ```
     query {
-       news (where: {post_title: {_ilike: "%綠豆傳%"}},limit: 3, order_by: {post_date: desc})  
+       news (where: {title: {_ilike: "%綠豆傳%"}},limit: 3, order_by: {post_date: desc})  
        {
           id
           title
           date
           excerpt
-          feature_img
+          cover
        }
     }
 
@@ -831,21 +837,21 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
             "title":"綠豆傳撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
             "date": "2019-05-23 2:37:56",
             "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"閨蜜撕破臉！綠豆傳到底發生過什麼恩怨?",
             "date": "2019-05-20 2:37:56",
             "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨綠豆傳?",
             "date": "2019-05-19 2:37:56",
             "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -860,13 +866,13 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
 - query [相關戲劇]
 ```
     query {
-       drama (where: {drama_title: {_ilike: "%綠豆傳%"}},limit: 3, order_by: {post_date: desc})  
+       drama (where: {title: {_ilike: "%綠豆傳%"}},limit: 3, order_by: {post_date: desc})  
        {
           id
           title
           year
           actor
-          feature_img
+          cover
        }
     }
 
@@ -883,17 +889,17 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
             "title": "抓住幽靈",
             "year": "2019",
             "actor": ["金所炫","張東尹"],
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"那一天",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"忠孝節義路遙知馬力",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         }
         ]
     }
@@ -903,13 +909,13 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
 - query [相關討論]
 ```
     query {
-       forum (where: {forum_title: {_ilike: "%九%"}},limit: 3, order_by: {post_date: desc}) 
+       forum (where: {title: {_ilike: "%九%"}},limit: 3, order_by: {post_date: desc}) 
        {
           id
           title
           date
           source
-          feature_img
+          cover
        }
     }
     
@@ -926,21 +932,21 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
             "title":"[情報] XXX 有望演出《延禧攻略》",
             "date": "2019-05-23 2:37:56",
             "source": "PTT",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
             "date": "2019-05-23 2:37:56",
             "source": "PTT",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"[心得] 出不了坑的延禧攻略 (有雷)",
             "date": "2019-05-23 2:37:56",
             "source": "Dcard",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
     }
@@ -969,7 +975,7 @@ _點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該
           title
           date
           content
-          feature_img
+          cover
           tag
           type
           category
@@ -986,8 +992,8 @@ _點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該
             {
             "title":"喜歡的換請響鈴? 劇中解密",
             "date": "2019-05-23 2:37:56",
-            "content": "<p>內容</p><feature_img src=“url/abc.png” alt=“”/>",
-            "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+            "content": "<p>內容</p><cover src=“url/abc.png” alt=“”/>",
+            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
             "tag": ["偶然發現的一天","路雲"],
             "type": ["愛情","喜劇"],
             "category":["韓劇"],
@@ -998,7 +1004,7 @@ _點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該
 ```
 
 ### 戲劇
-_有預告link 先顯示預告，沒有 預告link 則顯示封面feature_img。_
+_有預告link 先顯示預告，沒有 預告link 則顯示封面cover。_
 
 - Query
  
@@ -1008,6 +1014,7 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面feature_img。
        drama (id: "1")
        {
             title
+            season
             excerpt
             episode
             status
@@ -1015,7 +1022,7 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面feature_img。
             year
             type
             actor         
-            feature_img
+            cover
             teaser
         }
        }
@@ -1029,6 +1036,7 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面feature_img。
         "drama":[
             {
           "title": "偶然發現的一天",
+          "season" : "1",
           "excerpt": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
           "episode": "32集",
           "status": "已完結",
@@ -1036,7 +1044,7 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面feature_img。
           "year": "2019",
           "type": ["愛情","喜劇"],
           "actor" : ["張東尹","金所泫"] ,      
-          "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+          "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
           "teaser": "https://github.com/uiuxcafe/firstbank-landingpage/blob/master/teaser/eros.mp4"
        }
         ]
@@ -1052,6 +1060,7 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面feature_img。
         "drama":[
             {
           "title": "偶然發現的一天",
+          "season" : "1",
           "excerpt": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
           "episode": "32集",
           "status": "已完結",
@@ -1059,7 +1068,7 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面feature_img。
           "year": "2019",
           "type": ["愛情","喜劇"],
           "actor" : ["張東尹","金所泫"] ,     
-          "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png",
+          "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
           "teaser": null
        }
         ]
@@ -1081,7 +1090,7 @@ _進入分集大綱列表後，點選任一分集大綱，即打此 api，取得
                 title
                 episode 
                 content
-                feature_img
+                cover
             }
         }
 ```
@@ -1097,7 +1106,7 @@ _進入分集大綱列表後，點選任一分集大綱，即打此 api，取得
           "title": "端午發現記憶片斷化自我意識開始覺醒",
           "episode": "1",
           "content": "殷端午，一個富裕家庭的獨生女，Three貴族高中的風雲人物，父親是當地有名的企業會長，雖然身患先天心臟病，卻在經歷了幾次手術後奇跡般地活了下來，而且還在兩家父親的撮合下，與同學白經早早地訂了婚。不過，雖然端午暗戀白經已長達十年之久，可白經對她這個病秧子卻絲毫沒有感覺。",
-          "feature_img": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/feature_img/service/icon_01.png"
+          "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png"
        }
         ]
     }
