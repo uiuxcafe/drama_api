@@ -1014,36 +1014,49 @@ _點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該
   
 ```
     query {
-       news (id: "1")
-       {
-          title
-          date
-          content
-          cover
-          tag
-          type
-          category
-       }
+      news(where: {id: {_eq: "1"}}) {
+        title
+        created_at
+        content
+        cover
+        news_types {
+          type {
+            name
+            type
+          }
+        }
+      }
     }
 ```
 
 - Response 
 
 ```json
-{ 
-    "data": {
-        "news":[
-            {
-            "title":"喜歡的換請響鈴? 劇中解密",
-            "date": "2019-05-23 2:37:56",
-            "content": "<p>內容</p><cover src=“url/abc.png” alt=“”/>",
-            "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
-            "tag": ["偶然發現的一天","路雲"],
-            "type": ["愛情","喜劇"],
-            "category":["韓劇"],
-        },
+{
+  "data": {
+    "news": [
+      {
+        "title": "閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨？",
+        "created_at": "2019-12-19T17:23:10.666013",
+        "content": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+        "cover": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2019/08/f2695eec3bbf3d8277d9ecc724169093.jpg",
+        "news_types": [
+          {
+            "type": {
+              "name": "懸疑",
+              "type": "type"
+            }
+          },
+          {
+            "type": {
+              "name": "張韶涵",
+              "type": "tag"
+            }
+          }
         ]
-    }
+      }
+    ]
+  }
 }
 ```
 
@@ -1053,20 +1066,27 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面cover。_
 - Query
  
 ```
-    query {        
-       drama (id: "1")
-       {
-            title
-            season
-            excerpt
-            episode
-            status
-            region
-            year
-            type
-            actor         
-            cover
-            teaser
+    query {
+        drama(where: {id: {_eq: "1"}}) {
+          title
+          season
+          excerpt
+          episode
+          status
+          year
+          drama_actors {
+            actor {
+              name
+            }
+          }
+          drama_types {
+            type {
+              name
+              type
+            }
+          }
+          cover
+          teaser
         }
        }
 ```
@@ -1074,48 +1094,130 @@ _有預告link 先顯示預告，沒有 預告link 則顯示封面cover。_
 - Response [有預告 link]
 
 ```json
-{ 
-    "data": {
-        "drama":[
-            {
-          "title": "偶然發現的一天",
-          "season" : "1",
-          "excerpt": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
-          "episode": "32集",
-          "status": "已完結",
-          "region": "韓國",
-          "year": "2019",
-          "type": ["愛情","喜劇"],
-          "actor" : ["張東尹","金所泫"] ,      
-          "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
-          "teaser": "https://github.com/uiuxcafe/firstbank-landingpage/blob/master/teaser/eros.mp4"
-       }
-        ]
-    }
+{
+  "data": {
+    "drama": [
+      {
+        "title": "山茶花開時",
+        "season": 1,
+        "excerpt": "《山茶花開時》講述的是一個孤兒冬柏長大后成為單身母親的故事。她開了一家居酒屋，名為“冬柏”，中文意思是山茶花。龍植是鎮上一名正義滿滿的巡警，在遇到他之後，冬柏的生活發生了轉折。他們不顧世俗對單親媽媽的偏見而墜入愛河。龍植從小由媽媽獨自撫養長大，明白冬柏這一路走來有多麼艱辛，所以想要用一生去守護她。",
+        "episode": 18,
+        "status": "連載中",
+        "year": 2019,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "郭俊辰"
+            }
+          },
+          {
+            "actor": {
+              "name": "李沁"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "韓劇",
+              "type": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "韓國",
+              "type": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "年度必看",
+              "type": "tag"
+            }
+          },
+          {
+            "type": {
+              "name": "現代",
+              "type": "type"
+            }
+          },
+          {
+            "type": {
+              "name": "愛情",
+              "type": "type"
+            }
+          }
+        ],
+        "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        "teaser": "https://www.youtube.com/watch?v=jMMFJDn_WaM"
+      }
+    ]
+  }
 }
 ```
 
 - Response [無預告 link]
 
 ```json
-{ 
-    "data": {
-        "drama":[
-            {
-          "title": "偶然發現的一天",
-          "season" : "1",
-          "excerpt": "講述了扮成女人潛伏在神祕寡婦村的男孩和不想成為妓生的女孩各自懷著祕密相遇後的故事。全綠豆，是一個外貌、體力和智商都相當出色的男人，還夢想成為最棒的「將軍」。受到意外事件影響，他必須過著躲躲藏藏的生活，為了找尋自己出生的祕密，以「男扮女裝」的身分躲進寡婦村，並與東東珠結緣。",
-          "episode": "32集",
-          "status": "已完結",
-          "region": ["韓國"],
-          "year": "2019",
-          "type": ["愛情","喜劇"],
-          "actor" : ["張東尹","金所泫"] ,     
-          "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
-          "teaser": null
-       }
-        ]
-    }
+{
+  "data": {
+    "drama": [
+      {
+        "title": "山茶花開時",
+        "season": 1,
+        "excerpt": "《山茶花開時》講述的是一個孤兒冬柏長大后成為單身母親的故事。她開了一家居酒屋，名為“冬柏”，中文意思是山茶花。龍植是鎮上一名正義滿滿的巡警，在遇到他之後，冬柏的生活發生了轉折。他們不顧世俗對單親媽媽的偏見而墜入愛河。龍植從小由媽媽獨自撫養長大，明白冬柏這一路走來有多麼艱辛，所以想要用一生去守護她。",
+        "episode": 18,
+        "status": "連載中",
+        "year": 2019,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "郭俊辰"
+            }
+          },
+          {
+            "actor": {
+              "name": "李沁"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "韓劇",
+              "type": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "韓國",
+              "type": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "年度必看",
+              "type": "tag"
+            }
+          },
+          {
+            "type": {
+              "name": "現代",
+              "type": "type"
+            }
+          },
+          {
+            "type": {
+              "name": "愛情",
+              "type": "type"
+            }
+          }
+        ],
+        "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/img/service/icon_01.png",
+        "teaser": null
+      }
+    ]
+  }
 }
 ```
 
