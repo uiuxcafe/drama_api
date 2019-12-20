@@ -42,7 +42,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
  
 ```
     query {
-       carosell (where: {type: {_eq: "news"}})
+       carousel (where: {type: {_eq: "news"}})
        {
           id
           title
@@ -54,7 +54,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
 <!-- - mutation [新增] //不太確定如何打，如何加入帶入要新增的位置 news/drama?
 
 ```
-    insert_carosell {
+    insert_carousel {
        {
           id: 6
           title: 閨蜜撕破臉！?,
@@ -67,7 +67,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
 - mutation [更新] //不太確定如何打
 
 ```
-    update_carosell {
+    update_carousel {
        {
           id: 6
           title: 閨蜜撕破臉！?,
@@ -80,7 +80,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
 - mutation [刪除] //不太確定如何打
 
 ```
-    delete_carosell {
+    delete_carousel {
        {
           id: 6
           title: 閨蜜撕破臉！?,
@@ -94,7 +94,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
  
 ```
     query {
-       carosell (where: {type: {_eq: "drama"}})
+       carousel (where: {type: {_eq: "drama"}})
        {
           id
           title
@@ -109,7 +109,7 @@ _進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內
 ```json
 { 
     "data": {
-        "carosell":[
+        "":[
             {
             "id": 1,
             "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
