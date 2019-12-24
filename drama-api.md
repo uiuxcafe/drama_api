@@ -971,21 +971,54 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
             "id": 1,
             "title": "抓住幽靈",
             "year": "2019",
-            "actor": ["金所炫","張東尹"],
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "姜河那"
+                }
+              },
+              {
+              "actor": {
+                "name": "孔曉振"
+              }
+              }
+            ],
             "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"那一天",
             "year": "2019",
-            "actor": ["金所炫","張東尹"],
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "姜河那"
+                }
+              },
+              {
+              "actor": {
+                "name": "孔曉振"
+              }
+              }
+            ],
             "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"忠孝節義路遙知馬力",
             "year": "2019",
-            "actor": ["金所炫","張東尹"],
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "姜河那"
+                }
+              },
+              {
+              "actor": {
+                "name": "孔曉振"
+              }
+              }
+            ],
             "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         }
         ]
