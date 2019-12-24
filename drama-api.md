@@ -662,21 +662,54 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "id": 1,
             "title":"延禧攻略",
             "year": "2019",
-            "actor": ["鄭家藍","金所泫"],
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
             "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"延禧",
             "year": "2019",
-            "actor": ["鄭家藍","金所泫"],
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
             "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"延禧攻",
             "year": "2019",
-            "actor": ["鄭家藍","金所泫"],
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
             "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ...
@@ -684,7 +717,18 @@ _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯
             "id": 10,
             "title":"延禧攻略x略",
             "year": "2019",
-            "actor": ["鄭家藍","金所泫"],
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
             "cover": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/cover/service/icon_01.png",
         },
         ]
