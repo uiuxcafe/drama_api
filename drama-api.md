@@ -255,7 +255,7 @@ _前端規則：當資料不足 10 筆（戲劇為 15筆），視為最後一頁
  
 ```
     query {
-       forum (where: {region: {_eq: "us"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
+       forum (where: {category: {_eq: "us"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
        {
           id
           title
@@ -270,7 +270,7 @@ _前端規則：當資料不足 10 筆（戲劇為 15筆），視為最後一頁
  
 ```
     query {
-       forum (where: {region: {_eq: "china"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
+       forum (where: {category: {_eq: "china"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
        {
           id
           title
@@ -286,7 +286,7 @@ _前端規則：當資料不足 10 筆（戲劇為 15筆），視為最後一頁
  
 ```
     query {
-       forum (where: {region: {_eq: "korea"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
+       forum (where: {category: {_eq: "korea"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
        {
           id
           title
@@ -302,7 +302,7 @@ _前端規則：當資料不足 10 筆（戲劇為 15筆），視為最後一頁
  
 ```
     query {
-       forum (where: {region: {_eq: "japan"}}, limit: 10, order_by: {post_date: desc}, offset: 10)  
+       forum (where: {category: {_eq: "japan"}}, limit: 10, order_by: {post_date: desc}, offset: 10)  
        {
           id
           title
@@ -318,7 +318,7 @@ _前端規則：當資料不足 10 筆（戲劇為 15筆），視為最後一頁
  
 ```
     query {
-       forum (where: {region: {_eq: "taiwan"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
+       forum (where: {category: {_eq: "taiwan"}}, limit: 10, order_by: {post_date: desc}, offset: 10) 
        {
           id
           title
@@ -406,7 +406,7 @@ Q:
 ```json
 { 
     "data": {
-        "outline":[
+        "episode":[
             {
             "id": 1,
             "title": "端午發現記憶片斷化自我意識開始覺醒",
