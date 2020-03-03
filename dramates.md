@@ -951,22 +951,19 @@ _前端規則：當資料不足 15 筆時，視為最後一頁。進入畫面第
 <!-- 尚未解決 -->
 ### 相關結果搜尋
 _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關新聞、戲劇、討論結果列表。_
-
 <!-- 自產新聞，由 nara 想好規則後，再補上。 -->
 
-#### 相關新聞
 
+#### 相關新聞
+_相關新聞須先用id取得此新聞tag list範例如下:_
 - query
 ```
     query {
-       news (where: {title: {_ilike: "%綠豆傳%"}},limit: 3, order_by: {post_date: desc})  
-       {
-          id
-          title
-          date
-          excerpt
-          thumbnail
-       }
+      news_type(where: {news_id: {_eq: "1"}, type: {label: {_eq: "tag"}}}) {
+        type {
+          name
+        }
+      }
     }
 
 ```
@@ -974,47 +971,129 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
   
 ```json
 { 
-    "data": {
-        "news":[
-            {
-            "id": 1,
-            "title":"綠豆傳撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-            "date": "2019-05-23 2:37:56",
-            "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 2,
-            "title":"閨蜜撕破臉！綠豆傳到底發生過什麼恩怨?",
-            "date": "2019-05-20 2:37:56",
-            "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 3,
-            "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨綠豆傳?",
-            "date": "2019-05-19 2:37:56",
-            "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ]
+  "data": {
+    "news_type": [
+      {
+        "type": {
+          "name": "張韶涵"
+        }
+      },
+      {
+        "type": {
+          "name": "范瑋琪"
+        }
+      },
+      {
+        "type": {
+          "name": "綠豆傳"
+        }
+      }
+    ]
+  }
+}
+```
+_接著再用回傳的關鍵字做 or query_
+- query
+```
+    query {
+      news(where: {
+        _or: [
+          {title: {_ilike: "%綠豆傳%"}}, 
+          {title: {_ilike: "%張韶涵%"}}, 
+          {title: {_ilike: "%范瑋琪%"}}
+        ]}, limit: 3, order_by: {created_at: desc}) {
+        id
+        title
+        created_at
+        excerpt
+        thumbnail
+      }
     }
+
+```
+- Response
+  
+```json
+{ 
+  "data": {
+      "news":[
+          {
+          "id": 1,
+          "title":"綠豆傳撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+          "created_at": "2019-05-23 2:37:56",
+          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+      },
+      {
+          "id": 2,
+          "title":"閨蜜撕破臉！綠豆傳到底發生過什麼恩怨?",
+          "created_at": "2019-05-20 2:37:56",
+          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+      },
+      {
+          "id": 3,
+          "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+          "created_at": "2019-05-19 2:37:56",
+          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+      },
+      ]
+  }
 }
 ```
 
 #### 相關戲劇
-
+_相關戲劇須先用id取得此戲劇actor list範例如下:_
 - query
 ```
     query {
-       drama (where: {title: {_ilike: "%綠豆傳%"}},limit: 3, order_by: {post_date: desc})  
-       {
-          id
-          title
-          year
-          actor
-          thumbnail
-       }
+      drama_actor(where: {drama_id: {_eq: "1"}}) {
+        actor {
+          name
+        }
+      }
+    }
+
+```
+- Response
+  
+```json
+{ 
+  "data": {
+    "drama_actor": [
+      {
+        "actor": {
+          "name": "姜河那"
+        }
+      },
+      {
+        "actor": {
+          "name": "孔曉振"
+        }
+      }
+    ]
+  }
+}
+```
+_接著再用回傳的演員名做 or query_
+- query
+```
+    query {
+      drama(where: {drama_actors: {_or: [
+      {actor: {name: {_eq: "姜河那"}}},
+      {actor: {name: {_eq: "孔曉振"}}}
+      ]}}, limit: 3, order_by: {created_at: desc}) {
+        id
+        title
+        year
+        thumbnail
+        drama_actors {
+          actor {
+            name
+          }
+        }
+      }
     }
 
 ```
@@ -1023,77 +1102,79 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
 
 ```json
 { 
-    "data": {
-        "drama":[
+  "data": {
+      "drama":[
+          {
+          "id": 1,
+          "title": "抓住幽靈",
+          "year": "2019",
+          "drama_actors": [
             {
-            "id": 1,
-            "title": "抓住幽靈",
-            "year": "2019",
-            "drama_actors": [
-              {
-              "actor": {
-                "name": "姜河那"
-                }
-              },
-              {
-              "actor": {
-                "name": "孔曉振"
+            "actor": {
+              "name": "姜河那"
               }
+            },
+            {
+            "actor": {
+              "name": "孔曉振"
+            }
+            }
+          ],
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+      },
+      {
+          "id": 2,
+          "title":"那一天",
+          "year": "2019",
+          "drama_actors": [
+            {
+            "actor": {
+              "name": "姜河那"
               }
-            ],
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 2,
-            "title":"那一天",
-            "year": "2019",
-            "drama_actors": [
-              {
-              "actor": {
-                "name": "姜河那"
-                }
-              },
-              {
-              "actor": {
-                "name": "孔曉振"
+            },
+            {
+            "actor": {
+              "name": "孔曉振"
+            }
+            }
+          ],
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+      },
+      {
+          "id": 3,
+          "title":"忠孝節義路遙知馬力",
+          "year": "2019",
+          "drama_actors": [
+            {
+            "actor": {
+              "name": "姜河那"
               }
-              }
-            ],
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 3,
-            "title":"忠孝節義路遙知馬力",
-            "year": "2019",
-            "drama_actors": [
-              {
-              "actor": {
-                "name": "姜河那"
-                }
-              },
-              {
-              "actor": {
-                "name": "孔曉振"
-              }
-              }
-            ],
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        }
-        ]
-    }
+            },
+            {
+            "actor": {
+              "name": "孔曉振"
+            }
+            }
+          ],
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+      }
+      ]
+  }
 }
 ```
 #### 相關討論
-
+_可參考相關新聞與相關戲劇先找出要query的關鍵字再對title下query
 - query
 ```
     query {
-       forum (where: {title: {_ilike: "%九%"}},limit: 3, order_by: {post_date: desc}) 
+       forum (where: {title: {_ilike: "%延禧%"}},limit: 3, order_by: {created_at: desc}) 
        {
           id
           title
-          date
+          created_at
           source
+          source_url
+          im_profile
           thumbnail
        }
     }
@@ -1109,21 +1190,21 @@ _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關�
             {
             "id": 1,
             "title":"[情報] XXX 有望演出《延禧攻略》",
-            "date": "2019-05-23 2:37:56",
+            "created_at": "2019-05-23 2:37:56",
             "source": "PTT",
             "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
         },
         {
             "id": 2,
             "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
-            "date": "2019-05-23 2:37:56",
+            "created_at": "2019-05-23 2:37:56",
             "source": "PTT",
             "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
         },
         {
             "id": 3,
             "title":"[心得] 出不了坑的延禧攻略 (有雷)",
-            "date": "2019-05-23 2:37:56",
+            "created_at": "2019-05-23 2:37:56",
             "source": "Dcard",
             "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
         },
