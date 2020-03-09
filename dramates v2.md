@@ -14,17 +14,18 @@
     - [3.1 討論列表頁](#31-討論列表頁)
 - [4. 關鍵字](#4-關鍵字)
     - [4.1 熱門關鍵字列表](#41-熱門關鍵字列表)
-- [5. 搜尋功能](#5-搜尋功能)
-    - [5.1 新聞結果列表](#51-新聞結果列表)
-    - [5.2 戲劇結果列表](#52-戲劇結果列表)
-    - [5.3 討論結果列表](#53-討論結果列表)
-- [6. 相關結果](#6-相關結果)
-    - [6.1 相關新聞列表](#61-相關新聞列表)
-    - [6.2 相關戲劇列表](#62-相關戲劇列表)
-    - [6.3 相關討論列表](#63-相關討論列表)
-- [7. 篩選功能](#7-篩選功能)
-    - [7.1 類別篩選](#71-類別篩選)
-    - [7.2 地區篩選](#72-地區篩選)
+- [1.5 搜尋結果列表](#15-搜尋結果列表)
+    - [關鍵字搜尋 | Tag 搜尋](#關鍵字搜尋--tag-搜尋)
+        - [新聞](#新聞)
+        - [戲劇](#戲劇)
+        - [討論](#討論)
+    - [篩選搜尋](#篩選搜尋)
+        - [類別](#類別)
+        - [地區](#地區)
+    - [相關結果搜尋](#相關結果搜尋)
+        - [相關新聞](#相關新聞)
+        - [相關戲劇](#相關戲劇)
+        - [相關討論](#相關討論)
 
 <!-- /TOC -->
 
@@ -842,14 +843,26 @@ _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，�
 }
 ```
 
-# 5. 搜尋功能
-## 5.1 新聞結果列表
-_當用戶直接在 search bar 輸入關鍵字、或點選新聞詳細頁的 Tag 後，輸入完畢點選送出，打此 API。_
+<!-- 尚未解決 -->
+# 1.5 搜尋結果列表
+_當用戶透過輸入關鍵字、點選 Tag 搜尋戲劇相關資料，輸入完畢點選送出，即可打此 API。_
 
 _前端規則：當資料不足 10 筆，視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10。_
 
-- query
 
+- 關鍵字/ Tag 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
+- 篩選結果 WF [https://whimsical.com/4WBuD65bkGkLVhESwb4pY1]
+- 相關結果 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
+
+
+## 關鍵字搜尋 | Tag 搜尋
+_用戶直接在 search bar 關鍵字，點選送出，即可依據關鍵字顯示結果列表。_
+
+_用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯示結果列表。_
+
+### 新聞
+
+- query 
 ```
     query {
        news (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)
@@ -867,51 +880,48 @@ _前端規則：當資料不足 10 筆，視為最後一頁。進入畫面第一
 - Response
 
 ```json
-{
-  "data": {
-    "news": [
-      {
-        "id": 1,
-        "title": "《延禧攻略》劇好看！但金惠允被稱史上顏值",
-        "date": "2019-05-23 2:37:56",
-        "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 2,
-        "title": "《延禧攻略》劇好看！但金惠允被稱史上顏值",
-        "date": "2019-05-22 2:37:56",
-        "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 3,
-        "title": "《延禧攻略》劇好看！但金惠允被稱史上顏值",
-        "date": "2019-05-21 2:37:56",
-        "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      ...{
-        "id": 10,
-        "title": "《延禧攻略》劇好看！但金惠允被稱史上顏值",
-        "date": "2019-05-15 2:37:56",
-        "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      }
-    ]
-  }
+{ 
+    "data": {
+        "news":[
+            {
+            "id": 1,
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
+            "date": "2019-05-23 2:37:56",
+            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
+            "date": "2019-05-22 2:37:56",
+            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
+            "date": "2019-05-21 2:37:56",
+            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 10,
+            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
+            "date": "2019-05-15 2:37:56",
+            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ]
+    }
 }
 ```
-## 5.2 戲劇結果列表
-_當用戶直接在 search bar 輸入關鍵字、或點選新聞詳細頁的 Tag 後，輸入完畢點選送出，打此 API。_
-
-_前端規則：當資料不足 10 筆，視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10。_
+### 戲劇
 
 - query 
-
 ```
     query {
-       drama (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)
+       drama (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
        {
           id
           title
@@ -926,93 +936,92 @@ _前端規則：當資料不足 10 筆，視為最後一頁。進入畫面第一
 - Response
 
 ```json
-{
-  "data": {
-    "drama": [
-      {
-        "id": 1,
-        "title": "延禧攻略",
-        "year": "2019",
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "郭俊辰"
-            }
-          },
-          {
-            "actor": {
-              "name": "李沁"
-            }
-          }
-        ],
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 2,
-        "title": "延禧",
-        "year": "2019",
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "郭俊辰"
-            }
-          },
-          {
-            "actor": {
-              "name": "李沁"
-            }
-          }
-        ],
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 3,
-        "title": "延禧攻",
-        "year": "2019",
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "郭俊辰"
-            }
-          },
-          {
-            "actor": {
-              "name": "李沁"
-            }
-          }
-        ],
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      ...
-      {
-        "id": 10,
-        "title": "延禧攻略x略",
-        "year": "2019",
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "郭俊辰"
-            }
-          },
-          {
-            "actor": {
-              "name": "李沁"
-            }
-          }
-        ],
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      }
-    ]
-  }
+{ 
+    "data": {
+        "drama":[
+            {
+            "id": 1,
+            "title":"延禧攻略",
+            "year": "2019",
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"延禧",
+            "year": "2019",
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"延禧攻",
+            "year": "2019",
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 10,
+            "title":"延禧攻略x略",
+            "year": "2019",
+            "drama_actors": [
+              {
+              "actor": {
+                "name": "郭俊辰"
+                }
+              },
+              {
+              "actor": {
+                "name": "李沁"
+              }
+              }
+            ],
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ]
+    }
 }
 ```
-## 5.3 討論結果列表
+### 討論
 
 - query
-
 ```
     query {
-       forum (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)
+       forum (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
        {
           id
           title
@@ -1027,56 +1036,150 @@ _前端規則：當資料不足 10 筆，視為最後一頁。進入畫面第一
 - Response
 
 ```json
-{
-  "data": {
-    "forum": [
-      {
-        "id": 1,
-        "title": "[情報] XXX 有望演出《延禧攻略》",
-        "date": "2019-05-23 2:37:56",
-        "source": "PTT",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 2,
-        "title": "#討論 延禧攻略 皇上 v.s. 傅恆",
-        "date": "2019-05-23 2:37:56",
-        "source": "PTT",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 3,
-        "title": "[心得] 出不了坑的延禧攻略 (有雷)",
-        "date": "2019-05-23 2:37:56",
-        "source": "Dcard",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      ...
-      {
-        "id": 10,
-        "title": "[心得] 出不了坑的延禧攻略 (有雷)",
-        "date": "2019-05-23 2:37:56",
-        "source": "PTT",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      }
-    ]
-  }
+{ 
+    "data": {
+        "forum":[
+            {
+            "id": 1,
+            "title":"[情報] XXX 有望演出《延禧攻略》",
+            "date": "2019-05-23 2:37:56",
+            "source": "PTT",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
+            "date": "2019-05-23 2:37:56",
+            "source": "PTT",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
+            "date": "2019-05-23 2:37:56",
+            "source": "Dcard",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 10,
+            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
+            "date": "2019-05-23 2:37:56",
+            "source": "PTT",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ]
+    }
 }
 ```
 
+<!-- 尚未解決 -->
+## 篩選搜尋
+_用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，篩選完畢即可打此 api，更新戲劇列表資料。_
 
+_前端規則：當資料不足 15 筆時，視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 15。_
 
----
-
-# 6. 相關結果
-_當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關新聞、戲劇、討論結果列表。_
-<!-- 自產新聞，由 小編 想好規則後，再補上。 -->
-
-## 6.1 相關新聞列表
-_相關新聞須先用 id 取得此新聞 tag list 範例如下_
+### 類別
 
 - query
 
+```
+    query {
+       drama (where: {type: {_ilike: "%愛情%","%劇情%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
+       {
+          id
+          title
+          thumbnail
+       }
+    }
+
+```
+
+- Response 
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+            "id": 1,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 15,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+### 地區
+
+- query
+```
+    query {
+       drama (where: {region: {_ilike: "%歐美%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
+       {
+          id
+          title
+          thumbnail
+       }
+    }
+
+```
+
+- Response 
+
+```json
+{ 
+    "data": {
+        "drama":[
+            {
+            "id": 1,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ...
+        {
+            "id": 15,
+            "title":"喜歡的話請響鈴",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ]
+    }
+}
+```
+## 相關結果搜尋
+_當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關新聞、戲劇、討論結果列表。_
+<!-- 自產新聞，由 nara 想好規則後，再補上。 -->
+
+
+### 相關新聞
+_相關新聞須先用id取得此新聞tag list範例如下:_
+- query
 ```
     query {
       news_type(where: {news_id: {_eq: "1"}, type: {label: {_eq: "tag"}}}) {
@@ -1087,11 +1190,10 @@ _相關新聞須先用 id 取得此新聞 tag list 範例如下_
     }
 
 ```
-
 - Response
-
+  
 ```json
-{
+{ 
   "data": {
     "news_type": [
       {
@@ -1113,17 +1215,14 @@ _相關新聞須先用 id 取得此新聞 tag list 範例如下_
   }
 }
 ```
-
-_接著再用回傳的關鍵字 query 相關新聞_
-
+_接著再用回傳的關鍵字做 or query_
 - query
-
 ```
     query {
       news(where: {
         _or: [
-          {title: {_ilike: "%綠豆傳%"}},
-          {title: {_ilike: "%張韶涵%"}},
+          {title: {_ilike: "%綠豆傳%"}}, 
+          {title: {_ilike: "%張韶涵%"}}, 
           {title: {_ilike: "%范瑋琪%"}}
         ]}, limit: 3, order_by: {created_at: desc}) {
         id
@@ -1135,45 +1234,41 @@ _接著再用回傳的關鍵字 query 相關新聞_
     }
 
 ```
-
 - Response
-
+  
 ```json
-{
+{ 
   "data": {
-    "news": [
-      {
-        "id": 1,
-        "title": "綠豆傳撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-        "created_at": "2019-05-23 2:37:56",
-        "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+      "news":[
+          {
+          "id": 1,
+          "title":"綠豆傳撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+          "created_at": "2019-05-23 2:37:56",
+          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
       },
       {
-        "id": 2,
-        "title": "閨蜜撕破臉！綠豆傳到底發生過什麼恩怨?",
-        "created_at": "2019-05-20 2:37:56",
-        "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+          "id": 2,
+          "title":"閨蜜撕破臉！綠豆傳到底發生過什麼恩怨?",
+          "created_at": "2019-05-20 2:37:56",
+          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
       },
       {
-        "id": 3,
-        "title": "閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-        "created_at": "2019-05-19 2:37:56",
-        "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      }
-    ]
+          "id": 3,
+          "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
+          "created_at": "2019-05-19 2:37:56",
+          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+      },
+      ]
   }
 }
 ```
 
-## 6.2 相關戲劇列表
-
-_相關戲劇須先用 id 取得此戲劇 actor list 範例如下_
-
+### 相關戲劇
+_相關戲劇須先用id取得此戲劇actor list範例如下:_
 - query
-
 ```
     query {
       drama_actor(where: {drama_id: {_eq: "1"}}) {
@@ -1184,11 +1279,10 @@ _相關戲劇須先用 id 取得此戲劇 actor list 範例如下_
     }
 
 ```
-
 - Response
-
+  
 ```json
-{
+{ 
   "data": {
     "drama_actor": [
       {
@@ -1205,11 +1299,8 @@ _相關戲劇須先用 id 取得此戲劇 actor list 範例如下_
   }
 }
 ```
-
-_接著再用回傳的演員名做 query 相關戲劇_
-
+_接著再用回傳的演員名做 or query_
 - query
-
 ```
     query {
       drama(where: {drama_actors: {_or: [
@@ -1233,77 +1324,73 @@ _接著再用回傳的演員名做 query 相關戲劇_
 - Response
 
 ```json
-{
+{ 
   "data": {
-    "drama": [
-      {
-        "id": 1,
-        "title": "抓住幽靈",
-        "year": "2019",
-        "drama_actors": [
+      "drama":[
           {
+          "id": 1,
+          "title": "抓住幽靈",
+          "year": "2019",
+          "drama_actors": [
+            {
             "actor": {
               "name": "姜河那"
-            }
-          },
-          {
+              }
+            },
+            {
             "actor": {
               "name": "孔曉振"
             }
-          }
-        ],
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+            }
+          ],
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
       },
       {
-        "id": 2,
-        "title": "那一天",
-        "year": "2019",
-        "drama_actors": [
-          {
+          "id": 2,
+          "title":"那一天",
+          "year": "2019",
+          "drama_actors": [
+            {
             "actor": {
               "name": "姜河那"
-            }
-          },
-          {
+              }
+            },
+            {
             "actor": {
               "name": "孔曉振"
             }
-          }
-        ],
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+            }
+          ],
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
       },
       {
-        "id": 3,
-        "title": "忠孝節義路遙知馬力",
-        "year": "2019",
-        "drama_actors": [
-          {
+          "id": 3,
+          "title":"忠孝節義路遙知馬力",
+          "year": "2019",
+          "drama_actors": [
+            {
             "actor": {
               "name": "姜河那"
-            }
-          },
-          {
+              }
+            },
+            {
             "actor": {
               "name": "孔曉振"
             }
-          }
-        ],
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+            }
+          ],
+          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
       }
-    ]
+      ]
   }
 }
 ```
-
-## 6.3 相關討論列表
-
-_可參考相關新聞與相關戲劇先找出要 query 的關鍵字再對 title 下 query_
-
+### 相關討論
+_可參考相關新聞與相關戲劇先找出要query的關鍵字再對title下query
 - query
-
 ```
     query {
-       forum (where: {title: {_ilike: "%延禧%"}},limit: 3, order_by: {created_at: desc})
+       forum (where: {title: {_ilike: "%延禧%"}},limit: 3, order_by: {created_at: desc}) 
        {
           id
           title
@@ -1314,140 +1401,41 @@ _可參考相關新聞與相關戲劇先找出要 query 的關鍵字再對 title
           thumbnail
        }
     }
-
+    
 ```
 
 - Response
 
 ```json
-{
-  "data": {
-    "forum": [
-      {
-        "id": 1,
-        "title": "[情報] XXX 有望演出《延禧攻略》",
-        "created_at": "2019-05-23 2:37:56",
-        "source": "PTT",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 2,
-        "title": "#討論 延禧攻略 皇上 v.s. 傅恆",
-        "created_at": "2019-05-23 2:37:56",
-        "source": "PTT",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 3,
-        "title": "[心得] 出不了坑的延禧攻略 (有雷)",
-        "created_at": "2019-05-23 2:37:56",
-        "source": "Dcard",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      }
-    ]
-  }
+{ 
+    "data": {
+        "forum":[
+            {
+            "id": 1,
+            "title":"[情報] XXX 有望演出《延禧攻略》",
+            "created_at": "2019-05-23 2:37:56",
+            "source": "PTT",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 2,
+            "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
+            "created_at": "2019-05-23 2:37:56",
+            "source": "PTT",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        {
+            "id": 3,
+            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
+            "created_at": "2019-05-23 2:37:56",
+            "source": "Dcard",
+            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        },
+        ]
+    }
 }
 ```
+
+
 ---
 
-# 7. 篩選功能
-## 7.1 類別篩選
-
-_用戶在戲劇區時，可選擇以類別進行篩選相關戲劇，篩選完畢即可打此 api，更新戲劇列表資料。_
-
-_前端規則：當資料不足 15 筆時，視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 15。_
-
-- query
-
-```
-    query {
-       drama (where: {type: {_ilike: "%愛情%","%劇情%"}},limit: 15, order_by: {post_date: desc}, offest:15)
-       {
-          id
-          title
-          thumbnail
-       }
-    }
-
-```
-
-- Response
-
-```json
-{
-  "data": {
-    "drama": [
-      {
-        "id": 1,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 2,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 3,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      ...
-      {
-        "id": 15,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      }
-    ]
-  }
-}
-```
-
-## 7.2 地區篩選
-_用戶在戲劇區時，可選擇以「地區」進行篩選相關戲劇，篩選完畢即可打此 api，更新戲劇列表資料。_
-
-- query
-
-```
-    query {
-       drama (where: {region: {_ilike: "%歐美%"}},limit: 15, order_by: {post_date: desc}, offest:15)
-       {
-          id
-          title
-          thumbnail
-       }
-    }
-
-```
-
-- Response
-
-```json
-{
-  "data": {
-    "drama": [
-      {
-        "id": 1,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 2,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      {
-        "id": 3,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      ...
-      {
-        "id": 15,
-        "title": "喜歡的話請響鈴",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      }
-    ]
-  }
-}
-```
