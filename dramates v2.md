@@ -33,7 +33,7 @@
 
 ## 1.1 新聞輪播列表
 
-_進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內容數量，採用人工調整。_
+_進入新聞首頁時，打此 api，即顯示新聞輪播列表。不限內容數量，採用人工調整。_
 
 - 新聞 WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
 
@@ -80,7 +80,7 @@ query MyQuery {
 
 ## 1.2 新聞列表頁
 
-_進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。_
+_進入新聞首頁時，打此 api，即顯示新聞最新列表。_
 
 _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10（戲劇 offset：15）。_
 
@@ -183,7 +183,7 @@ query MyQuery {
 
 ## 1.3 新聞詳細頁
 
-_點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該篇新聞、戲劇詳細資料。_
+_點選新聞後，打此 api，即取得該篇新聞詳細資料。_
 
 - 新聞 WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
 
@@ -260,7 +260,7 @@ query MyQuery {
 
 ## 2.1 戲劇輪播列表
 
-_進入新聞、戲劇首頁時，打此 api，即顯示輪播列表。不限內容數量，採用人工調整。_
+_進入戲劇首頁時，打此 api，即顯示戲劇輪播列表。不限內容數量，採用人工調整。_
 
 - 戲劇 WF [https://whimsical.com/S597ibFZnpwWm87yw8j6Dv]
 
@@ -313,7 +313,7 @@ query MyQuery {
 
 ## 2.2 戲劇列表頁
 
-_進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。_
+_進入戲劇首頁時，打此 api，即顯示戲劇最新列表。_
 
 _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10（戲劇 offset：15）。_
 
@@ -398,7 +398,7 @@ query MyQuery {
 
 ## 2.3 戲劇詳細頁
 
-_點選新聞、戲劇首頁任一新聞、戲劇後，打此 api，即取得該篇新聞、戲劇詳細資料。_
+_點選戲劇首頁任後，打此 api，即取得該戲劇詳細資料。_
 
 - 戲劇 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
 
@@ -670,13 +670,12 @@ query MyQuery {
 
 ## 3.1 討論列表頁
 
-_進入新聞、戲劇、討論首頁時，打此 api，即顯示最新列表。_
+_進入討論首頁時，打此 api，即顯示討論最新列表。_
 
 _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10（戲劇 offset：15）。_
 
 - 討論 WF [https://whimsical.com/JFAQ65FCGBdjmua5EDxENp]
 
-<!-- 尚未解決 -->
 
 - Query [美劇]
 
@@ -1384,8 +1383,9 @@ _接著再用回傳的演員名做 or query_
   }
 }
 ```
+
 ### 相關討論
-_可參考相關新聞與相關戲劇先找出要query的關鍵字再對title下query
+_可參考相關新聞與相關戲劇先找出要query的關鍵字再對title下query_
 - query
 ```
     query {
