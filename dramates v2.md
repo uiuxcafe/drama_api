@@ -30,7 +30,6 @@
 <!-- /TOC -->
 
 # 1. 新聞區
-
 ## 1.1 新聞輪播列表
 
 _進入新聞首頁時，打此 api，即顯示新聞輪播列表。不限內容數量，採用人工調整。_
@@ -40,7 +39,7 @@ _進入新聞首頁時，打此 api，即顯示新聞輪播列表。不限內容
 - Query
 
 ```
-query MyQuery {
+query {
   news_carousel {
     id
     caption
@@ -89,8 +88,8 @@ _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一�
 - Query
 
 ```
-query MyQuery {
-  news(limit: 10, order_by: {created_at: desc}) {
+query {
+  news(limit: 3, order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -127,55 +126,6 @@ query MyQuery {
         "created_at": "2020-03-02T16:58:15.017665",
         "excerpt": "說到韓國的犯罪懸疑韓劇，想必大家想到的是深入人心的《信號》，韓劇在犯罪懸疑題材方面近幾年的崛起速度很快，除了深入人心的《信號》之外，還有多部好看的犯罪韓劇。"
       },
-      {
-        "id": 9,
-        "title": "瑯琊榜3：六大主角，梅長蘇墊底，老閣主勉強第2，第1位堪稱神人",
-        "thumbnail": "https://p1.pstatp.com/large/pgc-image/152782751299705ed18aec5?/1.jpg",
-        "created_at": "2020-03-02T16:57:31.848618",
-        "excerpt": "書接上文，第三部瑯琊榜，根據製作組當時給出的信息來看，肯定是會繼續拍的，而且因為風起長林的結局已經算是完美了，也沒有什麼遺憾，相對於瑯琊榜前傳而言，明顯是前傳的劇情更加有吸引力，梅長蘇的過去，以及那些傳說級別的人物的故事，都非常地吸引人。"
-      },
-      {
-        "id": 8,
-        "title": "《陳情令》中藍湛胸口的烙印到底是怎麼弄成的？",
-        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2019/08/48ec8b1e529c4d818f2b9393a3029e0d.jpg",
-        "created_at": "2020-03-02T16:55:57.379519",
-        "excerpt": "當年在玄武洞的時候。溫晁看上了綿綿。溫晁的女人王靈嬌看不過眼。就在大家都在對付屠戮玄武的時候拿起了烙鐵去想讓綿綿毀容。當時魏無羨看見了這一幕。看著離綿綿越來越近的烙鐵。魏無羨沖了上去。所以那個烙印就印在了他的胸口上。"
-      },
-      {
-        "id": 7,
-        "title": "《愛的迫降》李政赫尹世麗再遇阻攔，幕後大boss身份終於曝光",
-        "thumbnail": "http://p1.pstatp.com/large/pgc-image/f8611e06ba584c63b47b5e95b59ac82b?/1.jpg",
-        "created_at": "2020-03-02T16:53:53.453235",
-        "excerpt": "由玄彬、孫藝珍主演的《愛的迫降》隨著劇情越來越刺激，熱度和口碑也再次上升，虜獲了不少觀眾的芳心。"
-      },
-      {
-        "id": 6,
-        "title": "《兩世歡》挑斷景辭腳筋的人是誰？",
-        "thumbnail": "http://qimg.hxnews.com/2020/0224/1582507288894.jpg",
-        "created_at": "2020-03-02T16:53:32.562419",
-        "excerpt": "電視劇《兩世歡》播出後大家十分期待，看來主演的演技還是很不錯的，還原度還挺高的，小說中景辭與風眠晚最後是在一起了，就是不知道電視劇是不是也這樣呢?劇中風眠晚和原清離什麼關係?風眠晚為什麼弄傷景辭?"
-      },
-      {
-        "id": 5,
-        "title": "《大唐女法醫》蘇伏其實是冉顏初戀，卻眼睜睜看著她嫁給別人",
-        "thumbnail": "https://p3.pstatp.com/large/pgc-image/a896f36406b748ee8e4c7202c8b0a4c4?/1.jpg",
-        "created_at": "2020-03-02T16:53:06.707015",
-        "excerpt": "由周潔瓊、李程彬等人主演的《大唐女法醫》正在熱播中，該劇是一部古代懸疑劇。周潔瓊飾演的女主是一個仵作，而李程彬飾演的男主則是一位刑部侍郎。放到現在來看，就是講法醫怎麼破案的，警察又和法醫怎麼談戀愛的。總的來說還算是比較新鮮，但是這部劇的評價不是很高。"
-      },
-      {
-        "id": 4,
-        "title": "陳情少年團成團！團名TUBS，全名是The Untamed Boys – TUBS",
-        "thumbnail": "https://p1.pstatp.com/large/pgc-image/1f91025e9f4d434e9284a93ee3a4e61e?/1.jpg",
-        "created_at": "2020-03-02T16:52:15.412739",
-        "excerpt": "2019年夏天的一部爆紅的電視劇《陳情令》相信很多人都看了，里面由肖戰飾演的魏無羨和王一博飾演的藍忘機是一對兒很讓人喜歡的男主，里面其他的演員也都讓人眼前一亮，於斌飾演的溫寧和鄭繁星飾演的藍苑都讓人很喜歡。"
-      },
-      {
-        "id": 3,
-        "title": "《想見你》為什麼陳韻如不自殺要讓莫俊傑殺她？",
-        "thumbnail": "https://p1.pstatp.com/large/tos-cn-i-0022/4254732a5d72440a9cecfa86405ed31d",
-        "created_at": "2020-03-02T16:51:06.096557",
-        "excerpt": "可能內心沉鬱的人都會向往像一束光可以照進他們生活的人吧，但是通常真正滿心陽光的人反而是注意不到陰暗的角落的。我也好難過，希望結局她能活下來吧。"
-      }
     ]
   }
 }
@@ -187,10 +137,10 @@ _點選新聞後，打此 api，即取得該篇新聞詳細資料。_
 
 - 新聞 WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
 
-* Query
+- Query
 
 ```
-query MyQuery {
+query {
   news(where: {id: {_eq: "1"}}) {
     title
     created_at
@@ -267,7 +217,7 @@ _進入戲劇首頁時，打此 api，即顯示戲劇輪播列表。不限內容
 - Query
 
 ```
-query MyQuery {
+query {
   drama_carousel {
     id
     caption
@@ -322,8 +272,8 @@ _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一�
 - Query
 
 ```
-query MyQuery {
-  drama(limit: 10, order_by: {created_at: desc}) {
+query {
+  drama(limit: 3, order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -354,41 +304,6 @@ query MyQuery {
         "title": "添丁發財(新加坡)",
         "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4491698677.jpg"
       },
-      {
-        "id": 27610,
-        "title": "大笑學堂第1季/Glory Daze",
-        "thumbnail": "https://img.58b.tv/movieimg/2010-12/4d1cb62f1be5d.jpg"
-      },
-      {
-        "id": 27608,
-        "title": "整夜未眠 第1季",
-        "thumbnail": "https://img.58b.tv/movieimg/2014-11/545d3f99322c3.jpg"
-      },
-      {
-        "id": 27612,
-        "title": "忍者少女",
-        "thumbnail": "https://img.58b.tv/movieimg/2014-11/545d3f96b9f75.jpg"
-      },
-      {
-        "id": 27609,
-        "title": "變裝求職記第1季/Work It",
-        "thumbnail": "https://img.58b.tv/movieimg/2017-04/59025a2a829c5.jpg"
-      },
-      {
-        "id": 27605,
-        "title": "叮噹神探/叮當神探",
-        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd463e5b3306.jpg"
-      },
-      {
-        "id": 27607,
-        "title": "平地風雲第4季/In Plain Sight",
-        "thumbnail": "https://img.58b.tv/movieimg/2011-05/4dc2d14ababf0.jpg"
-      },
-      {
-        "id": 27614,
-        "title": "探尋完美的人類飲食",
-        "thumbnail": "https://img.58b.tv/movieimg/2014-11/545d30b7609cc.jpg"
-      }
     ]
   }
 }
@@ -407,7 +322,7 @@ _有預告 link 先顯示預告，沒有 預告 link 則顯示封面 thumbnail�
 - Query
 
 ```
-query MyQuery {
+query {
   drama(where: {id: {_eq: "43"}}) {
     title
     season
@@ -579,8 +494,8 @@ _前端規則：當資料不足 10 筆，視為最後一頁。進入畫面第一
 - Query
 
 ```
-query MyQuery {
-  episode(limit: 10, where: {drama_id: {_eq: "43"}}) {
+query {
+  episode(limit: 3, where: {drama_id: {_eq: "43"}}) {
     drama_title
     season
     episode_number
@@ -604,8 +519,7 @@ query MyQuery {
         "episode_number": 1,
         "episode_title": "崇利明初遇阿易讚賞有加 崇利明支持舒爾泰變法維新",
         "content": "崇利明初遇阿易讚賞有加 崇利明支持舒爾泰變法維新　　據說在清兵入關之初，世祖皇上身邊出現了一支神秘的近衛，護衛天子，功勳赫赫，這支近衛部隊被命名為“艷勢番”，歷經百年之後，帝位更替，艷勢番始終存在，入番者皆為八旗名門子弟，表面各有顯赫身份，暗中直接效命於天子，成為了皇權最神秘的護衛者。　　阿易（易烊千璽飾）在很小的時候遭遇變故，他所在的村子被屠，他的家也被燒成灰燼，母親不知去向，於是阿易成了孤兒，一轉眼十三年過去了，阿易和大傻輾轉從關外流亡來到京城，他想要找到失散多年的母親和當初屠村的兇手。　　1908年，正是新舊文化交迭之際，留洋風潮方興未艾，額爾吉·崇利明（黃子韜飾）是滿洲正白旗的貴族，是一位世襲的貝勒爺，他在少年時期留學歐洲，後來到日本進修軍校，如今學成回國，意氣風發，開洋車、穿洋裝、留洋發，是皇城根下有名的新潮人物，青樓花魁芳兒對崇利明情有獨鍾，特意托人從南方帶回來龍鳳喜餅送給他，崇利明將她調侃一番並把隨身的玉墜送給了她。　　賈長安是京城的紈絝子弟，仗著舅舅是步軍統領衙門統領芮臻，便開始飛揚跋扈，這天他調戲馬記羊湯館的晴兒，剛好被阿易撞見，就把賈長安痛打一頓並扔了出去，崇利明正好路過，他對敢打賈長安的人很是好奇，於是走進羊湯館想看看到底是誰。一進門，就看到阿易狼吞虎咽地喝著羊湯，晴兒則走出來向崇利明講述了賈長安調戲她的事。這時，步軍統領衙門的官兵氣勢洶洶來抓阿易，崇利明厲聲喝止，可他們根本不聽，依舊衝上去抓阿易，卻被阿易三拳兩腳打翻在地，為首的官兵拔槍對準阿易，張口誣陷他是亂黨，崇利明搶過手槍，亮出了自己身份，那些人急忙跪地求饒，被崇利明趕了出去。　　崇利明欣賞阿易的功夫和正直的為人，他想要把阿易收入麾下，但阿易卻不領情，對晴兒表示要把吃剩下的羊肉帶走，晴兒免費送給他二斤羊肉和十個燒餅來表示感謝，崇利明則把自己的名帖送給了阿易。大傻以為阿易走丟了，正在家裡痛哭，見到阿易回來後非常高興，他一口氣吃光了阿易帶回來的牛肉和燒餅，他想繼續陪著阿易找母親，可阿易手裡只有一個母親的信物胭脂盒，想要從偌大的京城找到母親，無異於大海撈針。　　太后老佛爺抱病在床久治不愈，太監董連海在一旁小心伺候著，太后忌憚當今皇上翅膀硬了，總想著革新變法，讓董連海派人悄悄去查帝黨名單。崇利明教父親下西洋棋，父親則提醒他不要總去找參與救皇上被革職的舒爾泰，崇利明卻覺得只有皇上才能挽救腐敗沒落的清王朝。次日一早，崇利明就來聽雨軒找舒爾泰，卻被一個不知趣的太監阻攔，崇利明狠狠地打了他一記耳光，董連海急忙任由崇利明出入。崇利明把皇上和太后的脈案交給了舒爾泰，舒爾泰看到了希望，他覺得太后的身體撐不了太久，到時候皇上從贏台出來，他們還可以一起立憲變法。　　賈長安一直偷偷跟蹤著大傻和阿易，二人來到古玩店打聽線索，老闆一眼認出那個胭脂盒是皇宮裡的貢品，這時賈長安帶步軍統領衙門的人突然闖了進來，誣陷阿易和大傻竊取貢品，把他們抓了回去。崇利明參加步軍統領衙門的聚會，太后賞賜了他們一萬兩銀子，統領芮臻趁機規勸崇利明和舒爾泰保持距離，以免被牽連。王公瘟狗偷偷向洋人買軍火，卻遇到了洋人黑吃黑，幸虧他提前進行了準備，帶著司三和華格納裡應外合把洋人全部打死，將軍火全部據為己有。",
-        "thumbnail": "https://hd.itsfun.com.tw/img/f/6d8/wZwpmL2UzVBRTOGFTMxkTMtYTMvcTMxETOx8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg"
-      },
+d      },
       {
         "drama_title": "熱血同行",
         "episode_number": 2,
@@ -632,7 +546,7 @@ _進入分集大綱列表後，點選任一分集大綱，即打此 api，取得
 - Query
 
 ```
-query MyQuery {
+query {
   episode(where: {drama_id: {_eq: "43"}, episode_number: {_eq: 5}}) {
     drama_title
     season
@@ -680,80 +594,90 @@ _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一�
 - Query [美劇]
 
 ```
-    query {
-       forum (where: {category: {_eq: "us"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
-       {
-          id
-          title
-          date
-          source // 來源
-          thumbnail
-       }
+query {
+  forum(where: {forum_types: {type: {name: {_eq: "美劇"}}}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
     }
+  }
+}
 
 ```
 
 - Query [陸劇]
 
 ```
-    query {
-       forum (where: {category: {_eq: "china"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
-       {
-          id
-          title
-          date
-          source // 來源
-          thumbnail
-       }
+query {
+  forum(where: {forum_types: {type: {name: {_eq: "陸劇"}}}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
     }
+  }
+}
 
 ```
 
 - Query [韓劇]
 
 ```
-    query {
-       forum (where: {category: {_eq: "korea"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
-       {
-          id
-          title
-          date
-          source // 來源
-          thumbnail
-       }
+query {
+  forum(where: {forum_types: {type: {name: {_eq: "韓劇"}}}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
     }
+  }
+}
 
 ```
 
 - Query [日劇]
 
 ```
-    query {
-       forum (where: {category: {_eq: "japan"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
-       {
-          id
-          title
-          date
-          source // 來源
-          thumbnail
-       }
+query {
+  forum(where: {forum_types: {type: {name: {_eq: "日劇"}}}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
     }
+  }
+}
 
 ```
 
 - Query [台劇]
 
 ```
-    query {
-       forum (where: {category: {_eq: "taiwan"}}, limit: 10, order_by: {post_date: desc}, offset: 10)
-       {
-          id
-          title
-          date
-          source // 來源
-          thumbnail
-       }
+query {
+  forum(where: {forum_types: {type: {name: {_eq: "台劇"}}}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
     }
+  }
+}
 
 ```
 
@@ -764,432 +688,483 @@ _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一�
   "data": {
     "forum": [
       {
-        "id": 1,
-        "title": "[情報] 紙房子第四季",
-        "date": "2019-05-23 2:37:56",
-        "source": "ptt",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+        "id": 156,
+        "title": "轉：還以為是Netflix呢",
+        "created_at": "2020-03-03T16:44:44.07",
+        "thumbnail": null,
+        "author": {
+          "username": "Dcard",
+          "image_profile": null
+        }
       },
       {
-        "id": 2,
-        "title": "[情報] 紙房子第四季",
-        "date": "2019-05-20 2:37:56",
-        "source": "dcard",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+        "id": 162,
+        "title": "#文長 我的一二月片單✨💫(Netflix)",
+        "created_at": "2020-03-02T16:45:19.355",
+        "thumbnail": null,
+        "author": {
+          "username": "Dcard",
+          "image_profile": null
+        }
       },
       {
-        "id": 3,
-        "title": "[情報] 紙房子第四季",
-        "date": "2019-05-19 2:37:56",
-        "source": "ptt",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
-      },
-      ...{
-        "id": 10,
-        "title": "[情報] 紙房子第四季",
-        "date": "2019-05-12 2:37:56",
-        "source": "dcard",
-        "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png"
+        "id": 165,
+        "title": "追劇",
+        "created_at": "2020-03-02T07:12:24.432",
+        "thumbnail": null,
+        "author": {
+          "username": "Dcard",
+          "image_profile": null
+        }
       }
     ]
   }
 }
 ```
----
+
+
 # 4. 關鍵字 
 ## 4.1 熱門關鍵字列表
 _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，用戶可點選任一關鍵字進行搜尋。_
-
-<font color=#FFAA33>
-
-</font>
 
 - 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
 
 - query 
 
 ```
-    query {
-       trend  
-       {
-          name
-       }
-    }
-    
+query {
+  trend(limit: 3, order_by: {count: desc}) {
+    id
+    name
+    count
+  }
+}
+
 ```
 
 - Response
 
 ```json
-{ 
-    "data": {
-        "trend":[
-            {
-            "name":"Justice",
-        },
-        {
-            "name":"VIP",
-        },
-        {
-            "name":"Watcher",
-        },
-        {
-            "name":"18歲的瞬間",
-        }
-        ]
-    }
+{
+  "data": {
+    "trend": [
+      {
+        "id": 1,
+        "name": "Justice",
+        "count": 5
+      },
+      {
+        "id": 3,
+        "name": "VIP",
+        "count": 4
+      },
+      {
+        "id": 4,
+        "name": "Watcher",
+        "count": 3
+      },
+    ]
+  }
 }
 ```
 
-# 5. 搜尋結果列表
-_當用戶透過輸入關鍵字、點選 Tag 搜尋戲劇相關資料，輸入完畢點選送出，即可打此 API。_
 
-_前端規則：當資料不足 10 筆，視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10。_
+# 5. 搜尋結果
+## 5.1 關鍵字/Tag搜尋
 
-
-- 關鍵字/ Tag 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
-- 篩選結果 WF [https://whimsical.com/4WBuD65bkGkLVhESwb4pY1]
-- 相關結果 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
-
-
-## 關鍵字搜尋 | Tag 搜尋
 _用戶直接在 search bar 關鍵字，點選送出，即可依據關鍵字顯示結果列表。_
 
 _用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯示結果列表。_
 
+- 關鍵字/ Tag 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
+
+
 ### 新聞
 
 - query 
+
 ```
-    query {
-       news (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)
-       {
-          id
-          title
-          date
-          excerpt
-          thumbnail
-       }
-    }
+query {
+  news(where: {title: {_ilike: "%陳情%"}}, order_by: {created_at: desc}, limit: 3) {
+    id
+    title
+    created_at
+    excerpt
+    thumbnail
+  }
+}
 
 ```
 
 - Response
 
 ```json
-{ 
-    "data": {
-        "news":[
-            {
-            "id": 1,
-            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
-            "date": "2019-05-23 2:37:56",
-            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 2,
-            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
-            "date": "2019-05-22 2:37:56",
-            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 3,
-            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
-            "date": "2019-05-21 2:37:56",
-            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ...
-        {
-            "id": 10,
-            "title":"《延禧攻略》劇好看！但金惠允被稱史上顏值",
-            "date": "2019-05-15 2:37:56",
-            "excerpt": "殷端午，一個富裕家庭的獨生女，Three 貴族高中的風雲人物",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ]
-    }
+{
+  "data": {
+    "news": [
+      {
+        "id": 12,
+        "title": "解析《陳情令》魏無羨人物主題曲「曲盡陳情」歌詞中的含義",
+        "created_at": "2020-03-02T17:00:34.345501",
+        "excerpt": "陳情令沒有更新的日子里我們等的度日如年，每天都期待著下周能早點到來，沒關係，今天已經周末了，只要等周一就可以來到十六年前的高甜部分啦！想想就很期待呢！在沒有更新的日子里，我們的主角們也都發了自己人物的主題曲，好聽自然是不必說了，但里邊的暗藏的小心思，你發現了嗎?",
+        "thumbnail": "http://p3.pstatp.com/large/pgc-image/3dfd9f046c4649f1bbe6ce2f7122ed7c?/1.jpg"
+      },
+      {
+        "id": 8,
+        "title": "《陳情令》中藍湛胸口的烙印到底是怎麼弄成的？",
+        "created_at": "2020-03-02T16:55:57.379519",
+        "excerpt": "當年在玄武洞的時候。溫晁看上了綿綿。溫晁的女人王靈嬌看不過眼。就在大家都在對付屠戮玄武的時候拿起了烙鐵去想讓綿綿毀容。當時魏無羨看見了這一幕。看著離綿綿越來越近的烙鐵。魏無羨沖了上去。所以那個烙印就印在了他的胸口上。",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2019/08/48ec8b1e529c4d818f2b9393a3029e0d.jpg"
+      },
+      {
+        "id": 4,
+        "title": "陳情少年團成團！團名TUBS，全名是The Untamed Boys – TUBS",
+        "created_at": "2020-03-02T16:52:15.412739",
+        "excerpt": "2019年夏天的一部爆紅的電視劇《陳情令》相信很多人都看了，里面由肖戰飾演的魏無羨和王一博飾演的藍忘機是一對兒很讓人喜歡的男主，里面其他的演員也都讓人眼前一亮，於斌飾演的溫寧和鄭繁星飾演的藍苑都讓人很喜歡。",
+        "thumbnail": "https://p1.pstatp.com/large/pgc-image/1f91025e9f4d434e9284a93ee3a4e61e?/1.jpg"
+      }
+    ]
+  }
 }
 ```
 ### 戲劇
 
 - query 
 ```
-    query {
-       drama (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
-       {
-          id
-          title
-          year
-          actor
-          thumbnail
-       }
+query {
+    drama(where: {drama_actors: {_or: [
+    {actor: {name: {_eq: "王一博"}}},
+    {actor: {name: {_eq: "肖戰"}}}
+    ]}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    thumbnail
+    year
+    drama_actors(order_by: {actor: {count: desc}}) {
+      actor {
+        name
+      }
     }
+    drama_types {
+      type {
+        name
+        label
+      }
+    }
+  }
+}
+
 
 ```
 
 - Response
 
 ```json
-{ 
-    "data": {
-        "drama":[
-            {
-            "id": 1,
-            "title":"延禧攻略",
-            "year": "2019",
-            "drama_actors": [
-              {
-              "actor": {
-                "name": "郭俊辰"
-                }
-              },
-              {
-              "actor": {
-                "name": "李沁"
-              }
-              }
-            ],
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 2,
-            "title":"延禧",
-            "year": "2019",
-            "drama_actors": [
-              {
-              "actor": {
-                "name": "郭俊辰"
-                }
-              },
-              {
-              "actor": {
-                "name": "李沁"
-              }
-              }
-            ],
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 3,
-            "title":"延禧攻",
-            "year": "2019",
-            "drama_actors": [
-              {
-              "actor": {
-                "name": "郭俊辰"
-                }
-              },
-              {
-              "actor": {
-                "name": "李沁"
-              }
-              }
-            ],
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ...
-        {
-            "id": 10,
-            "title":"延禧攻略x略",
-            "year": "2019",
-            "drama_actors": [
-              {
-              "actor": {
-                "name": "郭俊辰"
-                }
-              },
-              {
-              "actor": {
-                "name": "李沁"
-              }
-              }
-            ],
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
+{
+  "data": {
+    "drama": [
+      {
+        "id": 13207,
+        "title": "哦！我的皇帝陛下",
+        "thumbnail": "https://img.58b.tv/movieimg/2018-04/5ae07ae209158.jpg",
+        "year": 2018,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "肖戰"
+            }
+          },
+          {
+            "actor": {
+              "name": "趙露思"
+            }
+          },
+          {
+            "actor": {
+              "name": "谷嘉誠"
+            }
+          },
+          {
+            "actor": {
+              "name": "伍嘉成"
+            }
+          },
+          {
+            "actor": {
+              "name": "彭楚粵"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "古裝",
+              "label": "taxonomy"
+            }
+          }
         ]
-    }
+      },
+      {
+        "id": 12930,
+        "title": "哦！我的皇帝陛下2",
+        "thumbnail": "https://img.58b.tv/movieimg/2018-04/5ae07ae209158.jpg",
+        "year": 2020,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "肖戰"
+            }
+          },
+          {
+            "actor": {
+              "name": "趙露思"
+            }
+          },
+          {
+            "actor": {
+              "name": "谷嘉誠"
+            }
+          },
+          {
+            "actor": {
+              "name": "伍嘉成"
+            }
+          },
+          {
+            "actor": {
+              "name": "彭楚粵"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "古裝",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      },
+      {
+        "id": 9994,
+        "title": "魔道祖師：陳情令",
+        "thumbnail": "https://img.58b.tv/movieimg/2019-06/5d14cd32271b8.jpg",
+        "year": 2019,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "宣璐"
+            }
+          },
+          {
+            "actor": {
+              "name": "孟子義"
+            }
+          },
+          {
+            "actor": {
+              "name": "李若彤"
+            }
+          },
+          {
+            "actor": {
+              "name": "肖戰"
+            }
+          },
+          {
+            "actor": {
+              "name": "王一博"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "古裝",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 ### 討論
 
 - query
 ```
-    query {
-       forum (where: {title: {_ilike: "%延禧%"}},limit: 10, order_by: {post_date: desc}, offest:10)  
-       {
-          id
-          title
-          date
-          source
-          thumbnail
-       }
+query {
+  forum(where: {title: {_ilike: "%陳情%"}}, order_by: {created_at: desc}, limit: 3) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
     }
+  }
+}
 
 ```
 
 - Response
-
 ```json
-{ 
-    "data": {
-        "forum":[
-            {
-            "id": 1,
-            "title":"[情報] XXX 有望演出《延禧攻略》",
-            "date": "2019-05-23 2:37:56",
-            "source": "PTT",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 2,
-            "title":"#討論 延禧攻略 皇上 v.s. 傅恆",
-            "date": "2019-05-23 2:37:56",
-            "source": "PTT",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 3,
-            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
-            "date": "2019-05-23 2:37:56",
-            "source": "Dcard",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ...
-        {
-            "id": 10,
-            "title":"[心得] 出不了坑的延禧攻略 (有雷)",
-            "date": "2019-05-23 2:37:56",
-            "source": "PTT",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ]
-    }
+{
+  "data": {
+    "forum": [
+      {
+        "id": 84,
+        "title": "陳情令 時時思君，以追來日（藍思追feat.金凌）",
+        "created_at": "2020-03-03T06:23:38.994",
+        "thumbnail": null,
+        "author": {
+          "username": "Dcard",
+          "image_profile": null
+        }
+      },
+      {
+        "id": 477,
+        "title": "[閒聊] 《陳情令》陳情令那些小事 (雷)",
+        "created_at": "2020-02-29T17:39:03",
+        "thumbnail": null,
+        "author": {
+          "username": "Ptt",
+          "image_profile": null
+        }
+      },
+      {
+        "id": 481,
+        "title": "[閒聊] 陳情令-先看劇再看小說的好處",
+        "created_at": "2020-02-28T22:22:36",
+        "thumbnail": null,
+        "author": {
+          "username": "Ptt",
+          "image_profile": null
+        }
+      }
+    ]
+  }
 }
 ```
 
 
-## 篩選搜尋
+## 5.2篩選搜尋
 _用戶在戲劇區時，可選擇以類型、地區進行篩選相關戲劇，篩選完畢即可打此 api，更新戲劇列表資料。_
 
 _前端規則：當資料不足 15 筆時，視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 15。_
 
-### 類別
+- 篩選結果 WF [https://whimsical.com/4WBuD65bkGkLVhESwb4pY1]
 
-- query
+
+
+- Query
 
 ```
-    query {
-       drama (where: {type: {_ilike: "%愛情%","%劇情%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
-       {
-          id
-          title
-          thumbnail
-       }
-    }
-
+query {
+  drama(where: {drama_types: {_or: [
+  {type: {label: {_eq: "taxonomy"}, name: {_eq: "熱血"}}},
+  {type: {label: {_eq: "region"}, name: {_eq: "中國"}}}
+  ]}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    thumbnail
+  }
+}
 ```
 
 - Response 
 
 ```json
-{ 
-    "data": {
-        "drama":[
-            {
-            "id": 1,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 2,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 3,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ...
-        {
-            "id": 15,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ]
-    }
+{
+  "data": {
+    "drama": [
+      {
+        "id": 30713,
+        "title": "火力少年王 真人版 第1季",
+        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd41b2876c2e.jpg"
+      },
+      {
+        "id": 30703,
+        "title": "火力少年王 真人版 第2季",
+        "thumbnail": "https://img.58b.tv/movieimg/2014-03/5330ad5117633.jpg"
+      },
+      {
+        "id": 30704,
+        "title": "火力少年王真人版 第4季：舞動火力/火力少年王",
+        "thumbnail": "https://img.58b.tv/movieimg/2011-09/4e6f7b661f578.jpg"
+      }
+    ]
+  }
 }
 ```
-### 地區
 
-- query
-```
-    query {
-       drama (where: {region: {_ilike: "%歐美%"}},limit: 15, order_by: {post_date: desc}, offest:15)  
-       {
-          id
-          title
-          thumbnail
-       }
-    }
 
-```
-
-- Response 
-
-```json
-{ 
-    "data": {
-        "drama":[
-            {
-            "id": 1,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 2,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        {
-            "id": 3,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ...
-        {
-            "id": 15,
-            "title":"喜歡的話請響鈴",
-            "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-        },
-        ]
-    }
-}
-```
-## 相關結果搜尋
+## 5.3相關結果搜尋
 _當用戶進入新聞、戲劇詳細頁時，打此 api 下方會顯示相關新聞、戲劇、討論結果列表。_
 
+- 相關結果 WF [https://whimsical.com/9jvUhuBTdx2HFSt3vtLde9]
 
 ### 相關新聞
 _相關新聞須先用id取得此新聞tag list範例如下:_
 - query
 ```
-    query {
-      news_type(where: {news_id: {_eq: "1"}, type: {label: {_eq: "tag"}}}) {
-        type {
-          name
-        }
-      }
+query {
+  news_type(where: {news_id: {_eq: "1"}, type: {label: {_eq: "tag"}}}) {
+    type {
+      name
     }
+  }
+}
 
 ```
 - Response
   
 ```json
-{ 
+{
   "data": {
     "news_type": [
       {
@@ -1214,50 +1189,46 @@ _相關新聞須先用id取得此新聞tag list範例如下:_
 _接著再用回傳的關鍵字做 or query_
 - query
 ```
-    query {
-      news(where: {
-        _or: [
-          {title: {_ilike: "%綠豆傳%"}}, 
-          {title: {_ilike: "%張韶涵%"}}, 
-          {title: {_ilike: "%范瑋琪%"}}
-        ]}, limit: 3, order_by: {created_at: desc}) {
-        id
-        title
-        created_at
-        excerpt
-        thumbnail
-      }
-    }
+query {
+  news(where: {
+    _or: [
+      {title: {_ilike: "%想見你%"}}, 
+      {title: {_ilike: "%閨蜜%"}}, 
+      {title: {_ilike: "%陳情令%"}}
+    ]}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    excerpt
+    thumbnail
+  }
+}
 
 ```
 - Response
   
 ```json
-{ 
+{
   "data": {
-      "news":[
-          {
-          "id": 1,
-          "title":"綠豆傳撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-          "created_at": "2019-05-23 2:37:56",
-          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+    "news": [
+      {
+        "id": 12,
+        "title": "解析《陳情令》魏無羨人物主題曲「曲盡陳情」歌詞中的含義",
+        "excerpt": "陳情令沒有更新的日子里我們等的度日如年，每天都期待著下周能早點到來，沒關係，今天已經周末了，只要等周一就可以來到十六年前的高甜部分啦！想想就很期待呢！在沒有更新的日子里，我們的主角們也都發了自己人物的主題曲，好聽自然是不必說了，但里邊的暗藏的小心思，你發現了嗎?",
+        "thumbnail": "http://p3.pstatp.com/large/pgc-image/3dfd9f046c4649f1bbe6ce2f7122ed7c?/1.jpg"
       },
       {
-          "id": 2,
-          "title":"閨蜜撕破臉！綠豆傳到底發生過什麼恩怨?",
-          "created_at": "2019-05-20 2:37:56",
-          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+        "id": 8,
+        "title": "《陳情令》中藍湛胸口的烙印到底是怎麼弄成的？",
+        "excerpt": "當年在玄武洞的時候。溫晁看上了綿綿。溫晁的女人王靈嬌看不過眼。就在大家都在對付屠戮玄武的時候拿起了烙鐵去想讓綿綿毀容。當時魏無羨看見了這一幕。看著離綿綿越來越近的烙鐵。魏無羨沖了上去。所以那個烙印就印在了他的胸口上。",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2019/08/48ec8b1e529c4d818f2b9393a3029e0d.jpg"
       },
       {
-          "id": 3,
-          "title":"閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨?",
-          "created_at": "2019-05-19 2:37:56",
-          "excerpt": "近段時間張韶涵在歌手的舞台上再次收穫大量關注度，於是她和范瑋琪當年的“翻臉閨蜜恩怨史”又鬧到了檯面上。",
-          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
-      },
-      ]
+        "id": 3,
+        "title": "《想見你》為什麼陳韻如不自殺要讓莫俊傑殺她？",
+        "excerpt": "可能內心沉鬱的人都會向往像一束光可以照進他們生活的人吧，但是通常真正滿心陽光的人反而是注意不到陰暗的角落的。我也好難過，希望結局她能活下來吧。",
+        "thumbnail": "https://p1.pstatp.com/large/tos-cn-i-0022/4254732a5d72440a9cecfa86405ed31d"
+      }
+    ]
   }
 }
 ```
@@ -1266,29 +1237,34 @@ _接著再用回傳的關鍵字做 or query_
 _相關戲劇須先用id取得此戲劇actor list範例如下:_
 - query
 ```
-    query {
-      drama_actor(where: {drama_id: {_eq: "1"}}) {
-        actor {
-          name
-        }
-      }
+{
+  drama_actor(where: {drama_id: {_eq: "1"}}, limit: 3, order_by: {actor: {count: desc}}) {
+    actor {
+      name
     }
+  }
+}
 
 ```
 - Response
   
 ```json
-{ 
+{
   "data": {
     "drama_actor": [
       {
         "actor": {
-          "name": "姜河那"
+          "name": "陳法蓉"
         }
       },
       {
         "actor": {
-          "name": "孔曉振"
+          "name": "程硯秋"
+        }
+      },
+      {
+        "actor": {
+          "name": "蘇祈安"
         }
       }
     ]
@@ -1298,86 +1274,210 @@ _相關戲劇須先用id取得此戲劇actor list範例如下:_
 _接著再用回傳的演員名做 or query_
 - query
 ```
-    query {
-      drama(where: {drama_actors: {_or: [
-      {actor: {name: {_eq: "姜河那"}}},
-      {actor: {name: {_eq: "孔曉振"}}}
-      ]}}, limit: 3, order_by: {created_at: desc}) {
-        id
-        title
-        year
-        thumbnail
-        drama_actors {
-          actor {
-            name
-          }
-        }
+query {
+    drama(where: {drama_actors: {_or: [
+    {actor: {name: {_eq: "陳法蓉"}}},
+    {actor: {name: {_eq: "蘇祈安"}}},
+    {actor: {name: {_eq: "程硯秋"}}}
+    ]}}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    thumbnail
+    year
+    drama_actors(order_by: {actor: {count: desc}}) {
+      actor {
+        name
       }
     }
+    drama_types {
+      type {
+        name
+        label
+      }
+    }
+  }
+}
 
 ```
 
 - Response
 
 ```json
-{ 
+{
   "data": {
-      "drama":[
+    "drama": [
+      {
+        "id": 32864,
+        "title": "秋香怒點唐伯虎(國語)",
+        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd422edcb3ce.jpg",
+        "year": 2010,
+        "drama_actors": [
           {
-          "id": 1,
-          "title": "抓住幽靈",
-          "year": "2019",
-          "drama_actors": [
-            {
             "actor": {
-              "name": "姜河那"
-              }
-            },
-            {
+              "name": "陳豪"
+            }
+          },
+          {
             "actor": {
-              "name": "孔曉振"
+              "name": "胡杏兒"
             }
+          },
+          {
+            "actor": {
+              "name": "夏雨"
             }
-          ],
-          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+          },
+          {
+            "actor": {
+              "name": "黎諾懿"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳法蓉"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "港劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "香港",
+              "label": "region"
+            }
+          }
+        ]
       },
       {
-          "id": 2,
-          "title":"那一天",
-          "year": "2019",
-          "drama_actors": [
-            {
+        "id": 31299,
+        "title": "為你燃燒",
+        "thumbnail": "https://img.58b.tv/movieimg/2013-07/51de17c84b976.jpg",
+        "year": 2004,
+        "drama_actors": [
+          {
             "actor": {
-              "name": "姜河那"
-              }
-            },
-            {
+              "name": "顏丹晨"
+            }
+          },
+          {
             "actor": {
-              "name": "孔曉振"
+              "name": "馬景濤"
             }
+          },
+          {
+            "actor": {
+              "name": "錢泳辰"
             }
-          ],
-          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+          },
+          {
+            "actor": {
+              "name": "陳法蓉"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "倫理",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "情感",
+              "label": "taxonomy"
+            }
+          }
+        ]
       },
       {
-          "id": 3,
-          "title":"忠孝節義路遙知馬力",
-          "year": "2019",
-          "drama_actors": [
-            {
+        "id": 29360,
+        "title": "追日者",
+        "thumbnail": "https://img.58b.tv/movieimg/2014-08/53dae799d2ddc.jpg",
+        "year": 1993,
+        "drama_actors": [
+          {
             "actor": {
-              "name": "姜河那"
-              }
-            },
-            {
+              "name": "宣萱"
+            }
+          },
+          {
             "actor": {
-              "name": "孔曉振"
+              "name": "張衛健"
             }
+          },
+          {
+            "actor": {
+              "name": "鄭則仕"
             }
-          ],
-          "thumbnail": "https://github.com/uiuxcafe/uiuxcafe_web/blob/master/src/thumbnail/service/icon_01.png",
+          },
+          {
+            "actor": {
+              "name": "朱茵"
+            }
+          },
+          {
+            "actor": {
+              "name": "萬梓良"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳法蓉"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "港劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "香港",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "言情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "時裝",
+              "label": "taxonomy"
+            }
+          }
+        ]
       }
-      ]
+    ]
   }
 }
 ```
@@ -1386,19 +1486,18 @@ _接著再用回傳的演員名做 or query_
 _可參考相關新聞與相關戲劇先找出要query的關鍵字再對title下query_
 - query
 ```
-    query {
-       forum (where: {title: {_ilike: "%延禧%"}},limit: 3, order_by: {created_at: desc}) 
-       {
-          id
-          title
-          created_at
-          source
-          source_url
-          im_profile
-          thumbnail
-       }
+query {
+  forum(where: {title: {_ilike: "%陳情%"}}, order_by: {created_at: desc}, limit: 3) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
     }
-    
+  }
+}
 ```
 
 - Response
