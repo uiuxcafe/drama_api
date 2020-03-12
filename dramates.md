@@ -1280,7 +1280,11 @@ query {
 - query 
 ```
 query {
-  drama(where: {drama_actors: {actor: {name: {_ilike: "%肖戰%"}}}}, limit: 3, order_by: {created_at: desc}) {
+  drama(where: {
+    _or: [
+    {drama_actors: {actor: {name: {_ilike: "%肖戰%"}}}}, 
+    {title: {_ilike: "%三生三世%"}}
+    ]}, limit: 5, order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -1307,6 +1311,185 @@ query {
 {
   "data": {
     "drama": [
+      {
+        "id": 19158,
+        "title": "學院傳說：三生三世桃花緣",
+        "thumbnail": "https://img.58b.tv/movieimg/2017-05/592e5cb9b043f.jpg",
+        "year": 2017,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "任言愷"
+            }
+          },
+          {
+            "actor": {
+              "name": "張雅欽"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳德修"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳斯琪"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳秋實"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "愛情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "奇幻",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      },
+      {
+        "id": 14104,
+        "title": "三生三世十里桃花 電視劇版",
+        "thumbnail": "https://img.58b.tv/movieimg/2017-05/592e5bfdd7afe.jpg",
+        "year": 2017,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "楊冪"
+            }
+          },
+          {
+            "actor": {
+              "name": "連奕名"
+            }
+          },
+          {
+            "actor": {
+              "name": "迪麗熱巴"
+            }
+          },
+          {
+            "actor": {
+              "name": "張智堯"
+            }
+          },
+          {
+            "actor": {
+              "name": "高偉光"
+            }
+          },
+          {
+            "actor": {
+              "name": "趙又廷"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "古裝",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "言情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "神話",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      },
+      {
+        "id": 13909,
+        "title": "三生三世十里桃花 後傳",
+        "thumbnail": "https://img.58b.tv/movieimg/2018-01/5a61d23dbdcd3.jpg",
+        "year": 2018,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "李子峰"
+            }
+          },
+          {
+            "actor": {
+              "name": "寧心"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "古裝",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      },
       {
         "id": 13207,
         "title": "哦！我的皇帝陛下",
@@ -1408,65 +1591,6 @@ query {
           {
             "type": {
               "name": "古裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 9994,
-        "title": "魔道祖師：陳情令",
-        "thumbnail": "https://img.58b.tv/movieimg/2019-06/5d14cd32271b8.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "宣璐"
-            }
-          },
-          {
-            "actor": {
-              "name": "孟子義"
-            }
-          },
-          {
-            "actor": {
-              "name": "李若彤"
-            }
-          },
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "王一博"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
               "label": "taxonomy"
             }
           }
