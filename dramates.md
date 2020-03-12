@@ -338,140 +338,140 @@ query {
   
 ```json
 {
-  "data": {
-    "drama": [
-      {
-        "id": 32998,
-        "title": "獵人獵物 歐美劇",
-        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4338494847.jpg",
-        "year": 2020,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "Jr."
+    "data": {
+        "drama": [
+            {
+                "id": 32998,
+                "title": "獵人獵物 歐美劇",
+                "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4338494847.jpg",
+                "year": 2020,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "Isaac"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "C."
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "Singleton"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "Jr."
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "Clark"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "Bartram"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "Damion"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "Poitier"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "美劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "歐美",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 32945,
+                "title": "2009年度歐美劇類十部最佳劇集",
+                "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4469689566.jpg",
+                "year": 2020,
+                "drama_actors": [],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "美劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "歐美",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 31195,
+                "title": "我的非常閨蜜",
+                "thumbnail": "https://img.58b.tv/movieimg/2011-08/4e454f73716fb.jpg",
+                "year": 2012,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "吳越"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "柯藍"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "吳曉丹"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "蘇可"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "薑峰"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    }
+                ]
             }
-          },
-          {
-            "actor": {
-              "name": "Clark"
-            }
-          },
-          {
-            "actor": {
-              "name": "C."
-            }
-          },
-          {
-            "actor": {
-              "name": "Bartram"
-            }
-          },
-          {
-            "actor": {
-              "name": "Damion"
-            }
-          },
-          {
-            "actor": {
-              "name": "Poitier"
-            }
-          },
-          {
-            "actor": {
-              "name": "Isaac"
-            }
-          },
-          {
-            "actor": {
-              "name": "Singleton"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "美劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "歐美",
-              "label": "region"
-            }
-          }
         ]
-      },
-      {
-        "id": 32945,
-        "title": "2009年度歐美劇類十部最佳劇集",
-        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4469689566.jpg",
-        "year": 2020,
-        "drama_actors": [],
-        "drama_types": [
-          {
-            "type": {
-              "name": "美劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "歐美",
-              "label": "region"
-            }
-          }
-        ]
-      },
-      {
-        "id": 31195,
-        "title": "我的非常閨蜜",
-        "thumbnail": "https://img.58b.tv/movieimg/2011-08/4e454f73716fb.jpg",
-        "year": 2012,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "吳越"
-            }
-          },
-          {
-            "actor": {
-              "name": "柯藍"
-            }
-          },
-          {
-            "actor": {
-              "name": "蘇可"
-            }
-          },
-          {
-            "actor": {
-              "name": "薑峰"
-            }
-          },
-          {
-            "actor": {
-              "name": "吳曉丹"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
 ```
 ## 1.7 新聞相關討論列表
@@ -690,132 +690,132 @@ query {
 
 ```json
 {
-  "data": {
-    "drama": [
-      {
-        "title": "熱血同行",
-        "season": 1,
-        "episode": 58,
-        "excerpt": " \t　　熱血同行劇情改編自漫畫《艷勢番》，主要講述了清末民初時期，皇親貴族組成的秘密組織“艷勢番”在動盪時局中早已腐朽傾頹，以崇利明為首的一眾擁有新思想的貴族青年，和平民少年阿易共同復興“艷勢番”，護衛家國的故事。\t　　清末亂世，留洋歸來的滿清貝勒崇利明破格招募因陰差陽錯而相識的阿易，加入了特殊宮廷護衛組織：艷勢番。歷經一系列殘酷選拔和任務考驗，阿易與艷勢番眾人結下深厚情誼，共同面對動盪時代的種種艱難險阻。而崇利明也隨著與洋人、黑幫以及腐朽滿清內部勢力的鬥爭，逐漸明白了友情、理想的真諦。\t　　隨著歷史浪潮不可逆轉的發展，阿易與崇利明一度理念相悖、漸行漸遠。最終，覺醒的阿易尋找到了投身革命救亡圖存的理想，加入革命黨與清廷勢力徹底決裂，崇利明也接受革命感召與阿易共同聯手，促成和平談判，成為歷史和平過渡的護航者，見證了清王朝的覆滅與新時代的來臨 。 ",
-        "status": "完結",
-        "year": 2020,
-        "teaser": null,
-        "thumbnail": "https://hd.itsfun.com.tw/img/f/6d8/wZwpmL2UzVBRTOGFTMxkTMtYTMvcTMxETOx8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg",
-        "created_at": "2020-02-27T22:35:54.502973",
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "黃子韜"
+    "data": {
+        "drama": [
+            {
+                "title": "熱血同行",
+                "season": 1,
+                "episode": 58,
+                "excerpt": " \t　　熱血同行劇情改編自漫畫《艷勢番》，主要講述了清末民初時期，皇親貴族組成的秘密組織“艷勢番”在動盪時局中早已腐朽傾頹，以崇利明為首的一眾擁有新思想的貴族青年，和平民少年阿易共同復興“艷勢番”，護衛家國的故事。\t　　清末亂世，留洋歸來的滿清貝勒崇利明破格招募因陰差陽錯而相識的阿易，加入了特殊宮廷護衛組織：艷勢番。歷經一系列殘酷選拔和任務考驗，阿易與艷勢番眾人結下深厚情誼，共同面對動盪時代的種種艱難險阻。而崇利明也隨著與洋人、黑幫以及腐朽滿清內部勢力的鬥爭，逐漸明白了友情、理想的真諦。\t　　隨著歷史浪潮不可逆轉的發展，阿易與崇利明一度理念相悖、漸行漸遠。最終，覺醒的阿易尋找到了投身革命救亡圖存的理想，加入革命黨與清廷勢力徹底決裂，崇利明也接受革命感召與阿易共同聯手，促成和平談判，成為歷史和平過渡的護航者，見證了清王朝的覆滅與新時代的來臨 。 ",
+                "status": "完結",
+                "year": 2020,
+                "teaser": null,
+                "thumbnail": "https://hd.itsfun.com.tw/img/f/6d8/wZwpmL2UzVBRTOGFTMxkTMtYTMvcTMxETOx8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg",
+                "created_at": "2020-02-27T22:35:54.502973",
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "黃子韜"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "易烊千璽"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "胡冰卿"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "馬澤涵"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "吳俊余"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "李俊濠"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "苑子文"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王瑞昌"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "寧心"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "劉源"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王子騰"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "劉芸"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "郭曉婷"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type_id": 4,
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type_id": 52,
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type_id": 22,
+                        "type": {
+                            "name": "劇情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type_id": 38,
+                        "type": {
+                            "name": "勵志",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type_id": 95,
+                        "type": {
+                            "name": "青春",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type_id": 117,
+                        "type": {
+                            "name": "網路劇",
+                            "label": "taxonomy"
+                        }
+                    }
+                ]
             }
-          },
-          {
-            "actor": {
-              "name": "易烊千璽"
-            }
-          },
-          {
-            "actor": {
-              "name": "胡冰卿"
-            }
-          },
-          {
-            "actor": {
-              "name": "馬澤涵"
-            }
-          },
-          {
-            "actor": {
-              "name": "吳俊余"
-            }
-          },
-          {
-            "actor": {
-              "name": "王瑞昌"
-            }
-          },
-          {
-            "actor": {
-              "name": "劉芸"
-            }
-          },
-          {
-            "actor": {
-              "name": "寧心"
-            }
-          },
-          {
-            "actor": {
-              "name": "郭曉婷"
-            }
-          },
-          {
-            "actor": {
-              "name": "苑子文"
-            }
-          },
-          {
-            "actor": {
-              "name": "李俊濠"
-            }
-          },
-          {
-            "actor": {
-              "name": "劉源"
-            }
-          },
-          {
-            "actor": {
-              "name": "王子騰"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type_id": 51,
-            "type": {
-              "name": "大陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type_id": 52,
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type_id": 22,
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type_id": 38,
-            "type": {
-              "name": "勵志",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type_id": 95,
-            "type": {
-              "name": "青春",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type_id": 117,
-            "type": {
-              "name": "網路劇",
-              "label": "taxonomy"
-            }
-          }
         ]
-      }
-    ]
-  }
+    }
 }
 ```
 
@@ -1042,181 +1042,181 @@ query {
 
 ```json
 {
-  "data": {
-    "drama": [
-      {
-        "id": 32864,
-        "title": "秋香怒點唐伯虎(國語)",
-        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd422edcb3ce.jpg",
-        "year": 2010,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "陳豪"
+    "data": {
+        "drama": [
+            {
+                "id": 32864,
+                "title": "秋香怒點唐伯虎(國語)",
+                "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd422edcb3ce.jpg",
+                "year": 2010,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "陳豪"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "胡杏兒"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "夏雨"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "黎諾懿"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "陳法蓉"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "港劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "香港",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 31299,
+                "title": "為你燃燒",
+                "thumbnail": "https://img.58b.tv/movieimg/2013-07/51de17c84b976.jpg",
+                "year": 2004,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "顏丹晨"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "陳法蓉"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "馬景濤"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "錢泳辰"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "倫理",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "劇情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "情感",
+                            "label": "taxonomy"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 29360,
+                "title": "追日者",
+                "thumbnail": "https://img.58b.tv/movieimg/2014-08/53dae799d2ddc.jpg",
+                "year": 1993,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "朱茵"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "張衛健"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "宣萱"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "萬梓良"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "陳法蓉"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "鄭則仕"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "港劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "香港",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "言情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "時裝",
+                            "label": "taxonomy"
+                        }
+                    }
+                ]
             }
-          },
-          {
-            "actor": {
-              "name": "胡杏兒"
-            }
-          },
-          {
-            "actor": {
-              "name": "夏雨"
-            }
-          },
-          {
-            "actor": {
-              "name": "黎諾懿"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳法蓉"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "港劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "香港",
-              "label": "region"
-            }
-          }
         ]
-      },
-      {
-        "id": 31299,
-        "title": "為你燃燒",
-        "thumbnail": "https://img.58b.tv/movieimg/2013-07/51de17c84b976.jpg",
-        "year": 2004,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "顏丹晨"
-            }
-          },
-          {
-            "actor": {
-              "name": "馬景濤"
-            }
-          },
-          {
-            "actor": {
-              "name": "錢泳辰"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳法蓉"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "倫理",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "情感",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 29360,
-        "title": "追日者",
-        "thumbnail": "https://img.58b.tv/movieimg/2014-08/53dae799d2ddc.jpg",
-        "year": 1993,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "宣萱"
-            }
-          },
-          {
-            "actor": {
-              "name": "張衛健"
-            }
-          },
-          {
-            "actor": {
-              "name": "鄭則仕"
-            }
-          },
-          {
-            "actor": {
-              "name": "朱茵"
-            }
-          },
-          {
-            "actor": {
-              "name": "萬梓良"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳法蓉"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "港劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "香港",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "言情",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "時裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
 ```
 ## 2.9 戲劇相關討論列表
@@ -1437,7 +1437,7 @@ _用戶點選搜尋後，打此 api ，即顯示近期熱門搜尋關鍵字，�
 
 ```
 query {
-  trend(limit: 3, order_by: {count: desc}) {
+  trend(limit: 10, order_by: {count: desc}) {
     id
     name
     count
@@ -1467,6 +1467,7 @@ query {
         "name": "Watcher",
         "count": 3
       },
+      ...
     ]
   }
 }
@@ -1493,7 +1494,7 @@ _搜尋結果預設為 3 筆資料，當資料不足 3 筆，視為最後一頁�
 
 ```
 query {
-  news(where: {title: {_ilike: "%陳情%"}}, order_by: {created_at: desc}, limit: 3) {
+  news(where: {title: {_ilike: "%陳情%"}}, order_by: {created_at: desc}, limit: 10) {
     id
     title
     created_at
@@ -1545,7 +1546,7 @@ query {
     _or: [
     {drama_actors: {actor: {name: {_ilike: "%肖戰%"}}}}, 
     {title: {_ilike: "%三生三世%"}}
-    ]}, limit: 5, order_by: {created_at: desc}) {
+    ]}, limit: 15 , order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -1570,295 +1571,190 @@ query {
 
 ```json
 {
-  "data": {
-    "drama": [
-      {
-        "id": 19158,
-        "title": "學院傳說：三生三世桃花緣",
-        "thumbnail": "https://img.58b.tv/movieimg/2017-05/592e5cb9b043f.jpg",
-        "year": 2017,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "任言愷"
+    "data": {
+        "drama": [
+            {
+                "id": 19158,
+                "title": "學院傳說：三生三世桃花緣",
+                "thumbnail": "https://img.58b.tv/movieimg/2017-05/592e5cb9b043f.jpg",
+                "year": 2017,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "任言愷"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "張雅欽"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "陳秋實"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "陳斯琪"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "陳德修"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "愛情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "奇幻",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "劇情",
+                            "label": "taxonomy"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 14104,
+                "title": "三生三世十里桃花 電視劇版",
+                "thumbnail": "https://img.58b.tv/movieimg/2017-05/592e5bfdd7afe.jpg",
+                "year": 2017,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "楊冪"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "趙又廷"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "張智堯"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "迪麗熱巴"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "連奕名"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "高偉光"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "古裝",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "劇情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "言情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "神話",
+                            "label": "taxonomy"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 13909,
+                "title": "三生三世十里桃花 後傳",
+                "thumbnail": "https://img.58b.tv/movieimg/2018-01/5a61d23dbdcd3.jpg",
+                "year": 2018,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "寧心"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "李子峰"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "古裝",
+                            "label": "taxonomy"
+                        }
+                    },
+                    ...
+                ]
             }
-          },
-          {
-            "actor": {
-              "name": "張雅欽"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳德修"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳斯琪"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳秋實"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "愛情",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "奇幻",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          }
         ]
-      },
-      {
-        "id": 14104,
-        "title": "三生三世十里桃花 電視劇版",
-        "thumbnail": "https://img.58b.tv/movieimg/2017-05/592e5bfdd7afe.jpg",
-        "year": 2017,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "楊冪"
-            }
-          },
-          {
-            "actor": {
-              "name": "連奕名"
-            }
-          },
-          {
-            "actor": {
-              "name": "迪麗熱巴"
-            }
-          },
-          {
-            "actor": {
-              "name": "張智堯"
-            }
-          },
-          {
-            "actor": {
-              "name": "高偉光"
-            }
-          },
-          {
-            "actor": {
-              "name": "趙又廷"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "言情",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "神話",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 13909,
-        "title": "三生三世十里桃花 後傳",
-        "thumbnail": "https://img.58b.tv/movieimg/2018-01/5a61d23dbdcd3.jpg",
-        "year": 2018,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "李子峰"
-            }
-          },
-          {
-            "actor": {
-              "name": "寧心"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 13207,
-        "title": "哦！我的皇帝陛下",
-        "thumbnail": "https://img.58b.tv/movieimg/2018-04/5ae07ae209158.jpg",
-        "year": 2018,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "趙露思"
-            }
-          },
-          {
-            "actor": {
-              "name": "谷嘉誠"
-            }
-          },
-          {
-            "actor": {
-              "name": "伍嘉成"
-            }
-          },
-          {
-            "actor": {
-              "name": "彭楚粵"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 12930,
-        "title": "哦！我的皇帝陛下2",
-        "thumbnail": "https://img.58b.tv/movieimg/2018-04/5ae07ae209158.jpg",
-        "year": 2020,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "趙露思"
-            }
-          },
-          {
-            "actor": {
-              "name": "谷嘉誠"
-            }
-          },
-          {
-            "actor": {
-              "name": "伍嘉成"
-            }
-          },
-          {
-            "actor": {
-              "name": "彭楚粵"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
 ```
 ### 討論
@@ -1866,7 +1762,7 @@ query {
 - query
 ```
 query {
-  forum(where: {title: {_ilike: "%陳情%"}}, order_by: {created_at: desc}, limit: 3) {
+  forum(where: {title: {_ilike: "%陳情%"}}, order_by: {created_at: desc}, limit: 10) {
     id
     title
     created_at
@@ -1914,7 +1810,8 @@ query {
           "username": "Ptt",
           "image_profile": null
         }
-      }
+      },
+      ...
     ]
   }
 }
