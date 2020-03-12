@@ -319,7 +319,7 @@ query {
     title
     thumbnail
     year
-    drama_actors(order_by: {actor: {count: desc}}) {
+    drama_actors(order_by: {id: asc}) {
       actor {
         name
       }
@@ -669,7 +669,7 @@ query {
     teaser
     thumbnail
     created_at
-    drama_actors(order_by: {actor: {count: desc}}) {
+    drama_actors(order_by: {id: asc}) {
       actor {
         name
       }
@@ -1022,7 +1022,7 @@ query {
     title
     thumbnail
     year
-    drama_actors(order_by: {actor: {count: desc}}) {
+    drama_actors(order_by: {id: asc}) {
       actor {
         name
       }
@@ -1550,7 +1550,7 @@ query {
     title
     thumbnail
     year
-    drama_actors(order_by: {actor: {count: desc}}) {
+    drama_actors(order_by: {id: asc}) {
       actor {
         name
       }
