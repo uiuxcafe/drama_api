@@ -81,7 +81,7 @@ query {
 
 _進入新聞首頁時，打此 api，即顯示新聞最新列表。_
 
-_前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10（戲劇 offset：15）。_
+_前端規則：新聞列表頁預設 10 筆資料，當資料不足 10 筆，視為最後一頁。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 為 10。_
 
 - 新聞 WF [https://whimsical.com/Syq3vMNvHrJpVEhjVJP3hY]
 
@@ -89,7 +89,7 @@ _前端規則：當資料不足 10 筆（戲劇為 15 筆），視為最後一�
 
 ```
 query {
-  news(limit: 3, order_by: {created_at: desc}) {
+  news(limit: 10, order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -126,6 +126,7 @@ query {
         "created_at": "2020-03-02T16:58:15.017665",
         "excerpt": "說到韓國的犯罪懸疑韓劇，想必大家想到的是深入人心的《信號》，韓劇在犯罪懸疑題材方面近幾年的崛起速度很快，除了深入人心的《信號》之外，還有多部好看的犯罪韓劇。"
       },
+      ...
     ]
   }
 }
