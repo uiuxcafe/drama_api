@@ -1,33 +1,4 @@
-<!-- TOC -->
-
-- [1. 新聞區](#1-新聞區)
-    - [1.1 新聞輪播列表](#11-新聞輪播列表)
-    - [1.2 新聞列表頁](#12-新聞列表頁)
-    - [1.3 新聞詳細頁](#13-新聞詳細頁)
-    - [1.4 取得新聞tag列表](#14-取得新聞tag列表)
-    - [1.5 新聞相關列表](#15-新聞相關列表)
-- [2. 戲劇區](#2-戲劇區)
-    - [2.1 戲劇輪播列表](#21-戲劇輪播列表)
-    - [2.2 戲劇列表頁](#22-戲劇列表頁)
-    - [2.3 戲劇詳細頁](#23-戲劇詳細頁)
-    - [2.4 分集大綱列表](#24-分集大綱列表)
-    - [2.5 分集大綱詳細](#25-分集大綱詳細)
-    - [2.6 取得演員列表](#26-取得演員列表)
-    - [2.7 戲劇相關新聞列表](#27-戲劇相關新聞列表)
-    - [2.8 戲劇相關戲劇列表](#28-戲劇相關戲劇列表)
-    - [2.9 戲劇相關討論列表](#29-戲劇相關討論列表)
-- [3. 討論區](#3-討論區)
-    - [3.1 討論列表頁](#31-討論列表頁)
-- [4. 關鍵字](#4-關鍵字)
-    - [4.1 熱門關鍵字列表](#41-熱門關鍵字列表)
-- [5. 搜尋結果](#5-搜尋結果)
-    - [5.1 關鍵字/Tag搜尋](#51-關鍵字tag搜尋)
-        - [新聞](#新聞)
-        - [戲劇](#戲劇)
-        - [討論](#討論)
-    - [5.2篩選搜尋](#52篩選搜尋)
-
-<!-- /TOC -->
+<!-- TOC -->autoauto- [1. 新聞區](#1-新聞區)auto    - [1.1 新聞輪播列表](#11-新聞輪播列表)auto    - [1.2 新聞列表頁](#12-新聞列表頁)auto    - [1.3 新聞詳細頁](#13-新聞詳細頁)auto    - [1.4 取得新聞tag列表](#14-取得新聞tag列表)auto    - [1.5 新聞相關新聞列表](#15-新聞相關新聞列表)auto    - [1.6 新聞相關戲劇列表](#16-新聞相關戲劇列表)auto    - [1.7 新聞相關討論列表](#17-新聞相關討論列表)auto- [2. 戲劇區](#2-戲劇區)auto    - [2.1 戲劇輪播列表](#21-戲劇輪播列表)auto    - [2.2 戲劇列表頁](#22-戲劇列表頁)auto    - [2.3 戲劇詳細頁](#23-戲劇詳細頁)auto    - [2.4 分集大綱列表](#24-分集大綱列表)auto    - [2.5 分集大綱詳細](#25-分集大綱詳細)auto    - [2.6 取得演員列表](#26-取得演員列表)auto    - [2.7 戲劇相關新聞列表](#27-戲劇相關新聞列表)auto    - [2.8 戲劇相關戲劇列表](#28-戲劇相關戲劇列表)auto    - [2.9 戲劇相關討論列表](#29-戲劇相關討論列表)auto- [3. 討論區](#3-討論區)auto    - [3.1 討論列表頁](#31-討論列表頁)auto- [4. 關鍵字](#4-關鍵字)auto    - [4.1 熱門關鍵字列表](#41-熱門關鍵字列表)auto- [5. 搜尋結果](#5-搜尋結果)auto    - [5.1 關鍵字/Tag搜尋](#51-關鍵字tag搜尋)auto        - [新聞](#新聞)auto        - [戲劇](#戲劇)auto        - [討論](#討論)auto    - [5.2篩選搜尋](#52篩選搜尋)autoauto<!-- /TOC -->
 
 # 1. 新聞區
 ## 1.1 新聞輪播列表
@@ -248,9 +219,11 @@ query {
 ```
 
 
-## 1.5 新聞相關列表
 
-_進入新聞詳細頁時，點擊下方分頁「相關新聞、相關戲劇、相關討論」時，先打 1.4 取得新聞 tag 列表 取得文章中 tag 列表後，再打此 api 顯示相關新聞、相關戲劇、相關討論的結果。_
+
+## 1.5 新聞相關新聞列表
+
+_進入新聞詳細頁時，點擊下方分頁相關新聞時，先打 1.4 取得新聞 tag 列表 取得文章中 tag 列表後，再打此 api 顯示相關新聞的結果。_
 
 - query
 ```
@@ -292,6 +265,244 @@ query {
         "title": "閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨？",
         "excerpt": "閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨？",
         "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2019/08/f2695eec3bbf3d8277d9ecc724169093.jpg"
+      }
+    ]
+  }
+}
+```
+
+## 1.6 新聞相關戲劇列表
+
+_進入新聞詳細頁時，點擊下方分頁相關戲劇時，先打 1.4 取得新聞 tag 列表 取得文章中 tag 列表後，再打此 api 相關戲劇的結果。_
+
+- query
+```
+query {
+  drama(where: {
+    _or: [
+      {title: {_ilike: "%美劇%"}}, 
+      {title: {_ilike: "%閨蜜%"}}, 
+      {title: {_ilike: "%陳情令%"}}
+    ]}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    thumbnail
+    year
+    drama_actors(order_by: {actor: {count: desc}}) {
+      actor {
+        name
+      }
+    }
+    drama_types {
+      type {
+        name
+        label
+      }
+    }
+  }
+}
+
+```
+- Response
+  
+```json
+{
+  "data": {
+    "drama": [
+      {
+        "id": 32998,
+        "title": "獵人獵物 歐美劇",
+        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4338494847.jpg",
+        "year": 2020,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "Jr."
+            }
+          },
+          {
+            "actor": {
+              "name": "Clark"
+            }
+          },
+          {
+            "actor": {
+              "name": "C."
+            }
+          },
+          {
+            "actor": {
+              "name": "Bartram"
+            }
+          },
+          {
+            "actor": {
+              "name": "Damion"
+            }
+          },
+          {
+            "actor": {
+              "name": "Poitier"
+            }
+          },
+          {
+            "actor": {
+              "name": "Isaac"
+            }
+          },
+          {
+            "actor": {
+              "name": "Singleton"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "美劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "歐美",
+              "label": "region"
+            }
+          }
+        ]
+      },
+      {
+        "id": 32945,
+        "title": "2009年度歐美劇類十部最佳劇集",
+        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4469689566.jpg",
+        "year": 2020,
+        "drama_actors": [],
+        "drama_types": [
+          {
+            "type": {
+              "name": "美劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "歐美",
+              "label": "region"
+            }
+          }
+        ]
+      },
+      {
+        "id": 31195,
+        "title": "我的非常閨蜜",
+        "thumbnail": "https://img.58b.tv/movieimg/2011-08/4e454f73716fb.jpg",
+        "year": 2012,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "吳越"
+            }
+          },
+          {
+            "actor": {
+              "name": "柯藍"
+            }
+          },
+          {
+            "actor": {
+              "name": "蘇可"
+            }
+          },
+          {
+            "actor": {
+              "name": "薑峰"
+            }
+          },
+          {
+            "actor": {
+              "name": "吳曉丹"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+## 1.7 新聞相關討論列表
+
+_進入新聞詳細頁時，點擊下方分頁相關討論時，先打 1.4 取得新聞 tag 列表 取得文章中 tag 列表後，再打此 api 顯示相關討論的結果。_
+
+- query
+```
+query {
+  forum (where: {
+    _or: [
+      {title: {_ilike: "%美劇%"}}, 
+      {title: {_ilike: "%閨蜜%"}}, 
+      {title: {_ilike: "%陳情令%"}}
+    ]}, limit: 3, order_by: {created_at: desc}) {
+    id
+    title
+    created_at
+    thumbnail
+    author {
+      username
+      image_profile
+    }
+  }
+}
+
+```
+- Response
+  
+```json
+{
+  "data": {
+    "forum": [
+      {
+        "id": 84,
+        "title": "陳情令 時時思君，以追來日（藍思追feat.金凌）",
+        "created_at": "2020-03-03T06:23:38.994",
+        "thumbnail": null,
+        "author": {
+          "username": "Dcard",
+          "image_profile": null
+        }
+      },
+      {
+        "id": 477,
+        "title": "[閒聊] 《陳情令》陳情令那些小事 (雷)",
+        "created_at": "2020-02-29T17:39:03",
+        "thumbnail": null,
+        "author": {
+          "username": "Ptt",
+          "image_profile": null
+        }
+      },
+      {
+        "id": 7,
+        "title": "#問 感覺很久以前的一部美劇",
+        "created_at": "2020-02-29T14:21:01.743",
+        "thumbnail": null,
+        "author": {
+          "username": "Dcard",
+          "image_profile": null
+        }
       }
     ]
   }
