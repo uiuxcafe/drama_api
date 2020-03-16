@@ -32,6 +32,11 @@
 <!-- /TOC -->
 
 # 1. 新聞區
+
+- url
+
+    `Post` https://ek21-drama.herokuapp.com/v1/graphql
+
 ## 1.1 新聞輪播列表
 
 _進入新聞首頁時，打此 api，即顯示新聞輪播列表。不限內容數量，採用人工調整。_
