@@ -260,11 +260,11 @@ _進入新聞詳細頁時，點擊下方分頁相關新聞時，先打 1.4 取�
 ```
 query {
   news(where: {
-    _or: [
-      {title: {_ilike: "%美劇%"}}, 
-      {title: {_ilike: "%閨蜜%"}}, 
-      {title: {_ilike: "%陳情令%"}}
-    ]}, limit: 3, order_by: {created_at: desc}) {
+      _or: [
+        {title: {_ilike: "%美劇%"}}, 
+        {title: {_ilike: "%閨蜜%"}}, 
+        {title: {_ilike: "%陳情令%"}}
+        ], id: {_neq: "13"}}, limit: 3, order_by: {created_at: desc}) {
     id
     title
     excerpt
@@ -283,19 +283,19 @@ query {
         "id": 12,
         "title": "解析《陳情令》魏無羨人物主題曲「曲盡陳情」歌詞中的含義",
         "excerpt": "陳情令沒有更新的日子里我們等的度日如年，每天都期待著下周能早點到來，沒關係，今天已經周末了，只要等周一就可以來到十六年前的高甜部分啦！想想就很期待呢！在沒有更新的日子里，我們的主角們也都發了自己人物的主題曲，好聽自然是不必說了，但里邊的暗藏的小心思，你發現了嗎?",
-        "thumbnail": "http://p3.pstatp.com/large/pgc-image/3dfd9f046c4649f1bbe6ce2f7122ed7c?/1.jpg"
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/03/cf8b2d47c97bea910c6ad3c17d6b3e3b.jpg"
+      },
+      {
+        "id": 10,
+        "title": "分享肖戰與王一博主演的《陳情令》不為人知的內幕",
+        "excerpt": "2019年6月27日，改編自原著小說《魔道祖師》的仙俠劇《陳情令》開播。從開拍前來自原著粉的群嘲抵制，到上線後世界通用的「真香定律」再次應驗，《陳情令》無疑做到了一次大逆襲。在「華鼎獎」2018-2019年中國電視劇滿意度調查百強榜單上，《陳情令》位居第十。",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/03/45f5442566580d927c8d2c9cd20b009a.jpg"
       },
       {
         "id": 8,
         "title": "《陳情令》中藍湛胸口的烙印到底是怎麼弄成的？",
         "excerpt": "當年在玄武洞的時候。溫晁看上了綿綿。溫晁的女人王靈嬌看不過眼。就在大家都在對付屠戮玄武的時候拿起了烙鐵去想讓綿綿毀容。當時魏無羨看見了這一幕。看著離綿綿越來越近的烙鐵。魏無羨沖了上去。所以那個烙印就印在了他的胸口上。",
-        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2019/08/48ec8b1e529c4d818f2b9393a3029e0d.jpg"
-      },
-      {
-        "id": 1,
-        "title": "閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨？",
-        "excerpt": "閨蜜撕破臉！張韶涵和范瑋琪到底發生過什麼恩怨？",
-        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2019/08/f2695eec3bbf3d8277d9ecc724169093.jpg"
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/03/8040d7dcdf754aeca545d11bcf8de351.jpg"
       }
     ]
   }
@@ -308,13 +308,13 @@ _進入新聞詳細頁時，點擊下方分頁相關戲劇時，先打 1.4 取�
 
 - query
 ```
-query {
+query{
   drama(where: {
     _or: [
       {title: {_ilike: "%美劇%"}}, 
       {title: {_ilike: "%閨蜜%"}}, 
       {title: {_ilike: "%陳情令%"}}
-    ]}, limit: 3, order_by: {created_at: desc}) {
+      ], id: {_neq: "32998"}}, limit: 3, order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -338,140 +338,126 @@ query {
   
 ```json
 {
-    "data": {
-        "drama": [
-            {
-                "id": 32998,
-                "title": "獵人獵物 歐美劇",
-                "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4338494847.jpg",
-                "year": 2020,
-                "drama_actors": [
-                    {
-                        "actor": {
-                            "name": "Isaac"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "C."
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "Singleton"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "Jr."
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "Clark"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "Bartram"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "Damion"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "Poitier"
-                        }
-                    }
-                ],
-                "drama_types": [
-                    {
-                        "type": {
-                            "name": "美劇",
-                            "label": "category"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "歐美",
-                            "label": "region"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": 32945,
-                "title": "2009年度歐美劇類十部最佳劇集",
-                "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4469689566.jpg",
-                "year": 2020,
-                "drama_actors": [],
-                "drama_types": [
-                    {
-                        "type": {
-                            "name": "美劇",
-                            "label": "category"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "歐美",
-                            "label": "region"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": 31195,
-                "title": "我的非常閨蜜",
-                "thumbnail": "https://img.58b.tv/movieimg/2011-08/4e454f73716fb.jpg",
-                "year": 2012,
-                "drama_actors": [
-                    {
-                        "actor": {
-                            "name": "吳越"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "柯藍"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "吳曉丹"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "蘇可"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "薑峰"
-                        }
-                    }
-                ],
-                "drama_types": [
-                    {
-                        "type": {
-                            "name": "陸劇",
-                            "label": "category"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "大陸",
-                            "label": "region"
-                        }
-                    }
-                ]
+  "data": {
+    "drama": [
+      {
+        "id": 32945,
+        "title": "2009年度歐美劇類十部最佳劇集",
+        "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd4469689566.jpg",
+        "year": 2020,
+        "drama_actors": [],
+        "drama_types": [
+          {
+            "type": {
+              "name": "美劇",
+              "label": "category"
             }
+          },
+          {
+            "type": {
+              "name": "歐美",
+              "label": "region"
+            }
+          }
         ]
-    }
+      },
+      {
+        "id": 31195,
+        "title": "我的非常閨蜜",
+        "thumbnail": "https://img.58b.tv/movieimg/2011-08/4e454f73716fb.jpg",
+        "year": 2012,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "吳越"
+            }
+          },
+          {
+            "actor": {
+              "name": "柯藍"
+            }
+          },
+          {
+            "actor": {
+              "name": "吳曉丹"
+            }
+          },
+          {
+            "actor": {
+              "name": "蘇可"
+            }
+          },
+          {
+            "actor": {
+              "name": "薑峰"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          }
+        ]
+      },
+      {
+        "id": 28333,
+        "title": "金銀島 歐美劇",
+        "thumbnail": "https://img.58b.tv/movieimg/2013-06/51ae868fba687.jpg",
+        "year": 2012,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "艾迪·伊紮德"
+            }
+          },
+          {
+            "actor": {
+              "name": "托比·瑞格波"
+            }
+          },
+          {
+            "actor": {
+              "name": "魯伯特·彭利·瓊斯"
+            }
+          },
+          {
+            "actor": {
+              "name": "伊利亞·伍德"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "美劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "歐美",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 ## 1.7 新聞相關討論列表
@@ -481,12 +467,12 @@ _進入新聞詳細頁時，點擊下方分頁相關討論時，先打 1.4 取�
 - query
 ```
 query {
-  forum (where: {
+  forum(where: {
     _or: [
       {title: {_ilike: "%美劇%"}}, 
       {title: {_ilike: "%閨蜜%"}}, 
       {title: {_ilike: "%陳情令%"}}
-    ]}, limit: 3, order_by: {created_at: desc}) {
+      ], id: {_neq: "1668"}}, limit: 3, order_by: {created_at: desc}) {
     id
     title
     created_at
@@ -506,19 +492,9 @@ query {
   "data": {
     "forum": [
       {
-        "id": 84,
-        "title": "陳情令 時時思君，以追來日（藍思追feat.金凌）",
-        "created_at": "2020-03-03T06:23:38.994",
-        "thumbnail": null,
-        "author": {
-          "username": "Dcard",
-          "image_profile": null
-        }
-      },
-      {
-        "id": 477,
-        "title": "[閒聊] 《陳情令》陳情令那些小事 (雷)",
-        "created_at": "2020-02-29T17:39:03",
+        "id": 1672,
+        "title": "[閒聊] 陳情令日文版釋出美術特映",
+        "created_at": "2020-03-22T00:20:59",
         "thumbnail": null,
         "author": {
           "username": "Ptt",
@@ -526,9 +502,19 @@ query {
         }
       },
       {
-        "id": 7,
-        "title": "#問 感覺很久以前的一部美劇",
-        "created_at": "2020-02-29T14:21:01.743",
+        "id": 1260,
+        "title": "[新聞] Apple TV+犯罪美劇《勿闖黑夜》預告 4月",
+        "created_at": "2020-03-19T10:25:01",
+        "thumbnail": null,
+        "author": {
+          "username": "Ptt",
+          "image_profile": null
+        }
+      },
+      {
+        "id": 1099,
+        "title": "美劇《碳變》S2：穿越千年的傷痛，只為求一個結果",
+        "created_at": "2020-03-15T14:47:14.9",
         "thumbnail": null,
         "author": {
           "username": "Dcard",
@@ -967,13 +953,14 @@ _當用戶瀏覽戲劇詳細頁時，點擊下方分頁「相關新聞」打此 
 
 ```
 query {
-  drama(where: {title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}, limit: 3) {
+  drama(where: {title: {_ilike: "%陳情令%"}, id: {_neq: "9994"}}, order_by: {created_at: desc}, limit: 3) {
     id
     title
     thumbnail
     excerpt
   }
 }
+
 
 ```
 
@@ -983,12 +970,6 @@ query {
 {
   "data": {
     "drama": [
-      {
-        "id": 9994,
-        "title": "魔道祖師：陳情令",
-        "thumbnail": "https://img.58b.tv/movieimg/2019-06/5d14cd32271b8.jpg",
-        "excerpt": "十六年前，天下五分，姑蘇藍氏，雲夢江氏，清河聶氏，岐山溫氏，蘭陵金氏共治天下。溫氏一家獨大，其餘四家均受其苦。眾家青年中，江氏故人之子魏無羨性格開朗，和以雅正聞名的姑蘇藍氏弟子藍忘機相識並引為知己。一次偶然的機會，二人發現了藍氏一直以來守護的秘密，二人繼承遺志，為蒼生消除隱患。但沒想到一切的幕後黑手正是溫氏家主溫若寒。眾家不堪其辱，合力討伐溫氏。溫氏覆滅後，魏無羨卻為保護溫氏無辜之人不惜與眾家對立，最終被奸人所害釀成大禍，誤害師姐江厭離，自己也不知所蹤。十六年後，消失已久的魏無羨出現在莫家莊，偶遇故人藍忘機。莫家莊一樁樁詭異的兇案顯得撲朔迷離。隨著真相一步步揭開，身處幕後的金光瑤漸漸難以隱藏。最後金光瑤身死，藍忘機承擔起了匡扶天下的使命，而魏無羨不忘初心，最終瀟灑世間。\r\n"
-      },
       {
         "id": 8761,
         "title": "魔道祖師：陳情令 特別版",
@@ -1013,11 +994,12 @@ _點選戲劇詳細頁，下方分頁中的「相關戲劇」時，先打 2.6 ap
 - query
 ```
 query {
-    drama(where: {drama_actors: {_or: [
-    {actor: {name: {_eq: "陳法蓉"}}},
-    {actor: {name: {_eq: "蘇祈安"}}},
-    {actor: {name: {_eq: "程硯秋"}}}
-    ]}}, limit: 3, order_by: {created_at: desc}) {
+  drama(where: {drama_actors: {
+    _or: [
+      {actor: {name: {_eq: "陳法蓉"}}}, 
+      {actor: {name: {_eq: "蘇祈安"}}}, 
+      {actor: {name: {_eq: "程硯秋"}}}]}, 
+      id: {_neq: "32864"}}, limit: 3, order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -1042,181 +1024,193 @@ query {
 
 ```json
 {
-    "data": {
-        "drama": [
-            {
-                "id": 32864,
-                "title": "秋香怒點唐伯虎(國語)",
-                "thumbnail": "https://img.58b.tv/movieimg/2010-11/4cd422edcb3ce.jpg",
-                "year": 2010,
-                "drama_actors": [
-                    {
-                        "actor": {
-                            "name": "陳豪"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "胡杏兒"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "夏雨"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "黎諾懿"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "陳法蓉"
-                        }
-                    }
-                ],
-                "drama_types": [
-                    {
-                        "type": {
-                            "name": "港劇",
-                            "label": "category"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "香港",
-                            "label": "region"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": 31299,
-                "title": "為你燃燒",
-                "thumbnail": "https://img.58b.tv/movieimg/2013-07/51de17c84b976.jpg",
-                "year": 2004,
-                "drama_actors": [
-                    {
-                        "actor": {
-                            "name": "顏丹晨"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "陳法蓉"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "馬景濤"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "錢泳辰"
-                        }
-                    }
-                ],
-                "drama_types": [
-                    {
-                        "type": {
-                            "name": "陸劇",
-                            "label": "category"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "倫理",
-                            "label": "taxonomy"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "大陸",
-                            "label": "region"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "劇情",
-                            "label": "taxonomy"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "情感",
-                            "label": "taxonomy"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": 29360,
-                "title": "追日者",
-                "thumbnail": "https://img.58b.tv/movieimg/2014-08/53dae799d2ddc.jpg",
-                "year": 1993,
-                "drama_actors": [
-                    {
-                        "actor": {
-                            "name": "朱茵"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "張衛健"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "宣萱"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "萬梓良"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "陳法蓉"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "鄭則仕"
-                        }
-                    }
-                ],
-                "drama_types": [
-                    {
-                        "type": {
-                            "name": "港劇",
-                            "label": "category"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "香港",
-                            "label": "region"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "言情",
-                            "label": "taxonomy"
-                        }
-                    },
-                    {
-                        "type": {
-                            "name": "時裝",
-                            "label": "taxonomy"
-                        }
-                    }
-                ]
+  "data": {
+    "drama": [
+      {
+        "id": 31299,
+        "title": "為你燃燒",
+        "thumbnail": "https://img.58b.tv/movieimg/2013-07/51de17c84b976.jpg",
+        "year": 2004,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "顏丹晨"
             }
+          },
+          {
+            "actor": {
+              "name": "陳法蓉"
+            }
+          },
+          {
+            "actor": {
+              "name": "馬景濤"
+            }
+          },
+          {
+            "actor": {
+              "name": "錢泳辰"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "倫理",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "大陸",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "情感",
+              "label": "taxonomy"
+            }
+          }
         ]
-    }
+      },
+      {
+        "id": 29360,
+        "title": "追日者",
+        "thumbnail": "https://img.58b.tv/movieimg/2014-08/53dae799d2ddc.jpg",
+        "year": 1993,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "朱茵"
+            }
+          },
+          {
+            "actor": {
+              "name": "張衛健"
+            }
+          },
+          {
+            "actor": {
+              "name": "宣萱"
+            }
+          },
+          {
+            "actor": {
+              "name": "萬梓良"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳法蓉"
+            }
+          },
+          {
+            "actor": {
+              "name": "鄭則仕"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "港劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "香港",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "言情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "時裝",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      },
+      {
+        "id": 29301,
+        "title": "皇家反千組",
+        "thumbnail": "https://img.58b.tv/movieimg/2011-09/4e722583f011b.jpg",
+        "year": 1997,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "歐陽震華"
+            }
+          },
+          {
+            "actor": {
+              "name": "古巨基"
+            }
+          },
+          {
+            "actor": {
+              "name": "胡楓"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳法蓉"
+            }
+          },
+          {
+            "actor": {
+              "name": "何嘉莉"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "港劇",
+              "label": "category"
+            }
+          },
+          {
+            "type": {
+              "name": "香港",
+              "label": "region"
+            }
+          },
+          {
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "警匪",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
 ```
 ## 2.9 戲劇相關討論列表
@@ -1227,7 +1221,7 @@ _當用戶瀏覽戲劇詳細頁時，點擊下方分頁「相關討論」打此 
 
 ```
 query {
-  forum(where: {title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}, limit: 3) {
+  forum(where: {title: {_ilike: "%陳情令%"}, id: {_neq: "1668"}}, order_by: {created_at: desc}, limit: 3) {
     id
     title
     created_at
@@ -1239,46 +1233,47 @@ query {
   }
 }
 
+
 ```
 
 - Response
 
 ```json
 {
-    "data": {
-        "forum": [
-            {
-                "id": 84,
-                "title": "陳情令 時時思君，以追來日（藍思追feat.金凌）",
-                "created_at": "2020-03-03T06:23:38.994",
-                "thumbnail": null,
-                "author": {
-                    "username": "Dcard",
-                    "image_profile": null
-                }
-            },
-            {
-                "id": 477,
-                "title": "[閒聊] 《陳情令》陳情令那些小事 (雷)",
-                "created_at": "2020-02-29T17:39:03",
-                "thumbnail": null,
-                "author": {
-                    "username": "Ptt",
-                    "image_profile": null
-                }
-            },
-            {
-                "id": 481,
-                "title": "[閒聊] 陳情令-先看劇再看小說的好處",
-                "created_at": "2020-02-28T22:22:36",
-                "thumbnail": null,
-                "author": {
-                    "username": "Ptt",
-                    "image_profile": null
-                }
-            }
-        ]
-    }
+  "data": {
+    "forum": [
+      {
+        "id": 1672,
+        "title": "[閒聊] 陳情令日文版釋出美術特映",
+        "created_at": "2020-03-22T00:20:59",
+        "thumbnail": null,
+        "author": {
+          "username": "Ptt",
+          "image_profile": null
+        }
+      },
+      {
+        "id": 857,
+        "title": "[心得] 陳情令歌曲賞析--群像〈不枉〉（雷）",
+        "created_at": "2020-03-12T03:54:16",
+        "thumbnail": null,
+        "author": {
+          "username": "Ptt",
+          "image_profile": null
+        }
+      },
+      {
+        "id": 84,
+        "title": "陳情令 時時思君，以追來日（藍思追feat.金凌）",
+        "created_at": "2020-03-03T06:23:38.994",
+        "thumbnail": null,
+        "author": {
+          "username": "Dcard",
+          "image_profile": null
+        }
+      }
+    ]
+  }
 }
 ```
 ---
