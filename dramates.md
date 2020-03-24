@@ -314,12 +314,10 @@ _進入新聞詳細頁時，點擊下方分頁相關戲劇時，先打 1.4 取�
 - query
 ```
 query{
-  drama(where: {
-    _or: [
-      {title: {_ilike: "%美劇%"}}, 
-      {title: {_ilike: "%閨蜜%"}}, 
-      {title: {_ilike: "%陳情令%"}}
-      ], id: {_neq: "32998"}}, limit: 3, order_by: {created_at: desc}) {
+  drama(where: {_or: [
+    {title: {_ilike: "%美劇%"}}, 
+    {title: {_ilike: "%閨蜜%"}}, 
+    {title: {_ilike: "%陳情令%"}}]}, limit: 3, order_by: {created_at: desc}) {
     id
     title
     thumbnail
@@ -337,6 +335,7 @@ query{
     }
   }
 }
+
 
 ```
 - Response
@@ -472,12 +471,10 @@ _進入新聞詳細頁時，點擊下方分頁相關討論時，先打 1.4 取�
 - query
 ```
 query {
-  forum(where: {
-    _or: [
-      {title: {_ilike: "%美劇%"}}, 
-      {title: {_ilike: "%閨蜜%"}}, 
-      {title: {_ilike: "%陳情令%"}}
-      ], id: {_neq: "1668"}}, limit: 3, order_by: {created_at: desc}) {
+  forum(where: {_or: [
+    {title: {_ilike: "%美劇%"}}, 
+    {title: {_ilike: "%閨蜜%"}}, 
+    {title: {_ilike: "%陳情令%"}}]}, limit: 3, order_by: {created_at: desc}) {
     id
     title
     created_at
@@ -488,6 +485,7 @@ query {
     }
   }
 }
+
 
 ```
 - Response
@@ -958,13 +956,14 @@ _當用戶瀏覽戲劇詳細頁時，點擊下方分頁「相關新聞」打此 
 
 ```
 query {
-  drama(where: {title: {_ilike: "%陳情令%"}, id: {_neq: "9994"}}, order_by: {created_at: desc}, limit: 3) {
+  drama(where: {title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}, limit: 3) {
     id
     title
     thumbnail
     excerpt
   }
 }
+
 
 
 ```
@@ -1226,7 +1225,7 @@ _當用戶瀏覽戲劇詳細頁時，點擊下方分頁「相關討論」打此 
 
 ```
 query {
-  forum(where: {title: {_ilike: "%陳情令%"}, id: {_neq: "1668"}}, order_by: {created_at: desc}, limit: 3) {
+  forum(where: {title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}, limit: 3) {
     id
     title
     created_at
@@ -1237,6 +1236,7 @@ query {
     }
   }
 }
+
 
 
 ```
