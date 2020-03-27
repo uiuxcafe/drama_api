@@ -951,12 +951,13 @@ _進入戲劇詳細頁時，點選下方分頁「相關戲劇」時先打此 api
 ## 2.7 戲劇相關新聞列表
 
 _當用戶瀏覽戲劇詳細頁時，點擊下方分頁「相關新聞」打此 api ，顯示相關新聞結果，預設 3 筆資料，當資料不足 3 筆，顯示「沒有更多資料了」。_
+_使用 drama 的 title 欄位搜尋戲劇相關新聞列表。_
 
 - Query
 
 ```
 query {
-  drama(where: {title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}, limit: 3) {
+  news(where: {title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}, limit: 3) {
     id
     title
     thumbnail
