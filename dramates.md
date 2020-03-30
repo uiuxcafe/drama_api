@@ -1540,7 +1540,7 @@ query {
 ## 5.1 關鍵字/Tag搜尋
 _情境一：用戶直接在 search bar 關鍵字，點選送出，即可依據關鍵字顯示結果列表。_
 _情境二：用戶點選新聞詳細頁的 Tag 後，即可打此 api，即可依據 Tag顯示結果列表。_
-_搜尋結果預設為 3 筆資料，當資料不足 3 筆，視為最後一頁，並在資料末端顯示「沒有更多資料了」。_
+_搜尋結果預設為 10 筆資料，當資料不足 10 筆，視為最後一頁，並在資料末端顯示「沒有更多資料了」。_
 
 - 關鍵字/ Tag 搜尋 WF [https://whimsical.com/6yDEHPB1YTN3Q8T9FU6Gop]
 
@@ -1608,7 +1608,7 @@ query {
     _or: [
     {drama_actors: {actor: {name: {_ilike: "%肖戰%"}}}}, 
     {title: {_ilike: "%三生三世%"}}
-    ]}, limit: 15 , order_by: {created_at: desc}) {
+    ]}, limit: 10 , order_by: {created_at: desc}) {
     id
     title
     thumbnail
