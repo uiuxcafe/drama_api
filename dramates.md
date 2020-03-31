@@ -1545,7 +1545,11 @@ query {
   drama(where: {
     _or: [
     {drama_actors: {actor: {name: {_ilike: "%肖戰%"}}}}, 
+<<<<<<< HEAD
     {title: {_ilike: "%肖戰%"}}
+=======
+    {title: {_ilike: "%三生三世%"}}
+>>>>>>> parent of 8e5d8ae... update 5.1 limit值
     ]}, limit: 15 , order_by: {created_at: desc}) {
     id
     title
