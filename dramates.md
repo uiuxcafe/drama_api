@@ -649,7 +649,7 @@ _有預告 link 先顯示預告，沒有 預告 link 則顯示封面 thumbnail�
 
 ```
 query {
-  drama(where: {id: {_eq: "43"}}) {
+  drama(where: {id: {_eq: "45"}}) {
     title
     season
     episode
@@ -659,6 +659,7 @@ query {
     teaser
     thumbnail
     created_at
+    family
     drama_actors(order_by: {id: asc}) {
       actor {
         name
@@ -680,132 +681,72 @@ query {
 
 ```json
 {
-    "data": {
-        "drama": [
-            {
-                "title": "熱血同行",
-                "season": 1,
-                "episode": 58,
-                "excerpt": " \t　　熱血同行劇情改編自漫畫《艷勢番》，主要講述了清末民初時期，皇親貴族組成的秘密組織“艷勢番”在動盪時局中早已腐朽傾頹，以崇利明為首的一眾擁有新思想的貴族青年，和平民少年阿易共同復興“艷勢番”，護衛家國的故事。\t　　清末亂世，留洋歸來的滿清貝勒崇利明破格招募因陰差陽錯而相識的阿易，加入了特殊宮廷護衛組織：艷勢番。歷經一系列殘酷選拔和任務考驗，阿易與艷勢番眾人結下深厚情誼，共同面對動盪時代的種種艱難險阻。而崇利明也隨著與洋人、黑幫以及腐朽滿清內部勢力的鬥爭，逐漸明白了友情、理想的真諦。\t　　隨著歷史浪潮不可逆轉的發展，阿易與崇利明一度理念相悖、漸行漸遠。最終，覺醒的阿易尋找到了投身革命救亡圖存的理想，加入革命黨與清廷勢力徹底決裂，崇利明也接受革命感召與阿易共同聯手，促成和平談判，成為歷史和平過渡的護航者，見證了清王朝的覆滅與新時代的來臨 。 ",
-                "status": "完結",
-                "year": 2020,
-                "teaser": null,
-                "thumbnail": "https://hd.itsfun.com.tw/img/f/6d8/wZwpmL2UzVBRTOGFTMxkTMtYTMvcTMxETOx8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg",
-                "created_at": "2020-02-27T22:35:54.502973",
-                "drama_actors": [
-                    {
-                        "actor": {
-                            "name": "黃子韜"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "易烊千璽"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "胡冰卿"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "馬澤涵"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "吳俊余"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "李俊濠"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "苑子文"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "王瑞昌"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "寧心"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "劉源"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "王子騰"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "劉芸"
-                        }
-                    },
-                    {
-                        "actor": {
-                            "name": "郭曉婷"
-                        }
-                    }
-                ],
-                "drama_types": [
-                    {
-                        "type_id": 4,
-                        "type": {
-                            "name": "陸劇",
-                            "label": "category"
-                        }
-                    },
-                    {
-                        "type_id": 52,
-                        "type": {
-                            "name": "大陸",
-                            "label": "region"
-                        }
-                    },
-                    {
-                        "type_id": 22,
-                        "type": {
-                            "name": "劇情",
-                            "label": "taxonomy"
-                        }
-                    },
-                    {
-                        "type_id": 38,
-                        "type": {
-                            "name": "勵志",
-                            "label": "taxonomy"
-                        }
-                    },
-                    {
-                        "type_id": 95,
-                        "type": {
-                            "name": "青春",
-                            "label": "taxonomy"
-                        }
-                    },
-                    {
-                        "type_id": 117,
-                        "type": {
-                            "name": "網路劇",
-                            "label": "taxonomy"
-                        }
-                    }
-                ]
+  "data": {
+    "drama": [
+      {
+        "title": "醫妃難囚 第1季",
+        "season": 1,
+        "episode": 15,
+        "excerpt": " \t　　醫妃難囚第二季劇情來自於愛奇藝文學同名小說《醫妃難囚》，講述一位醫女蘭若溪為愛追夫的喜劇愛情故事。\t　　講述已經死去的紀纖雲又重新回到了東臨太子亓凌霄身邊，只是這次她竟然變成蘭若溪的容貌。蘭若溪為了接近亓凌霄，讓他認出自己，憑藉超強的醫術實力考入了雲醫館，成為了皇上的御前醫官，但喪妻之後的亓凌霄心性大變，面對蘭若溪的示好，他卻一再選擇逃避。在蘭若溪不懈的努力和顧西風等好友的幫助下，亓凌霄終於逐漸相信了蘭若溪就是紀纖雲的現實。\t　　然而，蘭若溪卻在此時得知，自己這具身體原先的身份竟是敵國南炎的暗衛，是為偷東臨兵防圖而來。面對同僚的催促，情敵的栽贓揭發，蘭若溪一時不知何去何從。關鍵時刻，冥王將計就計，假意將蘭若溪關入大牢，暗中查清了真正的幕後黑手， ",
+        "status": "完結",
+        "year": 2020,
+        "teaser": null,
+        "thumbnail": "https://hd.itsfun.com.tw/img/5/268/cGcq5SOzIjMGRFMxITMwAjMtYTMvEjMxADMy8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg",
+        "created_at": "2020-02-27T22:35:54.502973",
+        "family": 45,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "陸怡璇"
             }
+          },
+          {
+            "actor": {
+              "name": "盛英豪"
+            }
+          },
+          {
+            "actor": {
+              "name": "高寒"
+            }
+          },
+          {
+            "actor": {
+              "name": "駱俊帆"
+            }
+          },
+          {
+            "actor": {
+              "name": "陳爍"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type_id": 13,
+            "type": {
+              "name": "古裝",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type_id": 22,
+            "type": {
+              "name": "劇情",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type_id": 88,
+            "type": {
+              "name": "言情",
+              "label": "taxonomy"
+            }
+          }
         ]
-    }
+      }
+    ]
+  }
 }
 ```
 
@@ -1286,14 +1227,13 @@ query {
 
 ## 2.10 戲劇季列表
 
-_當用戶瀏覽戲劇詳細頁時，點擊右方分頁「第X季」打此 api ，使用title用空白分隔作為關鍵字搜尋，
-例如title"我愛露西 第一季"，就用"我愛露西"搜尋並顯示季列表。_
+_當用戶瀏覽戲劇詳細頁時，點擊右方分頁「第X季」打此 api ，使用family搜尋，並顯示季列表。_
 
 - Query
 
 ```
 query {
-  drama(where: {title: {_ilike: "%我愛露西%"}}, order_by: {season: asc}) {
+  drama(where: {family: {_eq: "45"}}, order_by: {season: asc}) {
     id
     title
     season
@@ -1309,38 +1249,29 @@ query {
   "data": {
     "drama": [
       {
-        "id": 14644,
-        "title": "我愛露西 第1季",
+        "id": 45,
+        "title": "醫妃難囚 第1季",
         "season": 1
       },
       {
-        "id": 13341,
-        "title": "我愛露西 第2季",
+        "id": 8947,
+        "title": "醫妃難囚 第2季",
         "season": 2
       },
       {
-        "id": 12378,
-        "title": "我愛露西 第3季",
+        "id": 8406,
+        "title": "醫妃難囚 第3季",
         "season": 3
       },
       {
-        "id": 11361,
-        "title": "我愛露西 第4季 ",
+        "id": 4,
+        "title": "醫妃難囚 第4季",
         "season": 4
-      },
-      {
-        "id": 10842,
-        "title": "我愛露西 第5季 ",
-        "season": 5
-      },
-      {
-        "id": 10177,
-        "title": "我愛露西 第6季 ",
-        "season": 6
       }
     ]
   }
 }
+
 ```
 
 ---
