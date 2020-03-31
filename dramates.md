@@ -1607,7 +1607,7 @@ query {
   drama(where: {
     _or: [
     {drama_actors: {actor: {name: {_ilike: "%肖戰%"}}}}, 
-    {title: {_ilike: "%三生三世%"}}
+    {title: {_ilike: "%肖戰%"}}
     ]}, limit: 10 , order_by: {created_at: desc}) {
     id
     title
