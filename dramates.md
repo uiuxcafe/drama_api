@@ -330,7 +330,7 @@ query{
     {title: {_ilike: "%王一博%"}}, 
     {title: {_ilike: "%陳情令%"}}, 
     {title: {_ilike: "%肖戰%"}}
-    ], id: {_neq: "13"}}, limit: 3, order_by: {created_at: desc}) {
+    ], id: {_neq: "13"}}, limit: 3, order_by: {year: desc}) {
     id
     title
     thumbnail
@@ -411,6 +411,65 @@ query{
           {
             "type": {
               "name": "劇情",
+              "label": "taxonomy"
+            }
+          }
+        ]
+      },
+      {
+        "id": 469,
+        "title": "陳情令",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg",
+        "year": 2019,
+        "drama_actors": [
+          {
+            "actor": {
+              "name": "肖戰"
+            }
+          },
+          {
+            "actor": {
+              "name": "王一博"
+            }
+          },
+          {
+            "actor": {
+              "name": "孟子義"
+            }
+          },
+          {
+            "actor": {
+              "name": "宣璐"
+            }
+          },
+          {
+            "actor": {
+              "name": "于斌"
+            }
+          }
+        ],
+        "drama_types": [
+          {
+            "type": {
+              "name": "古裝",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "仙俠",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "網路劇",
+              "label": "taxonomy"
+            }
+          },
+          {
+            "type": {
+              "name": "權謀",
               "label": "taxonomy"
             }
           }
@@ -510,65 +569,6 @@ query{
           {
             "type": {
               "name": "劇情",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 469,
-        "title": "陳情令",
-        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "王一博"
-            }
-          },
-          {
-            "actor": {
-              "name": "孟子義"
-            }
-          },
-          {
-            "actor": {
-              "name": "宣璐"
-            }
-          },
-          {
-            "actor": {
-              "name": "于斌"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "仙俠",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "網路劇",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "權謀",
               "label": "taxonomy"
             }
           }
@@ -1077,13 +1077,11 @@ _點選戲劇詳細頁，下方分頁中的「相關戲劇」時，先打 2.6 ap
 
 - query
 ```
-query {
-  drama(where: {drama_actors: {
-    _or: [
-      {actor: {name: {_eq: "肖戰"}}}, 
-      {actor: {name: {_eq: "王一博"}}}, 
-      {actor: {name: {_eq: "孟子義"}}}]}, 
-      id: {_neq: "469"}}, limit: 3, order_by: {created_at: desc}) {
+{
+  drama(where: {drama_actors: {_or: [
+    {actor: {name: {_eq: "肖戰"}}}, 
+    {actor: {name: {_eq: "王一博"}}}]}, 
+    id: {_neq: "469"}}, limit: 3, order_by: {year: desc}) {
     id
     title
     thumbnail
@@ -1101,6 +1099,7 @@ query {
     }
   }
 }
+
 
 ```
 
