@@ -330,7 +330,7 @@ query{
     {title: {_ilike: "%王一博%"}}, 
     {title: {_ilike: "%陳情令%"}}, 
     {title: {_ilike: "%肖戰%"}}
-    ], id: {_neq: "13"}}, limit: 3, order_by: {year: desc}) {
+    ], id: {_neq: "13"}, active: {_eq: true}}, limit: 3, order_by: {year: desc}) {
     id
     title
     thumbnail
@@ -713,8 +713,8 @@ _前端規則：戲劇列表頁預設 15 筆資料，當資料不足 15 筆，�
 - Query
 
 ```
-query {
-  drama(limit: 15, order_by: {created_at: desc}) {
+{
+  drama(limit: 15, order_by: {year: desc}, where: {active: {_eq: true}}) {
     id
     title
     thumbnail
@@ -1081,7 +1081,8 @@ _點選戲劇詳細頁，下方分頁中的「相關戲劇」時，先打 2.6 ap
   drama(where: {drama_actors: {_or: [
     {actor: {name: {_eq: "肖戰"}}}, 
     {actor: {name: {_eq: "王一博"}}}]}, 
-    id: {_neq: "469"}}, limit: 3, order_by: {year: desc}) {
+    id: {_neq: "469"},
+    active: {_eq: true}}, limit: 3, order_by: {year: desc}) {
     id
     title
     thumbnail
@@ -1708,7 +1709,7 @@ query {
     _or: [
     {drama_actors: {actor: {name: {_ilike: "%肖戰%"}}}}, 
     {title: {_ilike: "%肖戰%"}}
-    ]}, limit: 10 , order_by: {created_at: desc}) {
+    ], active: {_eq: true}}, limit: 10 , order_by: {year: desc}) {
     id
     title
     thumbnail
@@ -2012,7 +2013,7 @@ query {
   drama(where: {drama_types: {_or: [
   {type: {label: {_eq: "taxonomy"}, name: {_eq: "愛情"}}},
   {type: {label: {_eq: "region"}, name: {_eq: "中國"}}}
-  ]}}, limit: 15, order_by: {created_at: desc}) {
+  ]}, active: {_eq: true}}, limit: 15, order_by: {year: desc}) {
     id
     title
     thumbnail
