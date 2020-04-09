@@ -330,12 +330,12 @@ query{
     {title: {_ilike: "%王一博%"}}, 
     {title: {_ilike: "%陳情令%"}}, 
     {title: {_ilike: "%肖戰%"}}
-    ], id: {_neq: "13"}, active: {_eq: true}}, limit: 3, order_by: {year: desc}) {
+    ], active: {_eq: true}}, limit: 3, order_by: {year: desc}) {
     id
     title
     thumbnail
     year
-    drama_actors(order_by: {id: asc}) {
+    drama_actors(limit: 4, order_by: {id: asc}) {
       actor {
         name
       }
@@ -355,227 +355,139 @@ query{
   
 ```json
 {
-  "data": {
-    "drama": [
-      {
-        "id": 9994,
-        "title": "魔道祖師：陳情令",
-        "thumbnail": "https://img.58b.tv/movieimg/2019-06/5d14cd32271b8.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "肖戰"
+    "data": {
+        "drama": [
+            {
+                "id": 33344,
+                "title": "陳情令之亂魄",
+                "thumbnail": "https://tu.tianzuida.com/pic/upload/vod/2020-03-26/202003261585208529.jpg",
+                "year": 2020,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "紀李"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王翌舟"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "朱贊錦"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "陳情令",
+                            "label": "tag"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 33345,
+                "title": "陳情令之渡魂",
+                "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/o0n93168q40o4q768p39opr362pr456o.jpg",
+                "year": 2020,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "宋繼揚"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "李泊文"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王皓軒"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "陳情令",
+                            "label": "tag"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 33343,
+                "title": "陳情令之生魂",
+                "thumbnail": "https://tu.tianzuida.com/pic/upload/vod/2019-11-07/201911071573115766.jpg",
+                "year": 2019,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "于斌"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "鄭繁星"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王一菲"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "陳情令",
+                            "label": "tag"
+                        }
+                    }
+                ]
             }
-          },
-          {
-            "actor": {
-              "name": "王一博"
-            }
-          },
-          {
-            "actor": {
-              "name": "孟子義"
-            }
-          },
-          {
-            "actor": {
-              "name": "宣璐"
-            }
-          },
-          {
-            "actor": {
-              "name": "李若彤"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          }
         ]
-      },
-      {
-        "id": 469,
-        "title": "陳情令",
-        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "王一博"
-            }
-          },
-          {
-            "actor": {
-              "name": "孟子義"
-            }
-          },
-          {
-            "actor": {
-              "name": "宣璐"
-            }
-          },
-          {
-            "actor": {
-              "name": "于斌"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "仙俠",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "網路劇",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "權謀",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 8761,
-        "title": "魔道祖師：陳情令 特別版",
-        "thumbnail": "https://img.58b.tv/movieimg/2019-12/5e04937e75c83.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "王一博"
-            }
-          },
-          {
-            "actor": {
-              "name": "孟子義"
-            }
-          },
-          {
-            "actor": {
-              "name": "宣璐"
-            }
-          },
-          {
-            "actor": {
-              "name": "於斌"
-            }
-          },
-          {
-            "actor": {
-              "name": "汪卓成"
-            }
-          },
-          {
-            "actor": {
-              "name": "劉海寬"
-            }
-          },
-          {
-            "actor": {
-              "name": "李若彤"
-            }
-          },
-          {
-            "actor": {
-              "name": "陸劍民"
-            }
-          },
-          {
-            "actor": {
-              "name": "黃子騰"
-            }
-          },
-          {
-            "actor": {
-              "name": "修慶"
-            }
-          },
-          {
-            "actor": {
-              "name": "胡小庭"
-            }
-          },
-          {
-            "actor": {
-              "name": "李玉峰"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
 ```
 ## 1.7 新聞相關討論列表
@@ -1094,7 +1006,7 @@ _點選戲劇詳細頁，下方分頁中的「相關戲劇」時，先打 2.6 ap
     title
     thumbnail
     year
-    drama_actors(order_by: {id: asc}) {
+    drama_actors(limit: 4, order_by: {id: asc}) {
       actor {
         name
       }
@@ -1115,216 +1027,128 @@ _點選戲劇詳細頁，下方分頁中的「相關戲劇」時，先打 2.6 ap
 
 ```json
 {
-  "data": {
-    "drama": [
-      {
-        "id": 33080,
-        "title": "慶餘年 第1季 粵語版",
-        "thumbnail": "https://img.58b.tv/movieimg/2019-11/5ddd162d7a3f8.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "張若昀"
+    "data": {
+        "drama": [
+            {
+                "id": 33331,
+                "title": "私立蜀山學園",
+                "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/ab4f352038b9ba60afa139daa561ed1f.jpg",
+                "year": 2020,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "王一博"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "陳鈺琪"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 33332,
+                "title": "超凡天賦",
+                "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/b2de9c82d158ccbf18f3aac612d8bc3eb03541fa-1.jpeg",
+                "year": 2020,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "王一博"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王萌黎"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 9994,
+                "title": "魔道祖師：陳情令",
+                "thumbnail": "https://img.58b.tv/movieimg/2019-06/5d14cd32271b8.jpg",
+                "year": 2019,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "肖戰"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王一博"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "孟子義"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "宣璐"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "古裝",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "劇情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    }
+                ]
             }
-          },
-          {
-            "actor": {
-              "name": "李沁"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳道明"
-            }
-          },
-          {
-            "actor": {
-              "name": "吳剛"
-            }
-          },
-          {
-            "actor": {
-              "name": "於榮光"
-            }
-          },
-          {
-            "actor": {
-              "name": "辛芷蕾"
-            }
-          },
-          {
-            "actor": {
-              "name": "宋軼"
-            }
-          },
-          {
-            "actor": {
-              "name": "劉樺"
-            }
-          },
-          {
-            "actor": {
-              "name": "田雨"
-            }
-          },
-          {
-            "actor": {
-              "name": "郭麒麟"
-            }
-          },
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "李小冉"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "大陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          }
         ]
-      },
-      {
-        "id": 12930,
-        "title": "哦！我的皇帝陛下2",
-        "thumbnail": "https://img.58b.tv/movieimg/2018-04/5ae07ae209158.jpg",
-        "year": 2020,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "谷嘉誠"
-            }
-          },
-          {
-            "actor": {
-              "name": "伍嘉成"
-            }
-          },
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "趙露思"
-            }
-          },
-          {
-            "actor": {
-              "name": "彭楚粵"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 9994,
-        "title": "魔道祖師：陳情令",
-        "thumbnail": "https://img.58b.tv/movieimg/2019-06/5d14cd32271b8.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "王一博"
-            }
-          },
-          {
-            "actor": {
-              "name": "孟子義"
-            }
-          },
-          {
-            "actor": {
-              "name": "宣璐"
-            }
-          },
-          {
-            "actor": {
-              "name": "李若彤"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
 ```
 ## 2.9 戲劇相關討論列表
@@ -1720,7 +1544,7 @@ query {
     title
     thumbnail
     year
-    drama_actors(order_by: {id: asc}) {
+    drama_actors(limit: 4, order_by: {id: asc}) {
       actor {
         name
       }
@@ -1740,210 +1564,283 @@ query {
 
 ```json
 {
-  "data": {
-    "drama": [
-      {
-        "id": 33080,
-        "title": "慶餘年 第1季 粵語版",
-        "thumbnail": "https://img.58b.tv/movieimg/2019-11/5ddd162d7a3f8.jpg",
-        "year": 2019,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "張若昀"
+    "data": {
+        "drama": [
+            {
+                "id": 33325,
+                "title": "慶餘年",
+                "thumbnail": "https://tu.tianzuida.com/pic/upload/vod/2019-11-26/201911261574759592.jpg",
+                "year": 2019,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "張若昀"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "李沁"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "肖戰"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 9994,
+                "title": "魔道祖師：陳情令",
+                "thumbnail": "https://img.58b.tv/movieimg/2019-06/5d14cd32271b8.jpg",
+                "year": 2019,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "肖戰"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王一博"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "孟子義"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "宣璐"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "古裝",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "劇情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 469,
+                "title": "陳情令",
+                "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg",
+                "year": 2019,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "肖戰"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王一博"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "孟子義"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "宣璐"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "古裝",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "仙俠",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "網路劇",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "權謀",
+                            "label": "taxonomy"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 8761,
+                "title": "陳情令特別剪輯版",
+                "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/0-2.jpeg",
+                "year": 2019,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "肖戰"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "王一博"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "孟子義"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "宣璐"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "古裝",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "劇情",
+                            "label": "taxonomy"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "大陸",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 33326,
+                "title": "哦！我的皇帝陛下 第1季",
+                "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-03/2b5ce7b784194de29cbe951bbd546ff5.jpg",
+                "year": 2018,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "谷嘉誠"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "趙露思"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "肖戰"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 33327,
+                "title": "哦！我的皇帝陛下 第2季",
+                "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-23/519f5d0d25970a3aa5659593f8d367da.jpg",
+                "year": 2018,
+                "drama_actors": [
+                    {
+                        "actor": {
+                            "name": "趙露思"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "谷嘉誠"
+                        }
+                    },
+                    {
+                        "actor": {
+                            "name": "肖戰"
+                        }
+                    }
+                ],
+                "drama_types": [
+                    {
+                        "type": {
+                            "name": "陸劇",
+                            "label": "category"
+                        }
+                    },
+                    {
+                        "type": {
+                            "name": "中國",
+                            "label": "region"
+                        }
+                    }
+                ]
             }
-          },
-          {
-            "actor": {
-              "name": "李沁"
-            }
-          },
-          {
-            "actor": {
-              "name": "陳道明"
-            }
-          },
-          {
-            "actor": {
-              "name": "吳剛"
-            }
-          },
-          {
-            "actor": {
-              "name": "於榮光"
-            }
-          },
-          {
-            "actor": {
-              "name": "辛芷蕾"
-            }
-          },
-          {
-            "actor": {
-              "name": "宋軼"
-            }
-          },
-          {
-            "actor": {
-              "name": "劉樺"
-            }
-          },
-          {
-            "actor": {
-              "name": "田雨"
-            }
-          },
-          {
-            "actor": {
-              "name": "郭麒麟"
-            }
-          },
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "李小冉"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "大陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          },
-          {
-            "type": {
-              "name": "劇情",
-              "label": "taxonomy"
-            }
-          }
         ]
-      },
-      {
-        "id": 13207,
-        "title": "哦！我的皇帝陛下",
-        "thumbnail": "https://img.58b.tv/movieimg/2018-04/5ae07ae209158.jpg",
-        "year": 2018,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "谷嘉誠"
-            }
-          },
-          {
-            "actor": {
-              "name": "伍嘉成"
-            }
-          },
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "趙露思"
-            }
-          },
-          {
-            "actor": {
-              "name": "彭楚粵"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      },
-      {
-        "id": 12930,
-        "title": "哦！我的皇帝陛下2",
-        "thumbnail": "https://img.58b.tv/movieimg/2018-04/5ae07ae209158.jpg",
-        "year": 2020,
-        "drama_actors": [
-          {
-            "actor": {
-              "name": "谷嘉誠"
-            }
-          },
-          {
-            "actor": {
-              "name": "伍嘉成"
-            }
-          },
-          {
-            "actor": {
-              "name": "肖戰"
-            }
-          },
-          {
-            "actor": {
-              "name": "趙露思"
-            }
-          },
-          {
-            "actor": {
-              "name": "彭楚粵"
-            }
-          }
-        ],
-        "drama_types": [
-          {
-            "type": {
-              "name": "陸劇",
-              "label": "category"
-            }
-          },
-          {
-            "type": {
-              "name": "大陸",
-              "label": "region"
-            }
-          },
-          {
-            "type": {
-              "name": "古裝",
-              "label": "taxonomy"
-            }
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
 ```
 ### 討論
