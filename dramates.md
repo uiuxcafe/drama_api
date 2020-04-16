@@ -29,10 +29,12 @@
         - [戲劇](#戲劇)
         - [討論](#討論)
     - [5.2篩選搜尋](#52篩選搜尋)
-- [6. 個人化推薦](#6-個人化推薦)
-    - [6.1 關注的地區](#61-關注的地區)
-    - [6.2 關注的類型](#62-關注的類型)
-    - [6.3 預測喜好戲劇列表](#63-預測喜好戲劇列表)
+- [6. 個人化偏好](#6-個人化偏好)
+    - [6.1 偏好地區列表](#61-偏好地區列表)
+    - [6.2 偏好類型列表](#62-偏好類型列表)
+    - [6.3 預測偏好戲劇列表](#63-預測偏好戲劇列表)
+    - [6.4 用戶偏好地區/類型](#64-用戶偏好地區類型)
+    - [6.5](#65)
 - [7. 個人化首頁](#7-個人化首頁)
     - [7.1 個人化推薦戲劇列表](#71-個人化推薦戲劇列表)
 
@@ -1977,10 +1979,10 @@ query {
 }
 ```
 
-# 6. 個人化推薦
+# 6. 個人化偏好
 
-## 6.1 關注的地區
-_登入帳號之後，顯示所有地區列表讓用戶選擇喜好的地區。_
+## 6.1 偏好地區列表
+_用戶登入之後，顯示所有戲劇地區列表讓用戶選擇偏好的戲劇地區。_
 
 - Query
 ```
@@ -2017,8 +2019,8 @@ _登入帳號之後，顯示所有地區列表讓用戶選擇喜好的地區。_
 
 ```
 
-## 6.2 關注的類型
-_登入帳號之後，顯示所有類型列表讓用戶選擇喜好的類型。_
+## 6.2 偏好類型列表
+_用戶登入之後，顯示所有戲劇類型列表讓用戶選擇偏好的戲劇類型。_
 
 - Query
 ```
@@ -2116,8 +2118,8 @@ _登入帳號之後，顯示所有類型列表讓用戶選擇喜好的類型。_
 
 ```
 
-## 6.3 預測喜好戲劇列表
-_選擇喜好的地區及類型後，打此api獲得符合篩選的戲劇列表。_
+## 6.3 預測偏好戲劇列表
+_選擇偏好的地區及類型後，打此api獲得符合篩選的戲劇列表。_
 
 - Query
 ```
@@ -2171,23 +2173,47 @@ query {
 
 ```
 
+## 6.4 用戶偏好地區/類型
+_紀錄用戶偏好地區/類型時打此api。_
+
+- insert
+```
+mutation MyMutation {
+  insert_users_type(objects: {user_id: "facebook|2693296460749033", type_id: "1"}) {
+  }
+}
+```
+
+## 6.5 
+_紀。_
+
+- insert
+```
+
+}
+```
+
 # 7. 個人化首頁
 
 ## 7.1 個人化推薦戲劇列表
-_根據用戶填選喜好戲劇地區及戲劇類型後，打此api獲得符合條件的戲劇列表。_
+_先打6.4取得用戶偏好戲劇地區及戲劇類型後，打此api獲得符合條件的戲劇列表。_
 
 - Query
 ```
 query {
-  drama(where: 
-    {drama_types: {type: {name: {_ilike: "%奇幻%"}}},
-    _or: [
-    {drama_types: {type: {name: {_ilike: "%中國%"}}}}, 
-    {drama_types: {type: {name: {_ilike: "%歐美%"}}}},
-    ], active: {_eq: true}}, limit: 5 , order_by: {year: desc}) {
+  drama(where: {
+    _and: [
+    {drama_types: {type: {name: {_in: ["奇幻","愛情"]}}}},
+    {drama_types: {type: {name: {_in: ["陸劇","美劇"]}}}},
+    ], active: {_eq: true}}, limit: 10 , order_by: {year: desc}) {
     id
     title
     thumbnail
+    drama_types{
+      type{
+        name
+      }
+    }
   }
 }
 ```
@@ -2198,9 +2224,19 @@ query {
   "data": {
     "drama": [
       {
-        "id": 33326,
-        "title": "哦！我的皇帝陛下 第1季",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-03/2b5ce7b784194de29cbe951bbd546ff5.jpg"
+        "id": 8411,
+        "title": "奈何boss要娶我 第2季",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/b79c32M0RmhmuCSLSoZ0JqTEqMtduHn20f4Y6sgXdq3Hq1580461506106compressflag.jpeg"
+      },
+      {
+        "id": 8406,
+        "title": "醫妃難囚 第3季",
+        "thumbnail": "https://qqpublic.qpic.cn/qq_public/0/0-2956430651-E9573B035F320E666473A660681B25CC/0?fmt=jpg&size=203&h=1600&w=900&ppv=1"
+      },
+      {
+        "id": 11018,
+        "title": "奈何boss要娶我 第1季",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/229ecce5da1b41c497f31a0c07ab530a.jpeg"
       },
       {
         "id": 33327,
@@ -2208,9 +2244,24 @@ query {
         "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-23/519f5d0d25970a3aa5659593f8d367da.jpg"
       },
       {
+        "id": 33326,
+        "title": "哦！我的皇帝陛下 第1季",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-03/2b5ce7b784194de29cbe951bbd546ff5.jpg"
+      },
+      {
+        "id": 33329,
+        "title": "人間至味是清歡",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/images/94736.jpg"
+      },
+      {
         "id": 33342,
         "title": "冰與火之歌：權力的遊戲 第7季",
         "thumbnail": "https://img.99kubo.tv/kubo_src/images/93916.jpg"
+      },
+      {
+        "id": 33330,
+        "title": "青春最好時",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/images/94765.jpg"
       },
       {
         "id": 33341,
