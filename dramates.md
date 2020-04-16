@@ -32,7 +32,9 @@
 - [6. 個人化推薦](#6-個人化推薦)
     - [6.1 關注的地區](#61-關注的地區)
     - [6.2 關注的類型](#62-關注的類型)
-    - [6.3 推薦戲劇列表](#63-推薦戲劇列表)
+    - [6.3 預測喜好戲劇列表](#63-預測喜好戲劇列表)
+- [7. 個人化首頁](#7-個人化首頁)
+    - [7.1 個人化推薦戲劇列表](#71-個人化推薦戲劇列表)
 
 <!-- /TOC -->
 
@@ -999,7 +1001,7 @@ _點選戲劇詳細頁，下方分頁中的「相關戲劇」時，先打 2.6 ap
 {
   drama(where: {drama_actors: {_or: [
     {actor: {name: {_eq: "肖戰"}}}, 
-    {actor: {name: {_eq: "王一博"}}}]}, 
+    {actor: {name: {_eq: "���一博"}}}]}, 
     id: {_neq: "469"},
     active: {_eq: true}}, limit: 3, order_by: {year: desc}) {
     id
@@ -1983,7 +1985,7 @@ _登入帳號之後，顯示所有地區列表讓用戶選擇喜好的地區。_
 - Query
 ```
 {
-  type(where: {label: {_eq: "category"}}, limit: 6) {
+  type(where: {label: {_eq: "category"}}, limit: 5) {
     name
   }
 }
@@ -2008,9 +2010,6 @@ _登入帳號之後，顯示所有地區列表讓用戶選擇喜好的地區。_
       },
       {
         "name": "韓劇"
-      },
-      {
-        "name": "歐美劇"
       }
     ]
   }
@@ -2117,7 +2116,7 @@ _登入帳號之後，顯示所有類型列表讓用戶選擇喜好的類型。_
 
 ```
 
-## 6.3 推薦戲劇列表
+## 6.3 預測喜好戲劇列表
 _選擇喜好的地區及類型後，打此api獲得符合篩選的戲劇列表。_
 
 - Query
@@ -2165,6 +2164,61 @@ query {
         "id": 33330,
         "title": "青春最好時",
         "thumbnail": "https://img.99kubo.tv/kubo_src/images/94765.jpg"
+      }
+    ]
+  }
+}
+
+```
+
+# 7. 個人化首頁
+
+## 7.1 個人化推薦戲劇列表
+_根據用戶填選喜好戲劇地區及戲劇類型後，打此api獲得符合條件的戲劇列表。_
+
+- Query
+```
+query {
+  drama(where: {drama_types: {type: {name: {_ilike: "%奇幻%"}}},
+    _and: [
+    {drama_types: {type: {label: {_ilike: "%category%"}}}}, 
+    ], active: {_eq: true}}, limit: 5 , order_by: {year: desc}) {
+    id
+    title
+    thumbnail
+  }
+}
+```
+
+- Response
+```json
+{
+  "data": {
+    "drama": [
+      {
+        "id": 33326,
+        "title": "哦！我的皇帝陛下 第1季",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-03/2b5ce7b784194de29cbe951bbd546ff5.jpg"
+      },
+      {
+        "id": 33327,
+        "title": "哦！我的皇帝陛下 第2季",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-23/519f5d0d25970a3aa5659593f8d367da.jpg"
+      },
+      {
+        "id": 33342,
+        "title": "冰與火之歌：權力的遊戲 第7季",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/images/93916.jpg"
+      },
+      {
+        "id": 33341,
+        "title": "冰與火之歌：權力的遊戲 第6季",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/images/82952.jpg"
+      },
+      {
+        "id": 33340,
+        "title": "冰與火之歌：權力的遊戲 第5季",
+        "thumbnail": "https://img.99kubo.tv/kubo_src/images/72147.jpg"
       }
     ]
   }
