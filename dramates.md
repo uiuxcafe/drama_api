@@ -2179,9 +2179,11 @@ _根據用戶填選喜好戲劇地區及戲劇類型後，打此api獲得符合�
 - Query
 ```
 query {
-  drama(where: {drama_types: {type: {name: {_ilike: "%奇幻%"}}},
-    _and: [
-    {drama_types: {type: {label: {_ilike: "%category%"}}}}, 
+  drama(where: 
+    {drama_types: {type: {name: {_ilike: "%奇幻%"}}},
+    _or: [
+    {drama_types: {type: {name: {_ilike: "%中國%"}}}}, 
+    {drama_types: {type: {name: {_ilike: "%歐美%"}}}},
     ], active: {_eq: true}}, limit: 5 , order_by: {year: desc}) {
     id
     title
