@@ -33,8 +33,8 @@
     - [6.1 偏好地區列表](#61-偏好地區列表)
     - [6.2 偏好類型列表](#62-偏好類型列表)
     - [6.3 預測偏好戲劇列表](#63-預測偏好戲劇列表)
-    - [6.4 用戶偏好地區/類型](#64-用戶偏好地區類型)
-    - [6.5](#65)
+    - [6.4 紀錄用戶偏好地區/類型](#64-紀錄用戶偏好地區類型)
+    - [6.5 紀錄用戶偏好戲劇](#65-紀錄用戶偏好戲劇)
 - [7. 個人化首頁](#7-個人化首頁)
     - [7.1 個人化推薦戲劇列表](#71-個人化推薦戲劇列表)
 
@@ -2126,12 +2126,17 @@ _選擇偏好的地區及類型後，打此api獲得符合篩選的戲劇列表�
 query {
   drama(where: {
     _and: [
-    {drama_types: {type: {name: {_ilike: "%陸劇%"}}}}, 
-    {drama_types: {type: {name: {_ilike: "%懸疑%"}}}}, 
+    {drama_types: {type: {name: {_in: ["奇幻","愛情"]}}}},
+    {drama_types: {type: {name: {_in: ["陸劇","美劇"]}}}},
     ], active: {_eq: true}}, limit: 10 , order_by: {year: desc}) {
     id
     title
     thumbnail
+    drama_types{
+      type{
+        name
+      }
+    }
   }
 }
 
@@ -2173,24 +2178,47 @@ query {
 
 ```
 
-## 6.4 用戶偏好地區/類型
+## 6.4 紀錄用戶偏好地區/類型
 _紀錄用戶偏好地區/類型時打此api。_
 
 - insert
 ```
 mutation MyMutation {
   insert_users_type(objects: {user_id: "facebook|2693296460749033", type_id: "1"}) {
+      returning {
+      user_id
+      type_id
+    }
   }
 }
 ```
 
-## 6.5 
-_紀。_
+## 6.5 紀錄用戶偏好戲劇
+_紀錄用戶偏好戲劇打此api。_
 
 - insert
 ```
-
+mutation MyMutation {
+  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: true}, where: {drama_id: {_eq: "33321"}}) {
+    affected_rows
+    returning {
+      drama_id
+      user_id
+      like
+    }
+  }
 }
+
+mutation MyMutation {
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", like: true}) {
+    returning {
+      drama_id
+      user_id
+      like
+    }
+  }
+}
+
 ```
 
 # 7. 個人化首頁
@@ -2200,22 +2228,7 @@ _先打6.4取得用戶偏好戲劇地區及戲劇類型後，打此api獲得符�
 
 - Query
 ```
-query {
-  drama(where: {
-    _and: [
-    {drama_types: {type: {name: {_in: ["奇幻","愛情"]}}}},
-    {drama_types: {type: {name: {_in: ["陸劇","美劇"]}}}},
-    ], active: {_eq: true}}, limit: 10 , order_by: {year: desc}) {
-    id
-    title
-    thumbnail
-    drama_types{
-      type{
-        name
-      }
-    }
-  }
-}
+
 ```
 
 - Response
