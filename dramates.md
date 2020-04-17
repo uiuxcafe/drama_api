@@ -34,11 +34,14 @@
     - [6.2 偏好類型列表](#62-偏好類型列表)
     - [6.3 預測偏好戲劇列表](#63-預測偏好戲劇列表)
     - [6.4 紀錄用戶偏好地區/類型](#64-紀錄用戶偏好地區類型)
+    - [紀錄](#紀錄)
+    - [移除](#移除)
     - [6.5 紀錄用戶偏好戲劇](#65-紀錄用戶偏好戲劇)
-- [7. 個人化首頁](#7-個人化首頁)
-    - [7.1 個人化推薦戲劇列表](#71-個人化推薦戲劇列表)
-        - [類型/地區](#類型地區)
-        - [戲劇](#戲劇-1)
+    - [喜歡](#喜歡)
+    - [不喜歡](#不喜歡)
+- [個人化首頁](#個人化首頁)
+    - [推薦用戶戲劇列表](#推薦用戶戲劇列表)
+    - [用戶按讚戲劇列表](#用戶按讚戲劇列表)
 
 <!-- /TOC -->
 
@@ -2178,10 +2181,11 @@ query {
 ## 6.4 紀錄用戶偏好地區/類型
 _紀錄用戶偏好地區/類型時打此api。_
 
+## 紀錄
 - insert
 ```
 mutation MyMutation {
-  insert_users_type(objects: {user_id: "facebook|2693296460749033", type_id: "1"}) {
+  insert_users_type(objects: {user_id: "facebook|2693296460749033", type_id: "4"}) {
       returning {
       user_id
       type_id
@@ -2190,10 +2194,28 @@ mutation MyMutation {
 }
 ```
 
+## 移除
+- insert
+```
+mutation MyMutation {
+  delete_users_type(where: {user_id: {_eq: "facebook|2693296460749033"}, type: {name: {_eq: "陸劇"}}}) {
+    returning {
+      user_id
+      type {
+        name
+      }
+    }
+  }
+}
+
+```
+
+
 ## 6.5 紀錄用戶偏好戲劇
 _紀錄用戶偏好戲劇打此api。_
 _先打update api，若affecated rows值等於0時，再打insert api。_
 
+## 喜歡
 - insert
 ```
 mutation MyMutation {
@@ -2221,12 +2243,32 @@ mutation MyMutation {
 
 ```
 
-# 7. 個人化首頁
+## 不喜歡
+- insert
+```
+mutation MyMutation {
+  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: false}, where: {drama_id: {_eq: "33321"}}) {
+    affected_rows
+    returning {
+      drama_id
+      like
+      user_id
+    }
+  }
+}
+```
 
-## 7.1 個人化推薦戲劇列表
-_先打6.3取得用戶偏好戲劇地區及戲劇類型後，打此api獲得符合條件的戲劇列表。_
 
-### 類型/地區
+
+
+
+
+
+# 個人化首頁
+
+## 推薦用戶戲劇列表
+_先取得用戶偏好戲劇地區及戲劇類型_
+
 ```
 query MyQuery {
   users_type(where: {user_id: {_eq: "facebook|2693296460749033"}}) {
@@ -2266,17 +2308,39 @@ query MyQuery {
   }
 }
 ```
+_再打api 6.3取得符合條件的戲劇列表。_
+
+- Query
+```
+query {
+  drama(where: {
+    _and: [
+    {drama_types: {type: {name: {_in: ["奇幻","愛情"]}}}},
+    {drama_types: {type: {name: {_in: ["陸劇","美劇"]}}}},
+    ], active: {_eq: true}}, limit: 10 , order_by: {year: desc}) {
+    id
+    title
+    thumbnail
+  }
+}
+```
 
 
-### 戲劇
+## 用戶按讚戲劇列表
+_取得用戶按喜歡的戲戲劇列表。_
+ 
 - Query
 ```
 query MyQuery {
-  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}}) {
+  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}, like: {_eq: true}}) {
     drama_id
-    like
+    drama {
+      title
+      thumbnail
+    }
   }
 }
+
 
 ```
 
@@ -2287,7 +2351,10 @@ query MyQuery {
     "users_drama": [
       {
         "drama_id": 33321,
-        "like": true
+        "drama": {
+          "title": "香蜜沉沉燼如霜",
+          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
+        }
       }
     ]
   }
