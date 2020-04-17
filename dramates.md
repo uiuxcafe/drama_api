@@ -2132,11 +2132,6 @@ query {
     id
     title
     thumbnail
-    drama_types{
-      type{
-        name
-      }
-    }
   }
 }
 
@@ -2195,22 +2190,25 @@ mutation MyMutation {
 
 ## 6.5 紀錄用戶偏好戲劇
 _紀錄用戶偏好戲劇打此api。_
+_先打update api，若affecated rows值等於0時，再打insert api。_
 
 - insert
 ```
 mutation MyMutation {
-  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: true}, where: {drama_id: {_eq: "33321"}}) {
+  update_users_drama(_set: {user_id: “facebook|2693296460749033”, like: true}, where: {drama_id: {_eq: “33321"}}) {
     affected_rows
     returning {
       drama_id
-      user_id
       like
+      user_id
     }
   }
 }
-
+```
+- insert
+```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", like: true}) {
+  insert_users_drama(objects: {user_id: “facebook|2693296460749033”, drama_id: “33321", like: true}) {
     returning {
       drama_id
       user_id
@@ -2233,61 +2231,5 @@ _先打6.4取得用戶偏好戲劇地區及戲劇類型後，打此api獲得符�
 
 - Response
 ```json
-{
-  "data": {
-    "drama": [
-      {
-        "id": 8411,
-        "title": "奈何boss要娶我 第2季",
-        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/b79c32M0RmhmuCSLSoZ0JqTEqMtduHn20f4Y6sgXdq3Hq1580461506106compressflag.jpeg"
-      },
-      {
-        "id": 8406,
-        "title": "醫妃難囚 第3季",
-        "thumbnail": "https://qqpublic.qpic.cn/qq_public/0/0-2956430651-E9573B035F320E666473A660681B25CC/0?fmt=jpg&size=203&h=1600&w=900&ppv=1"
-      },
-      {
-        "id": 11018,
-        "title": "奈何boss要娶我 第1季",
-        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/229ecce5da1b41c497f31a0c07ab530a.jpeg"
-      },
-      {
-        "id": 33327,
-        "title": "哦！我的皇帝陛下 第2季",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-23/519f5d0d25970a3aa5659593f8d367da.jpg"
-      },
-      {
-        "id": 33326,
-        "title": "哦！我的皇帝陛下 第1季",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/2018/05-03/2b5ce7b784194de29cbe951bbd546ff5.jpg"
-      },
-      {
-        "id": 33329,
-        "title": "人間至味是清歡",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/images/94736.jpg"
-      },
-      {
-        "id": 33342,
-        "title": "冰與火之歌：權力的遊戲 第7季",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/images/93916.jpg"
-      },
-      {
-        "id": 33330,
-        "title": "青春最好時",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/images/94765.jpg"
-      },
-      {
-        "id": 33341,
-        "title": "冰與火之歌：權力的遊戲 第6季",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/images/82952.jpg"
-      },
-      {
-        "id": 33340,
-        "title": "冰與火之歌：權力的遊戲 第5季",
-        "thumbnail": "https://img.99kubo.tv/kubo_src/images/72147.jpg"
-      }
-    ]
-  }
-}
 
 ```
