@@ -39,6 +39,9 @@
     - [6.5 紀錄用戶偏好戲劇](#65-紀錄用戶偏好戲劇)
     - [喜歡](#喜歡)
     - [不喜歡](#不喜歡)
+    - [6.6 用戶偏好戲劇清單](#66-用戶偏好戲劇清單)
+    - [喜歡](#喜歡-1)
+    - [不喜歡](#不喜歡-1)
 - [個人化首頁](#個人化首頁)
     - [推薦用戶戲劇列表](#推薦用戶戲劇列表)
     - [用戶按讚戲劇列表](#用戶按讚戲劇列表)
@@ -2198,7 +2201,7 @@ mutation MyMutation {
 - insert
 ```
 mutation MyMutation {
-  delete_users_type(where: {user_id: {_eq: "facebook|2693296460749033"}, type: {name: {_eq: "陸劇"}}}) {
+  delete_users_type(where: {user_id: {_eq: "facebook|2693296460749033"}, id: {_eq: "37"}}) {
     returning {
       user_id
       type {
@@ -2207,7 +2210,6 @@ mutation MyMutation {
     }
   }
 }
-
 ```
 
 
@@ -2251,14 +2253,60 @@ mutation MyMutation {
     affected_rows
     returning {
       drama_id
-      like
       user_id
+      like
     }
   }
 }
 ```
 
 
+## 6.6 用戶偏好戲劇清單
+_加入用戶喜好戲劇清單打此api。_
+_先打update api，若affecated rows值等於0時，再打insert api。_
+
+## 喜歡
+- insert
+```
+mutation MyMutation {
+  update_users_drama(_set: {user_id: "facebook|2693296460749033", list: true}, where: {drama_id: {_eq: "33321"}}) {
+    affected_rows
+    returning {
+      drama_id
+      user_id
+      list
+    }
+  }
+}
+```
+- insert
+```
+mutation MyMutation {
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", list: true}) {
+    returning {
+      drama_id
+      user_id
+      list
+    }
+  }
+}
+
+```
+
+## 不喜歡
+- insert
+```
+mutation MyMutation {
+  update_users_drama(_set: {user_id: "facebook|2693296460749033", list: false}, where: {drama_id: {_eq: "33321"}}) {
+    affected_rows
+    returning {
+      drama_id
+      user_id
+      list
+    }
+  }
+}
+```
 
 
 
