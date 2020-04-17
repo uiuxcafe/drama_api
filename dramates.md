@@ -37,6 +37,8 @@
     - [6.5 紀錄用戶偏好戲劇](#65-紀錄用戶偏好戲劇)
 - [7. 個人化首頁](#7-個人化首頁)
     - [7.1 個人化推薦戲劇列表](#71-個人化推薦戲劇列表)
+        - [類型/地區](#類型地區)
+        - [戲劇](#戲劇-1)
 
 <!-- /TOC -->
 
@@ -2195,7 +2197,7 @@ _先打update api，若affecated rows值等於0時，再打insert api。_
 - insert
 ```
 mutation MyMutation {
-  update_users_drama(_set: {user_id: “facebook|2693296460749033”, like: true}, where: {drama_id: {_eq: “33321"}}) {
+  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: true}, where: {drama_id: {_eq: "33321"}}) {
     affected_rows
     returning {
       drama_id
@@ -2208,7 +2210,7 @@ mutation MyMutation {
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: “facebook|2693296460749033”, drama_id: “33321", like: true}) {
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", like: true}) {
     returning {
       drama_id
       user_id
@@ -2222,14 +2224,72 @@ mutation MyMutation {
 # 7. 個人化首頁
 
 ## 7.1 個人化推薦戲劇列表
-_先打6.4取得用戶偏好戲劇地區及戲劇類型後，打此api獲得符合條件的戲劇列表。_
+_先打6.3取得用戶偏好戲劇地區及戲劇類型後，打此api獲得符合條件的戲劇列表。_
 
-- Query
+### 類型/地區
 ```
+query MyQuery {
+  users_type(where: {user_id: {_eq: "facebook|2693296460749033"}}) {
+    type_id
+    type {
+      name
+    }
+  }
+}
 
 ```
 
 - Response
 ```json
+{
+  "data": {
+    "users_type": [
+      {
+        "type_id": 4,
+        "type": {
+          "name": "陸劇"
+        }
+      },
+      {
+        "type_id": 7,
+        "type": {
+          "name": "中國"
+        }
+      },
+      {
+        "type_id": 18,
+        "type": {
+          "name": "奇幻"
+        }
+      }
+    ]
+  }
+}
+```
 
+
+### 戲劇
+- Query
+```
+query MyQuery {
+  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}}) {
+    drama_id
+    like
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "users_drama": [
+      {
+        "drama_id": 33321,
+        "like": true
+      }
+    ]
+  }
+}
 ```
