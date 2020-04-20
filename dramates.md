@@ -2344,7 +2344,7 @@ mutation MyMutation {
 - insert
 ```
 mutation MyMutation {
-  update_users_drama(_set: {user_id: "facebook|2693296460749033", list: false}, where: {drama_id: {_eq: "33321"}}) {
+  delete_users_drama(where: {drama_id: {_eq: "469"}, user_id: {_eq: "facebook|2693296460749033"}, list: {_eq: true}}) {
     affected_rows
     returning {
       drama_id
@@ -2353,6 +2353,7 @@ mutation MyMutation {
     }
   }
 }
+
 ```
 
 ### 取得
