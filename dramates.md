@@ -40,8 +40,8 @@
     - [喜歡](#喜歡)
     - [不喜歡](#不喜歡)
     - [6.6 用戶偏好戲劇清單](#66-用戶偏好戲劇清單)
-    - [喜歡](#喜歡-1)
-    - [不喜歡](#不喜歡-1)
+    - [加入](#加入)
+    - [移除](#移除-1)
 - [個人化首頁](#個人化首頁)
     - [推薦用戶戲劇列表](#推薦用戶戲劇列表)
     - [用戶按讚戲劇列表](#用戶按讚戲劇列表)
@@ -2265,7 +2265,7 @@ mutation MyMutation {
 _加入用戶喜好戲劇清單打此api。_
 _先打update api，若affecated rows值等於0時，再打insert api。_
 
-## 喜歡
+## 加入
 - insert
 ```
 mutation MyMutation {
@@ -2293,7 +2293,7 @@ mutation MyMutation {
 
 ```
 
-## 不喜歡
+## 移除
 - insert
 ```
 mutation MyMutation {
@@ -2307,8 +2307,6 @@ mutation MyMutation {
   }
 }
 ```
-
-
 
 
 
