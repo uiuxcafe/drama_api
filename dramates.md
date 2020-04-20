@@ -36,15 +36,16 @@
     - [6.4 紀錄用戶偏好地區/類型](#64-紀錄用戶偏好地區類型)
     - [紀錄](#紀錄)
     - [移除](#移除)
-    - [6.5 紀錄用戶偏好戲劇](#65-紀錄用戶偏好戲劇)
+    - [6.5 我的評分](#65-我的評分)
     - [喜歡](#喜歡)
     - [不喜歡](#不喜歡)
+    - [取得](#取得)
     - [6.6 我的片單](#66-我的片單)
     - [紀錄](#紀錄-1)
     - [移除](#移除-1)
+        - [取得](#取得-1)
 - [7. 個人化首頁](#7-個人化首頁)
     - [7.1 推薦用戶戲劇列表](#71-推薦用戶戲劇列表)
-    - [7.2 用戶按讚戲劇列表](#72-用戶按讚戲劇列表)
 
 <!-- /TOC -->
 
@@ -2213,7 +2214,7 @@ mutation MyMutation {
 ```
 
 
-## 6.5 紀錄用戶偏好戲劇
+## 6.5 我的評分
 _紀錄用戶偏好戲劇打此api。_
 _先打update api，若affecated rows值等於0時，再打insert api。_
 
@@ -2260,6 +2261,36 @@ mutation MyMutation {
 }
 ```
 
+## 取得
+- Query
+```
+query MyQuery {
+  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}, like: {_eq: true}}) {
+    drama_id
+    drama {
+      title
+      thumbnail
+    }
+  }
+}
+```
+
+- Response
+```json
+{
+  "data": {
+    "users_drama": [
+      {
+        "drama_id": 33321,
+        "drama": {
+          "title": "香蜜沉沉燼如霜",
+          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
+        }
+      }
+    ]
+  }
+}
+```
 
 ## 6.6 我的片單
 _加入用戶喜好戲劇清單打此api。_
@@ -2308,7 +2339,36 @@ mutation MyMutation {
 }
 ```
 
+### 取得
+- Query
+```
+query MyQuery {
+  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}, list: {_eq: true}}) {
+    drama_id
+    drama {
+      title
+      thumbnail
+    }
+  }
+}
+```
 
+- Response
+```json
+{
+  "data": {
+    "users_drama": [
+      {
+        "drama_id": 33321,
+        "drama": {
+          "title": "香蜜沉沉燼如霜",
+          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
+        }
+      }
+    ]
+  }
+}
+```
 
 # 7. 個人化首頁
 
@@ -2367,42 +2427,6 @@ query {
     id
     title
     thumbnail
-  }
-}
-```
-
-
-## 7.2 用戶按讚戲劇列表
-_取得用戶按喜歡的戲戲劇列表。_
- 
-- Query
-```
-query MyQuery {
-  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}, like: {_eq: true}}) {
-    drama_id
-    drama {
-      title
-      thumbnail
-    }
-  }
-}
-
-
-```
-
-- Response
-```json
-{
-  "data": {
-    "users_drama": [
-      {
-        "drama_id": 33321,
-        "drama": {
-          "title": "香蜜沉沉燼如霜",
-          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
-        }
-      }
-    ]
   }
 }
 ```
