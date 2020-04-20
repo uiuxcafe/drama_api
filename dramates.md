@@ -34,16 +34,16 @@
     - [6.2 偏好類型列表](#62-偏好類型列表)
     - [6.3 預測偏好戲劇列表](#63-預測偏好戲劇列表)
     - [6.4 紀錄用戶偏好地區/類型](#64-紀錄用戶偏好地區類型)
-    - [紀錄](#紀錄)
-    - [移除](#移除)
+        - [紀錄](#紀錄)
+        - [移除](#移除)
     - [6.5 我的評分](#65-我的評分)
-    - [喜歡](#喜歡)
-    - [不喜歡](#不喜歡)
-    - [更新](#更新)
-    - [取得](#取得)
+        - [喜歡](#喜歡)
+        - [不喜歡](#不喜歡)
+        - [更新](#更新)
+        - [取得](#取得)
     - [6.6 我的片單](#66-我的片單)
-    - [紀錄](#紀錄-1)
-    - [移除](#移除-1)
+        - [紀錄](#紀錄-1)
+        - [移除](#移除-1)
         - [取得](#取得-1)
 - [7. 個人化首頁](#7-個人化首頁)
     - [7.1 推薦用戶戲劇列表](#71-推薦用戶戲劇列表)
@@ -2186,7 +2186,7 @@ query {
 ## 6.4 紀錄用戶偏好地區/類型
 _紀錄用戶偏好地區/類型時打此api。_
 
-## 紀錄
+### 紀錄
 - insert
 ```
 mutation MyMutation {
@@ -2199,7 +2199,7 @@ mutation MyMutation {
 }
 ```
 
-## 移除
+### 移除
 - insert
 ```
 mutation MyMutation {
@@ -2219,7 +2219,7 @@ mutation MyMutation {
 _紀錄用戶偏好戲劇打此api。_
 _先打update api，若affecated rows值等於0時，再打insert api。_
 
-## 喜歡
+### 喜歡
 - insert
 ```
 mutation MyMutation {
@@ -2246,7 +2246,7 @@ mutation MyMutation {
 }
 
 ```
-## 不喜歡
+### 不喜歡
 - insert
 ```
 mutation MyMutation {
@@ -2274,7 +2274,7 @@ mutation MyMutation {
 
 ```
 
-## 更新
+### 更新
 _將戲劇變更為喜歡時打 like: true，將戲劇變更為不喜歡時打 like: false。_
 
 - insert
@@ -2291,7 +2291,7 @@ mutation MyMutation {
 }
 ```
 
-## 取得
+### 取得
 - Query
 ```
 query MyQuery {
@@ -2325,7 +2325,7 @@ query MyQuery {
 ## 6.6 我的片單
 _加入用戶喜好戲劇清單打此api。_
 
-## 紀錄
+### 紀錄
 - insert
 ```
 mutation MyMutation {
@@ -2340,7 +2340,7 @@ mutation MyMutation {
 
 ```
 
-## 移除
+### 移除
 - insert
 ```
 mutation MyMutation {
