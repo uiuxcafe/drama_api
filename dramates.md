@@ -39,6 +39,7 @@
     - [6.5 我的評分](#65-我的評分)
     - [喜歡](#喜歡)
     - [不喜歡](#不喜歡)
+    - [更新](#更新)
     - [取得](#取得)
     - [6.6 我的片單](#66-我的片單)
     - [紀錄](#紀錄-1)
@@ -2245,8 +2246,37 @@ mutation MyMutation {
 }
 
 ```
-
 ## 不喜歡
+- insert
+```
+mutation MyMutation {
+  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: false}, where: {drama_id: {_eq: "33321"}}) {
+    affected_rows
+    returning {
+      drama_id
+      like
+      user_id
+    }
+  }
+}
+```
+- insert
+```
+mutation MyMutation {
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", like: false}) {
+    returning {
+      drama_id
+      user_id
+      like
+    }
+  }
+}
+
+```
+
+## 更新
+_將戲劇變更為喜歡時打 like: true，將戲劇變更為不喜歡時打 like: false。_
+
 - insert
 ```
 mutation MyMutation {
@@ -2294,22 +2324,8 @@ query MyQuery {
 
 ## 6.6 我的片單
 _加入用戶喜好戲劇清單打此api。_
-_先打update api，若affecated rows值等於0時，再打insert api。_
 
 ## 紀錄
-- insert
-```
-mutation MyMutation {
-  update_users_drama(_set: {user_id: "facebook|2693296460749033", list: true}, where: {drama_id: {_eq: "33321"}}) {
-    affected_rows
-    returning {
-      drama_id
-      user_id
-      list
-    }
-  }
-}
-```
 - insert
 ```
 mutation MyMutation {
@@ -2369,6 +2385,7 @@ query MyQuery {
   }
 }
 ```
+
 
 # 7. 個人化首頁
 
