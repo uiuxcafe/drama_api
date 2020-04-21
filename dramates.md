@@ -33,20 +33,20 @@
     - [6.1 偏好地區列表](#61-偏好地區列表)
     - [6.2 偏好類型列表](#62-偏好類型列表)
     - [6.3 預測偏好戲劇列表](#63-預測偏好戲劇列表)
-    - [6.4 紀錄用戶偏好地區/類型](#64-紀錄用戶偏好地區類型)
-        - [紀錄](#紀錄)
-        - [移除](#移除)
-    - [6.5 我的評分](#65-我的評分)
-        - [喜歡](#喜歡)
-        - [不喜歡](#不喜歡)
-        - [更新](#更新)
-        - [取得](#取得)
-    - [6.6 我的片單](#66-我的片單)
-        - [紀錄](#紀錄-1)
-        - [移除](#移除-1)
-        - [取得](#取得-1)
-- [7. 個人化首頁](#7-個人化首頁)
-    - [7.1 推薦用戶戲劇列表](#71-推薦用戶戲劇列表)
+    - [6.4 新增用戶偏好地區/類型](#64-新增用戶偏好地區類型)
+    - [6.5 移除用戶偏好地區/類型](#65-移除用戶偏好地區類型)
+- [7. 我的評分](#7-我的評分)
+    - [7.1 取得用戶評分結果](#71-取得用戶評分結果)
+    - [7.2 新增評分 [喜歡]](#72-新增評分-喜歡)
+    - [7.2 新增評分 [不喜歡]](#72-新增評分-不喜歡)
+    - [7.3 移除/變更評分](#73-移除變更評分)
+    - [7.4 我的評分列表](#74-我的評分列表)
+- [8. 我的片單](#8-我的片單)
+    - [8.1 新增我的片單](#81-新增我的片單)
+    - [8.2 移除我的片單](#82-移除我的片單)
+    - [8.3 取得我的片單](#83-取得我的片單)
+- [9. 個人化首頁](#9-個人化首頁)
+    - [9.1 推薦用戶戲劇列表](#91-推薦用戶戲劇列表)
 
 <!-- /TOC -->
 
@@ -2186,10 +2186,9 @@ query {
 
 ```
 
-## 6.4 紀錄用戶偏好地區/類型
+## 6.4 新增用戶偏好地區/類型
 _紀錄用戶偏好地區/類型時打此api。_
 
-### 紀錄
 - insert
 ```
 mutation MyMutation {
@@ -2202,7 +2201,9 @@ mutation MyMutation {
 }
 ```
 
-### 移除
+## 6.5 移除用戶偏好地區/類型
+_移除用戶偏好地區/類型時打此api。_
+
 - insert
 ```
 mutation MyMutation {
@@ -2218,24 +2219,30 @@ mutation MyMutation {
 ```
 
 
-## 6.5 我的評分
-_紀錄用戶偏好戲劇打此api。_
-_先打update api，若affecated rows值等於0時，再打insert api。_
+# 7. 我的評分
 
-### 喜歡
-- insert
+## 7.1 取得用戶評分結果
+_先取得用戶是否有進行評分動作過，若affecated rows值等於0則代表無評分過。_
+
+- update
 ```
 mutation MyMutation {
-  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: true}, where: {drama_id: {_eq: "33321"}}) {
+  update_users_drama(_set: {user_id: "facebook|2693296460749033"}, where: {drama_id: {_eq: "45"}}) {
     affected_rows
     returning {
       drama_id
-      like
       user_id
+      like
+      list
     }
   }
 }
 ```
+
+## 7.2 新增評分 [喜歡]
+_用戶對戲劇評分為喜歡時打此api。_
+_先打7.1，若affecated rows值等於0時，再打insert api。_
+
 - insert
 ```
 mutation MyMutation {
@@ -2249,20 +2256,10 @@ mutation MyMutation {
 }
 
 ```
-### 不喜歡
-- insert
-```
-mutation MyMutation {
-  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: false}, where: {drama_id: {_eq: "33321"}}) {
-    affected_rows
-    returning {
-      drama_id
-      like
-      user_id
-    }
-  }
-}
-```
+## 7.2 新增評分 [不喜歡]
+_用戶對戲劇評分為不喜歡時打此api。_
+_先打7.1，若affecated rows值等於0時，再打insert api。_
+
 - insert
 ```
 mutation MyMutation {
@@ -2277,7 +2274,7 @@ mutation MyMutation {
 
 ```
 
-### 更新
+## 7.3 移除/變更評分
 _將戲劇變更為喜歡時打 like: true，將戲劇變更為不喜歡時打 like: false，將戲劇取消狀態時打 like: null。_
 
 - insert
@@ -2294,7 +2291,9 @@ mutation MyMutation {
 }
 ```
 
-### 取得
+## 7.4 我的評分列表
+_取得用戶評分結果列表。_
+
 - Query
 ```
 query MyQuery {
@@ -2325,10 +2324,11 @@ query MyQuery {
 }
 ```
 
-## 6.6 我的片單
-_加入用戶喜好戲劇清單打此api。_
+# 8. 我的片單
 
-### 紀錄
+## 8.1 新增我的片單
+_用戶要加入戲劇至我的片單時打此api。_
+
 - insert
 ```
 mutation MyMutation {
@@ -2343,7 +2343,9 @@ mutation MyMutation {
 
 ```
 
-### 移除
+## 8.2 移除我的片單
+_用戶要將已加入我的片單的戲劇移除時打此api。_
+
 - insert
 ```
 mutation MyMutation {
@@ -2359,7 +2361,9 @@ mutation MyMutation {
 
 ```
 
-### 取得
+## 8.3 取得我的片單
+_取得用戶我的片單列表打此api。_
+
 - Query
 ```
 query MyQuery {
@@ -2391,9 +2395,9 @@ query MyQuery {
 ```
 
 
-# 7. 個人化首頁
+# 9. 個人化首頁
 
-## 7.1 推薦用戶戲劇列表
+## 9.1 推薦用戶戲劇列表
 _先取得用戶偏好戲劇地區及戲劇類型_
 
 ```
