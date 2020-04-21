@@ -36,8 +36,7 @@
     - [6.4 新增用戶偏好地區/類型](#64-新增用戶偏好地區類型)
     - [6.5 移除用戶偏好地區/類型](#65-移除用戶偏好地區類型)
 - [7. 我的評分](#7-我的評分)
-    - [7.1 取得用戶評分結果](#71-取得用戶評分結果)
-    - [7.2 新增評分 [喜歡]](#72-新增評分-喜歡)
+    - [7.1 新增評分 [喜歡]](#71-新增評分-喜歡)
     - [7.2 新增評分 [不喜歡]](#72-新增評分-不喜歡)
     - [7.3 移除/變更評分](#73-移除變更評分)
     - [7.4 我的評分列表](#74-我的評分列表)
@@ -2221,54 +2220,38 @@ mutation MyMutation {
 
 # 7. 我的評分
 
-## 7.1 取得用戶評分結果
-_先取得用戶是否有進行評分動作過，若affecated rows值等於0則代表無評分過。_
-
-- update
-```
-mutation MyMutation {
-  update_users_drama(_set: {user_id: "facebook|2693296460749033"}, where: {drama_id: {_eq: "45"}}) {
-    affected_rows
-    returning {
-      drama_id
-      user_id
-      like
-      list
-    }
-  }
-}
-```
-
-## 7.2 新增評分 [喜歡]
+## 7.1 新增評分 [喜歡]
 _用戶對戲劇評分為喜歡時打此api。_
-_先打7.1，若affecated rows值等於0時，再打insert api。_
 
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", like: true}) {
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", like: true, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
     returning {
-      drama_id
+      id
       user_id
+      drama_id
       like
     }
+    affected_rows
   }
 }
 
 ```
 ## 7.2 新增評分 [不喜歡]
 _用戶對戲劇評分為不喜歡時打此api。_
-_先打7.1，若affecated rows值等於0時，再打insert api。_
 
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", like: false}) {
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", like: false, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
     returning {
-      drama_id
+      id
       user_id
+      drama_id
       like
     }
+    affected_rows
   }
 }
 
@@ -2280,13 +2263,14 @@ _將戲劇變更為喜歡時打 like: true，將戲劇變更為不喜歡時打 l
 - insert
 ```
 mutation MyMutation {
-  update_users_drama(_set: {user_id: "facebook|2693296460749033", like: false}, where: {drama_id: {_eq: "33321"}}) {
-    affected_rows
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", like: null, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
     returning {
-      drama_id
+      id
       user_id
+      drama_id
       like
     }
+    affected_rows
   }
 }
 ```
