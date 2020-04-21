@@ -2258,7 +2258,7 @@ mutation MyMutation {
 ```
 
 ## 7.3 移除/變更評分
-_將戲劇變更為喜歡時打 like: true，將戲劇變更為不喜歡時打 like: false，將戲劇取消狀態時打 like: null。_
+_對戲劇取消評分狀態時打此api。_
 
 - insert
 ```
