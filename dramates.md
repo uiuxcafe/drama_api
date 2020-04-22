@@ -2191,22 +2191,7 @@ _紀錄用戶偏好地區/類型時打此api。_
 - insert
 ```
 mutation MyMutation {
-  insert_users_type(objects: {user_id: "facebook|2693296460749033", type_id: "4"}) {
-      returning {
-      user_id
-      type_id
-    }
-  }
-}
-```
-
-## 6.5 移除用戶偏好地區/類型
-_移除用戶偏好地區/類型時打此api。_
-
-- insert
-```
-mutation MyMutation {
-  delete_users_type(where: {user_id: {_eq: "facebook|2693296460749033"}, id: {_eq: "37"}}) {
+  insert_users_type(objects: {type_id: "4", user_id: "facebook|2693296460749033"}, on_conflict: {constraint: users_type_user_id_type_id_key, update_columns: type_id}) {
     returning {
       user_id
       type {
@@ -2215,6 +2200,26 @@ mutation MyMutation {
     }
   }
 }
+
+```
+
+## 6.5 移除用戶偏好地區/類型
+_移除用戶偏好地區/類型時打此api。_
+
+- insert
+```
+mutation MyMutation {
+  delete_users_type(where: {user_id: {_eq: "facebook|2693296460749033"}, type_id: {_eq: "4"}}) {
+    affected_rows
+    returning {
+      user_id
+      type {
+        name
+      }
+    }
+  }
+}
+
 ```
 
 
@@ -2316,12 +2321,13 @@ _用戶要加入戲劇至我的片單時打此api。_
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", drama_id: "33321", list: true}) {
+  insert_users_drama(objects: {user_id: "facebook|2693296460749033", list: true, drama_id: "469"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: list}) {
     returning {
-      drama_id
       user_id
+      drama_id
       list
     }
+    affected_rows
   }
 }
 
@@ -2386,13 +2392,17 @@ _先取得用戶偏好戲劇地區及戲劇類型_
 
 ```
 query MyQuery {
-  users_type(where: {user_id: {_eq: "facebook|2693296460749033"}}) {
+  users_type(where: 
+    {user_id: {_eq: "facebook|2693296460749033"}, 
+    type: {label: {_in: ["category","taxonomy"]}}}) {
     type_id
     type {
       name
+      label
     }
   }
 }
+
 
 ```
 
@@ -2402,21 +2412,45 @@ query MyQuery {
   "data": {
     "users_type": [
       {
-        "type_id": 4,
+        "type_id": 1,
         "type": {
-          "name": "陸劇"
+          "name": "台劇",
+          "label": "category"
         }
       },
       {
-        "type_id": 7,
+        "type_id": 4,
         "type": {
-          "name": "中國"
+          "name": "陸劇",
+          "label": "category"
+        }
+      },
+      {
+        "type_id": 3,
+        "type": {
+          "name": "美劇",
+          "label": "category"
+        }
+      },
+      {
+        "type_id": 5,
+        "type": {
+          "name": "韓劇",
+          "label": "category"
         }
       },
       {
         "type_id": 18,
         "type": {
-          "name": "奇幻"
+          "name": "奇幻",
+          "label": "taxonomy"
+        }
+      },
+      {
+        "type_id": 22,
+        "type": {
+          "name": "劇情",
+          "label": "taxonomy"
         }
       }
     ]
