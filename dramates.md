@@ -2289,6 +2289,7 @@ mutation MyMutation {
     affected_rows
   }
 }
+
 ```
 
 ## 7.4 我的評分列表
