@@ -2194,6 +2194,7 @@ mutation MyMutation {
   insert_users_type(objects: {type_id: "4", user_id: "facebook|2693296460749033"}, on_conflict: {constraint: users_type_user_id_type_id_key, update_columns: type_id}) {
     returning {
       user_id
+      type_id
       type {
         name
       }
@@ -2210,13 +2211,14 @@ _移除用戶偏好地區/類型時打此api。_
 ```
 mutation MyMutation {
   delete_users_type(where: {user_id: {_eq: "facebook|2693296460749033"}, type_id: {_eq: "4"}}) {
-    affected_rows
     returning {
       user_id
+      type_id
       type {
         name
       }
     }
+    affected_rows
   }
 }
 
@@ -2236,6 +2238,9 @@ mutation MyMutation {
       id
       user_id
       drama_id
+      drama {
+        title
+      }
       like
     }
     affected_rows
@@ -2254,6 +2259,9 @@ mutation MyMutation {
       id
       user_id
       drama_id
+      drama {
+        title
+      }
       like
     }
     affected_rows
@@ -2273,6 +2281,9 @@ mutation MyMutation {
       id
       user_id
       drama_id
+      drama {
+        title
+      }
       like
     }
     affected_rows
@@ -2299,17 +2310,24 @@ query MyQuery {
 - Response
 ```json
 {
-  "data": {
+"data": {
     "users_drama": [
-      {
-        "drama_id": 33321,
-        "drama": {
-          "title": "香蜜沉沉燼如霜",
-          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
+        {
+            "drama_id": 33321,
+            "drama": {
+                "title": "香蜜沉沉燼如霜",
+                "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
+            }
+        },
+        {
+            "drama_id": 469,
+            "drama": {
+                "title": "陳情令",
+                "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg"
+            }
         }
-      }
     ]
-  }
+}
 }
 ```
 
@@ -2325,6 +2343,9 @@ mutation MyMutation {
     returning {
       user_id
       drama_id
+      drama {
+        title
+      }
       list
     }
     affected_rows
@@ -2343,6 +2364,9 @@ mutation MyMutation {
     affected_rows
     returning {
       drama_id
+      drama {
+        title
+      }
       user_id
       list
     }
