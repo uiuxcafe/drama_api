@@ -46,6 +46,9 @@
     - [8.3 取得我的片單](#83-取得我的片單)
 - [9. 個人化首頁](#9-個人化首頁)
     - [9.1 推薦用戶戲劇列表](#91-推薦用戶戲劇列表)
+- [10. 好友功能](#10-好友功能)
+    - [10.1 加入好友](#101-加入好友)
+    - [10.2 移除好友](#102-移除好友)
 
 <!-- /TOC -->
 
@@ -2495,6 +2498,41 @@ query {
     id
     title
     thumbnail
+  }
+}
+```
+
+# 10. 好友功能
+
+## 10.1 加入好友
+_加入好友請打此api。_
+
+- insert
+```
+mutation MyMutation {
+  insert_users_friend(objects: {user_id: "facebook|2693296460749033", friend_id: "google-oauth2|112954340964054959161"}, on_conflict: {constraint: users_friend_user_id_friend_id_key, update_columns: friend_id}) {
+    returning {
+      id
+      user_id
+      friend_id
+    }
+  }
+}
+```
+
+## 10.2 移除好友
+_移除好友請打此api。_
+
+- insert
+```
+mutation MyMutation {
+  delete_users_friend(where: {user_id: {_eq: "facebook|2693296460749033"}, friend_id: {_eq: "google-oauth2|112954340964054959161"}}) {
+    affected_rows
+    returning {
+      id
+      user_id
+      friend_id
+    }
   }
 }
 ```
