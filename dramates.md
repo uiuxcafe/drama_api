@@ -2003,6 +2003,7 @@ _用戶登入之後，顯示所有戲劇地區列表讓用戶選擇偏好的戲�
   type(where: {label: {_eq: "category"}}, limit: 6) {
     id
     name
+    label
   }
 }
 
@@ -2015,27 +2016,33 @@ _用戶登入之後，顯示所有戲劇地區列表讓用戶選擇偏好的戲�
     "type": [
       {
         "id": 1,
-        "name": "台劇"
+        "name": "台劇",
+        "label": "category"
       },
       {
         "id": 2,
-        "name": "日劇"
+        "name": "日劇",
+        "label": "category"
       },
       {
         "id": 3,
-        "name": "美劇"
+        "name": "美劇",
+        "label": "category"
       },
       {
         "id": 4,
-        "name": "陸劇"
+        "name": "陸劇",
+        "label": "category"
       },
       {
         "id": 5,
-        "name": "韓劇"
+        "name": "韓劇",
+        "label": "category"
       },
       {
         "id": 41,
-        "name": "歐美劇"
+        "name": "歐美劇",
+        "label": "category"
       }
     ]
   }
@@ -2053,6 +2060,7 @@ _用戶登入之後，顯示戲劇類型列表讓用戶選擇偏好的戲劇類�
   type(where: {label: {_eq: "taxonomy"}}, limit: 25, order_by: {id: asc}) {
     id
     name
+    label
   }
 }
 
@@ -2065,103 +2073,128 @@ _用戶登入之後，顯示戲劇類型列表讓用戶選擇偏好的戲劇類�
     "type": [
       {
         "id": 13,
-        "name": "古裝"
+        "name": "古裝",
+        "label": "taxonomy"
       },
       {
         "id": 14,
-        "name": "現代"
+        "name": "現代",
+        "label": "taxonomy"
       },
       {
         "id": 15,
-        "name": "懸疑"
+        "name": "懸疑",
+        "label": "taxonomy"
       },
       {
         "id": 16,
-        "name": "驚悚"
+        "name": "驚悚",
+        "label": "taxonomy"
       },
       {
         "id": 17,
-        "name": "愛情"
+        "name": "愛情",
+        "label": "taxonomy"
       },
       {
         "id": 18,
-        "name": "奇幻"
+        "name": "奇幻",
+        "label": "taxonomy"
       },
       {
         "id": 19,
-        "name": "仙俠"
+        "name": "仙俠",
+        "label": "taxonomy"
       },
       {
         "id": 20,
-        "name": "翻拍"
+        "name": "翻拍",
+        "label": "taxonomy"
       },
       {
         "id": 21,
-        "name": "喜劇"
+        "name": "喜劇",
+        "label": "taxonomy"
       },
       {
         "id": 22,
-        "name": "劇情"
+        "name": "劇情",
+        "label": "taxonomy"
       },
       {
         "id": 23,
-        "name": "武俠"
+        "name": "武俠",
+        "label": "taxonomy"
       },
       {
         "id": 24,
-        "name": "動作"
+        "name": "動作",
+        "label": "taxonomy"
       },
       {
         "id": 25,
-        "name": "推理"
+        "name": "推理",
+        "label": "taxonomy"
       },
       {
         "id": 26,
-        "name": "犯罪"
+        "name": "犯罪",
+        "label": "taxonomy"
       },
       {
         "id": 27,
-        "name": "宮廷"
+        "name": "宮廷",
+        "label": "taxonomy"
       },
       {
         "id": 28,
-        "name": "校園"
+        "name": "校園",
+        "label": "taxonomy"
       },
       {
         "id": 29,
-        "name": "偶像劇"
+        "name": "偶像劇",
+        "label": "taxonomy"
       },
       {
         "id": 30,
-        "name": "文學"
+        "name": "文學",
+        "label": "taxonomy"
       },
       {
         "id": 31,
-        "name": "BL"
+        "name": "BL",
+        "label": "taxonomy"
       },
       {
         "id": 32,
-        "name": "穿越"
+        "name": "穿越",
+        "label": "taxonomy"
       },
       {
         "id": 36,
-        "name": "動畫"
+        "name": "動畫",
+        "label": "taxonomy"
       },
       {
         "id": 38,
-        "name": "勵志"
+        "name": "勵志",
+        "label": "taxonomy"
       },
       {
         "id": 39,
-        "name": "恐怖"
+        "name": "恐怖",
+        "label": "taxonomy"
       },
       {
         "id": 40,
-        "name": "紀錄片"
+        "name": "紀錄片",
+        "label": "taxonomy"
       },
       {
         "id": 42,
-        "name": "歷史"
+        "name": "歷史",
+        "label": "taxonomy"
       }
     ]
   }
@@ -2497,7 +2530,26 @@ mutation MyMutation {
       }
       list
     }
-    affected_rows
+  }
+}
+
+```
+- Response
+```
+{
+  "data": {
+    "insert_users_drama": {
+      "returning": [
+        {
+          "user_id": "facebook|2693296460749033",
+          "drama_id": 469,
+          "drama": {
+            "title": "陳情令"
+          },
+          "list": true
+        }
+      ],
+    }
   }
 }
 
@@ -2523,9 +2575,30 @@ mutation MyMutation {
 }
 
 ```
+- Response
+```
+{
+  "data": {
+    "delete_users_drama": {
+      "returning": [
+        {
+          "drama_id": 469,
+          "drama": {
+            "title": "陳情令"
+          },
+          "user_id": "facebook|2693296460749033",
+          "list": true
+        }
+      ],
+      "affected_rows": 1
+    }
+  }
+}
+
+```
 
 ## 8.3 取得我的片單
-_取得用戶我的片單列表打此api。_
+_取得用戶加入到我的片單列表打此 api。_
 
 - Query
 ```
@@ -2664,6 +2737,28 @@ mutation MyMutation {
   }
 }
 ```
+- Response
+```
+{
+  "data": {
+    "insert_users_drama": {
+      "returning": [
+        {
+          "id": 16,
+          "user_id": "facebook|2693296460749033",
+          "drama_id": 45,
+          "drama": {
+            "title": "醫妃難囚 第2季"
+          },
+          "like": null
+        }
+      ],
+      "affected_rows": 1
+    }
+  }
+}
+
+```
 
 ## 10.2 移除好友
 _移除好友請打此api。_
@@ -2680,4 +2775,26 @@ mutation MyMutation {
     }
   }
 }
+```
+- Response
+```
+{
+  "data": {
+    "insert_users_drama": {
+      "returning": [
+        {
+          "id": 16,
+          "user_id": "facebook|2693296460749033",
+          "drama_id": 45,
+          "drama": {
+            "title": "醫妃難囚 第2季"
+          },
+          "like": null
+        }
+      ],
+      "affected_rows": 1
+    }
+  }
+}
+
 ```
