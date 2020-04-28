@@ -47,8 +47,9 @@
 - [9. 個人化首頁](#9-個人化首頁)
     - [9.1 推薦用戶戲劇列表](#91-推薦用戶戲劇列表)
 - [10. 好友功能](#10-好友功能)
-    - [10.1 加入好友](#101-加入好友)
-    - [10.2 移除好友](#102-移除好友)
+    - [取得好友id](#取得好友id)
+    - [加入好友](#加入好友)
+    - [移除好友](#移除好友)
 
 <!-- /TOC -->
 
@@ -1992,9 +1993,10 @@ query {
 ```
 
 # 6. 個人化偏好
+_地區、類型、標籤等 type資料都放在同一個 table，根據需要篩選的結果打不同的 label取得要的 type值。_
 
 ## 6.1 偏好地區列表
-_用戶登入之後，顯示所有戲劇地區列表讓用戶選擇偏好的戲劇地區。_
+_用戶登入之後打 label = category做篩選，顯示所有戲劇地區列表讓用戶選擇偏好的戲劇地區。_
 
 
 - Query
@@ -2051,7 +2053,7 @@ _用戶登入之後，顯示所有戲劇地區列表讓用戶選擇偏好的戲�
 ```
 
 ## 6.2 偏好類型列表
-_用戶登入之後，顯示戲劇類型列表讓用戶選擇偏好的戲劇類型。_
+_用戶登入之後 label = taxonomy做篩選，顯示前25筆熱門戲劇類型列表讓用戶選擇偏好的戲劇類型。_
 _打 6.2 API 取得前25 筆戲劇類型的資料，依據 id 由小至大排序。_
 
 - Query
@@ -2260,16 +2262,20 @@ query {
 
 ## 6.4 新增用戶偏好地區/類型
 _紀錄用戶偏好的戲劇地區/戲劇類型時打此 api。_
+_規則：前端需要抓取用戶的 token 值帶入到 Authorization 欄位，之後才打 api 紀錄用戶偏好的戲劇地區/類型資料。_
 
 - insert
 ```
 mutation MyMutation {
-  insert_users_type(objects: {type_id: "4", user_id: "facebook|2693296460749033"}, on_conflict: {constraint: users_type_user_id_type_id_key, update_columns: type_id}) {
+  insert_users_type(objects: {type_id: "4"}, on_conflict: {constraint: users_type_user_id_type_id_key, update_columns: type_id}) {
     returning {
-      user_id
       type_id
       type {
         name
+      }
+      user {
+        name
+        id
       }
     }
   }
@@ -2284,10 +2290,13 @@ mutation MyMutation {
     "insert_users_type": {
       "returning": [
         {
-          "user_id": "facebook|2693296460749033",
           "type_id": 4,
           "type": {
             "name": "陸劇"
+          },
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
           }
         }
       ]
@@ -2298,42 +2307,50 @@ mutation MyMutation {
 ```
 
 ## 6.5 移除用戶偏好地區/類型
-_移除用戶偏好戲劇地區/戲劇類型時打此 api。_
+_移除用戶偏好戲劇地區/戲劇類型時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
+_規則：前端需要抓取用戶的 token 值帶入到 Authorization 欄位，之後才打 api 移除用戶加入到偏好戲劇地區/類型的資料。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_users_type(where: {user_id: {_eq: "facebook|2693296460749033"}, type_id: {_eq: "4"}}) {
+  delete_users_type(where: {type_id: {_eq: "4"}}) {
     returning {
-      user_id
       type_id
       type {
         name
+      }
+      user {
+        name
+        id
       }
     }
     affected_rows
   }
 }
 
+
 ```
 
 - Response
 ```
 {
-  "data": {
-    "delete_users_type": {
-      "returning": [
-        {
-          "user_id": "facebook|2693296460749033",
-          "type_id": 4,
-          "type": {
-            "name": "陸劇"
-          }
+    "data": {
+        "delete_users_type": {
+            "returning": [
+                {
+                    "type_id": 4,
+                    "type": {
+                        "name": "陸劇"
+                    },
+                    "user": {
+                        "name": "momo",
+                        "id": "facebook|2937085519703458",
+                    }
+                }
+            ],
+            "affected_rows": 1
         }
-      ],
-      "affected_rows": 1
     }
-  }
 }
 
 ```
@@ -2342,22 +2359,27 @@ mutation MyMutation {
 
 ## 7.1 新增評分 [喜歡]
 _用戶對戲劇評分為喜歡時打此 api。_
+_
 
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", like: true, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
+  insert_users_drama(objects: {like: true, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
     returning {
       id
-      user_id
       drama_id
       drama {
         title
       }
       like
+      user {
+        name
+        id
+      }
     }
   }
 }
+
 
 ```
 
@@ -2368,13 +2390,16 @@ mutation MyMutation {
     "insert_users_drama": {
       "returning": [
         {
-          "id": 16,
-          "user_id": "facebook|2693296460749033",
+          "id": 35,
           "drama_id": 45,
           "drama": {
             "title": "醫妃難囚 第2季"
           },
-          "like": true
+          "like": true,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
         }
       ]
     }
@@ -2384,27 +2409,30 @@ mutation MyMutation {
 ```
 
 ## 7.2 新增評分 [不喜歡]
-_用戶對戲劇評分為不喜歡時打此 api。_
+_用戶對戲劇評分為不喜歡時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
 
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", like: false, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
+  insert_users_drama(objects: {like: false, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
     returning {
       id
-      user_id
       drama_id
       drama {
         title
       }
       like
+      user {
+        name
+        id
+      }
     }
     affected_rows
   }
 }
 
-```
 
+```
 - Response
 ```
 {
@@ -2412,13 +2440,16 @@ mutation MyMutation {
     "insert_users_drama": {
       "returning": [
         {
-          "id": 16,
-          "user_id": "facebook|2693296460749033",
+          "id": 35,
           "drama_id": 45,
           "drama": {
             "title": "醫妃難囚 第2季"
           },
-          "like": false
+          "like": false,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
         }
       ],
       "affected_rows": 1
@@ -2434,19 +2465,22 @@ _對戲劇取消評分狀態時打此 api。_
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", like: null, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
+  insert_users_drama(objects: {like: null, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
     returning {
       id
-      user_id
       drama_id
       drama {
         title
       }
       like
+      user {
+        name
+        id
+      }
     }
-    affected_rows
   }
 }
+
 
 ```
 
@@ -2457,16 +2491,18 @@ mutation MyMutation {
     "insert_users_drama": {
       "returning": [
         {
-          "id": 16,
-          "user_id": "facebook|2693296460749033",
+          "id": 35,
           "drama_id": 45,
           "drama": {
             "title": "醫妃難囚 第2季"
           },
-          "like": null
+          "like": null,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
         }
-      ],
-      "affected_rows": 1
+      ]
     }
   }
 }
@@ -2479,7 +2515,7 @@ _取得用戶評分結果列表。_
 - Query
 ```
 query MyQuery {
-  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}, like: {_eq: true}}) {
+  users_drama(where: {like: {_eq: true}}) {
     drama_id
     drama {
       title
@@ -2521,17 +2557,21 @@ _用戶要加入戲劇至我的片單時打此 api。_
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {user_id: "facebook|2693296460749033", list: true, drama_id: "469"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: list}) {
+  insert_users_drama(objects: {list: true, drama_id: "469"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: list}) {
     returning {
-      user_id
       drama_id
       drama {
         title
       }
       list
+      user {
+        name
+        id
+      }
     }
   }
 }
+
 
 ```
 - Response
@@ -2541,14 +2581,17 @@ mutation MyMutation {
     "insert_users_drama": {
       "returning": [
         {
-          "user_id": "facebook|2693296460749033",
           "drama_id": 469,
           "drama": {
             "title": "陳情令"
           },
-          "list": true
+          "list": true,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
         }
-      ],
+      ]
     }
   }
 }
@@ -2556,23 +2599,27 @@ mutation MyMutation {
 ```
 
 ## 8.2 移除我的片單
-_用戶要將已加入我的片單的戲劇移除時打此 api。_
+_用戶要將已加入我的片單的戲劇移除時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_users_drama(where: {drama_id: {_eq: "469"}, user_id: {_eq: "facebook|2693296460749033"}, list: {_eq: true}}) {
-    affected_rows
+  delete_users_drama(where: {drama_id: {_eq: "469"}, list: {_eq: true}}) {
     returning {
       drama_id
       drama {
         title
       }
-      user_id
       list
+      user {
+        name
+        id
+      }
     }
+    affected_rows
   }
 }
+
 
 ```
 - Response
@@ -2586,8 +2633,11 @@ mutation MyMutation {
           "drama": {
             "title": "陳情令"
           },
-          "user_id": "facebook|2693296460749033",
-          "list": true
+          "list": true,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
         }
       ],
       "affected_rows": 1
@@ -2603,7 +2653,7 @@ _取得用戶加入到我的片單列表打此 api。_
 - Query
 ```
 query MyQuery {
-  users_drama(where: {user_id: {_eq: "facebook|2693296460749033"}, list: {_eq: true}}) {
+  users_drama(where: {list: {_eq: true}}) {
     drama_id
     drama {
       title
@@ -2619,10 +2669,24 @@ query MyQuery {
   "data": {
     "users_drama": [
       {
-        "drama_id": 33321,
+        "drama_id": 469,
         "drama": {
-          "title": "香蜜沉沉燼如霜",
-          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
+          "title": "陳情令",
+          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg"
+        }
+      },
+      {
+        "drama_id": 1,
+        "drama": {
+          "title": "我的情敵是自己",
+          "thumbnail": "https://hd.itsfun.com.tw/img/3/cad/wZwpmLHRDNxQjM1ckMyADMy0SMvcjMyADMy8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg"
+        }
+      },
+      {
+        "drama_id": 5,
+        "drama": {
+          "title": "谷文昌",
+          "thumbnail": "https://hd.itsfun.com.tw/img/5/095/wZwpmLiJ3dyMjbxIjcz02XzIDOwkTMwIzLzIDOw8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg"
         }
       }
     ]
@@ -2639,8 +2703,7 @@ _先取得用戶偏好戲劇地區及戲劇類型_
 ```
 query MyQuery {
   users_type(where: 
-    {user_id: {_eq: "facebook|2693296460749033"}, 
-    type: {label: {_in: ["category","taxonomy"]}}}) {
+    {type: {label: {_in: ["category","taxonomy"]}}}) {
     type_id
     type {
       name
@@ -2648,7 +2711,6 @@ query MyQuery {
     }
   }
 }
-
 
 ```
 
@@ -2665,16 +2727,16 @@ query MyQuery {
         }
       },
       {
-        "type_id": 4,
+        "type_id": 3,
         "type": {
-          "name": "陸劇",
+          "name": "美劇",
           "label": "category"
         }
       },
       {
-        "type_id": 3,
+        "type_id": 4,
         "type": {
-          "name": "美劇",
+          "name": "陸劇",
           "label": "category"
         }
       },
@@ -2720,10 +2782,54 @@ query {
 }
 ```
 
+
+
+
+
+*待討論*
+
 # 10. 好友功能
 
-## 10.1 加入好友
-_加入好友請打此api。_
+## 取得好友id
+
+- Query
+```
+query MyQuery {
+  users {
+    id
+    name
+    email
+  }
+}
+```
+
+- Response
+```json
+{
+  "data": {
+    "users": [
+      {
+        "id": "auth0|5e0e1dfd2a54ec0e81957eae",
+        "name": "newlin76710",
+        "email": "newlin76710@gmail.com"
+      },
+      {
+        "id": "google-oauth2|108568795206028468295",
+        "name": "newlin76710",
+        "email": "newlin76710@gmail.com"
+      },
+      {
+        "id": "facebook|10158439973393729",
+        "name": "dixchen.5201",
+        "email": "dixchen.5201@gmail.com"
+      }
+    ]
+  }
+}
+```
+
+## 加入好友
+_加入好友請打此 api。_
 
 - insert
 ```
@@ -2760,8 +2866,8 @@ mutation MyMutation {
 
 ```
 
-## 10.2 移除好友
-_移除好友請打此api。_
+## 移除好友
+_移除好友請打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。。_
 
 - insert
 ```
