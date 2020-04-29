@@ -1993,10 +1993,10 @@ query {
 ```
 
 # 6. 個人化偏好
-_地區、類型、標籤等 type資料都放在同一個 table，根據需要篩選的結果打不同的 label取得要的 type值。_
+_地區、類型、標籤等 type資料都放在同一個 table，根據需要篩選的結果打不同的 label 取得要的 type 值。_
 
 ## 6.1 偏好地區列表
-_用戶登入之後打 label = category做篩選，顯示所有戲劇地區列表讓用戶選擇偏好的戲劇地區。_
+_用戶登入之後打 label = category 做篩選，顯示所有戲劇地區列表讓用戶選擇偏好的戲劇地區。_
 
 
 - Query
@@ -2053,7 +2053,7 @@ _用戶登入之後打 label = category做篩選，顯示所有戲劇地區列�
 ```
 
 ## 6.2 偏好類型列表
-_用戶登入之後 label = taxonomy做篩選，顯示前25筆熱門戲劇類型列表讓用戶選擇偏好的戲劇類型。_
+_用戶登入之後 label = taxonomy 做篩選，顯示前25筆熱門戲劇類型列表讓用戶選擇偏好的戲劇類型。_
 _打 6.2 API 取得前25 筆戲劇類型的資料，依據 id 由小至大排序。_
 
 - Query
@@ -2205,7 +2205,7 @@ _用戶登入之後 label = taxonomy做篩選，顯示前25筆熱門戲劇類型
 ```
 
 ## 6.3 預測偏好戲劇列表
-_根據6.1 & 6.2用戶選擇偏好的戲劇地區及類型後，打此 api獲得符合篩選的戲劇列表。_
+_根據6.1 & 6.2用戶選擇偏好的戲劇地區及類型後，打此 api 獲得符合篩選的戲劇列表。_
 
 - Query
 ```
@@ -2262,7 +2262,7 @@ query {
 
 ## 6.4 新增用戶偏好地區/類型
 _紀錄用戶偏好的戲劇地區/戲劇類型時打此 api。_
-_規則：前端需要抓取用戶的 token 值帶入到 Authorization 欄位，之後才打 api 紀錄用戶偏好的戲劇地區/類型資料。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 紀錄用戶偏好的戲劇地區/類型資料。_
 
 - insert
 ```
@@ -2308,7 +2308,7 @@ mutation MyMutation {
 
 ## 6.5 移除用戶偏好地區/類型
 _移除用戶偏好戲劇地區/戲劇類型時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
-_規則：前端需要抓取用戶的 token 值帶入到 Authorization 欄位，之後才打 api 移除用戶加入到偏好戲劇地區/類型的資料。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 移除用戶加入到偏好戲劇地區/類型的資料。_
 
 - insert
 ```
@@ -2358,7 +2358,8 @@ mutation MyMutation {
 # 7. 我的評分
 
 ## 7.1 新增評分 [喜歡]
-_用戶對戲劇評分為喜歡時打此 api。_
+_用戶對戲劇評分為喜歡時打此 api ，like 值等於 true 表示喜歡。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 新增用戶評分為喜歡的戲劇。_
 _
 
 - insert
@@ -2409,7 +2410,8 @@ mutation MyMutation {
 ```
 
 ## 7.2 新增評分 [不喜歡]
-_用戶對戲劇評分為不喜歡時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
+_用戶對戲劇評分為不喜歡時打此 api，like 值等於 false 表示不喜歡。當 affected rows 的值回傳= 1 表示移除資料成功。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 新增用戶評分為不喜歡的戲劇。_
 
 - insert
 ```
@@ -2460,7 +2462,8 @@ mutation MyMutation {
 ```
 
 ## 7.3 移除我的評分
-_對戲劇取消評分狀態時打此 api。_
+_對戲劇取消評分狀態時打此 api，將 like 值 update 為 null 移除評分資料。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 移除用戶評分過的戲劇結果。_
 
 - insert
 ```
@@ -2510,7 +2513,8 @@ mutation MyMutation {
 ```
 
 ## 7.4 我的評分列表
-_取得用戶評分結果列表。_
+_打此 api 取得用戶評分為喜歡的戲劇列表。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 取得用戶評分列表。_
 
 - Query
 ```
@@ -2552,7 +2556,8 @@ query MyQuery {
 # 8. 我的片單
 
 ## 8.1 新增我的片單
-_用戶要加入戲劇至我的片單時打此 api。_
+_用戶要加入戲劇至我的片單時打此 api，list 值等於 true 表示加入至我的片單。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 將戲劇新增至用戶的我的片單。_
 
 - insert
 ```
@@ -2600,6 +2605,8 @@ mutation MyMutation {
 
 ## 8.2 移除我的片單
 _用戶要將已加入我的片單的戲劇移除時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 將我的片單裡的戲劇移除。_
+
 
 - insert
 ```
@@ -2648,7 +2655,8 @@ mutation MyMutation {
 ```
 
 ## 8.3 取得我的片單
-_取得用戶加入到我的片單列表打此 api。_
+_打此 api 取得用戶加入到我的片單的列表。_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 取得用戶的我的片單。_
 
 - Query
 ```
@@ -2699,6 +2707,7 @@ query MyQuery {
 
 ## 9.1 推薦用戶戲劇列表
 _先取得用戶偏好戲劇地區及戲劇類型_
+_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 取得用戶偏好的戲劇地區/類型結果。_
 
 ```
 query MyQuery {
