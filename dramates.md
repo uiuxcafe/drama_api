@@ -35,6 +35,7 @@
     - [6.3 預測偏好戲劇列表](#63-預測偏好戲劇列表)
     - [6.4 新增用戶偏好地區/類型](#64-新增用戶偏好地區類型)
     - [6.5 移除用戶偏好地區/類型](#65-移除用戶偏好地區類型)
+    - [6.6 取得用戶偏好地區/類型](#66-取得用戶偏好地區類型)
 - [7. 我的評分](#7-我的評分)
     - [7.1 新增評分 [喜歡]](#71-新增評分-喜歡)
     - [7.2 新增評分 [不喜歡]](#72-新增評分-不喜歡)
@@ -45,13 +46,17 @@
     - [8.2 移除我的片單](#82-移除我的片單)
     - [8.3 取得我的片單](#83-取得我的片單)
 - [9. 個人化首頁](#9-個人化首頁)
-    - [9.1 推薦用戶戲劇列表](#91-推薦用戶戲劇列表)
+    - [9.1 個人化戲劇列表](#91-個人化戲劇列表)
+    - [9.2 個人化新聞列表](#92-個人化新聞列表)
+    - [9.3 個人化討論列表](#93-個人化討論列表)
 - [10. 好友功能](#10-好友功能)
     - [取得好友id](#取得好友id)
     - [加入好友](#加入好友)
     - [移除好友](#移除好友)
 
 <!-- /TOC -->
+_用戶token規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位。_
+
 
 # 1. 新聞區
 _三種測試結果：相關新聞超過十筆請輸入ID:1，沒有相關新聞請輸入ID:35，相關新聞兩篇請輸入ID:36_
@@ -2043,7 +2048,7 @@ _用戶登入之後打 label = category 做篩選，顯示所有戲劇地區列�
       },
       {
         "id": 41,
-        "name": "歐美劇",
+        "name": "其他",
         "label": "category"
       }
     ]
@@ -2053,8 +2058,8 @@ _用戶登入之後打 label = category 做篩選，顯示所有戲劇地區列�
 ```
 
 ## 6.2 偏好類型列表
-_用戶登入之後打 label = taxonomy 做篩選，顯示前25筆熱門戲劇類型列表讓用戶選擇偏好的戲劇類型。_
-_打 6.2 API 取得前25 筆戲劇類型的資料，依據 id 由小至大排序。_
+_用戶登入之後打 label = taxonomy 做篩選，顯示前 25 筆熱門戲劇類型列表讓用戶選擇偏好的戲劇類型。_
+_打 6.2 API 取得前 25 筆戲劇類型的資料，依據 id 由小至大排序。_
 
 - Query
 ```
@@ -2262,7 +2267,7 @@ query {
 
 ## 6.4 新增用戶偏好地區/類型
 _紀錄用戶偏好的戲劇地區/戲劇類型時打此 api。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 紀錄用戶偏好的戲劇地區/類型資料。_
+
 
 - insert
 ```
@@ -2308,7 +2313,6 @@ mutation MyMutation {
 
 ## 6.5 移除用戶偏好地區/類型
 _移除用戶偏好戲劇地區/戲劇類型時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 移除用戶加入到偏好戲劇地區/類型的資料。_
 
 - insert
 ```
@@ -2354,360 +2358,8 @@ mutation MyMutation {
 }
 
 ```
-
-# 7. 我的評分
-
-## 7.1 新增評分 [喜歡]
-_用戶對戲劇評分為喜歡時打此 api ，like 值等於 true 表示喜歡。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 新增用戶評分為喜歡的戲劇。_
-_
-
-- insert
-```
-mutation MyMutation {
-  insert_users_drama(objects: {like: true, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
-    returning {
-      id
-      drama_id
-      drama {
-        title
-      }
-      like
-      user {
-        name
-        id
-      }
-    }
-  }
-}
-
-
-```
-
-- Response
-```
-{
-  "data": {
-    "insert_users_drama": {
-      "returning": [
-        {
-          "id": 35,
-          "drama_id": 45,
-          "drama": {
-            "title": "醫妃難囚 第2季"
-          },
-          "like": true,
-          "user": {
-            "name": "momo",
-            "id": "facebook|2937085519703458",
-          }
-        }
-      ]
-    }
-  }
-}
-
-```
-
-## 7.2 新增評分 [不喜歡]
-_用戶對戲劇評分為不喜歡時打此 api，like 值等於 false 表示不喜歡。當 affected rows 的值回傳= 1 表示移除資料成功。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 新增用戶評分為不喜歡的戲劇。_
-
-- insert
-```
-mutation MyMutation {
-  insert_users_drama(objects: {like: false, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
-    returning {
-      id
-      drama_id
-      drama {
-        title
-      }
-      like
-      user {
-        name
-        id
-      }
-    }
-    affected_rows
-  }
-}
-
-
-```
-- Response
-```
-{
-  "data": {
-    "insert_users_drama": {
-      "returning": [
-        {
-          "id": 35,
-          "drama_id": 45,
-          "drama": {
-            "title": "醫妃難囚 第2季"
-          },
-          "like": false,
-          "user": {
-            "name": "momo",
-            "id": "facebook|2937085519703458",
-          }
-        }
-      ],
-      "affected_rows": 1
-    }
-  }
-}
-
-```
-
-## 7.3 移除我的評分
-_對戲劇取消評分狀態時打此 api，將 like 值 update 為 null 移除評分資料。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 移除用戶評分過的戲劇結果。_
-
-- insert
-```
-mutation MyMutation {
-  insert_users_drama(objects: {like: null, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
-    returning {
-      id
-      drama_id
-      drama {
-        title
-      }
-      like
-      user {
-        name
-        id
-      }
-    }
-  }
-}
-
-
-```
-
-- Response
-```
-{
-  "data": {
-    "insert_users_drama": {
-      "returning": [
-        {
-          "id": 35,
-          "drama_id": 45,
-          "drama": {
-            "title": "醫妃難囚 第2季"
-          },
-          "like": null,
-          "user": {
-            "name": "momo",
-            "id": "facebook|2937085519703458",
-          }
-        }
-      ]
-    }
-  }
-}
-
-```
-
-## 7.4 我的評分列表
-_打此 api 取得用戶評分為喜歡的戲劇列表。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 取得用戶評分列表。_
-
-- Query
-```
-query MyQuery {
-  users_drama(where: {like: {_eq: true}}) {
-    drama_id
-    drama {
-      title
-      thumbnail
-    }
-  }
-}
-```
-
-- Response
-```json
-{
-  "data": {
-      "users_drama": [
-          {
-              "drama_id": 33321,
-              "drama": {
-                  "title": "香蜜沉沉燼如霜",
-                  "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
-              }
-          },
-          {
-              "drama_id": 469,
-              "drama": {
-                  "title": "陳情令",
-                  "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg"
-              }
-          }
-      ]
-  }
-}
-```
-
-# 8. 我的片單
-
-## 8.1 新增我的片單
-_用戶要加入戲劇至我的片單時打此 api，list 值等於 true 表示加入至我的片單。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 將戲劇新增至用戶的我的片單。_
-
-- insert
-```
-mutation MyMutation {
-  insert_users_drama(objects: {list: true, drama_id: "469"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: list}) {
-    returning {
-      drama_id
-      drama {
-        title
-      }
-      list
-      user {
-        name
-        id
-      }
-    }
-  }
-}
-
-
-```
-- Response
-```
-{
-  "data": {
-    "insert_users_drama": {
-      "returning": [
-        {
-          "drama_id": 469,
-          "drama": {
-            "title": "陳情令"
-          },
-          "list": true,
-          "user": {
-            "name": "momo",
-            "id": "facebook|2937085519703458",
-          }
-        }
-      ]
-    }
-  }
-}
-
-```
-
-## 8.2 移除我的片單
-_用戶要將已加入我的片單的戲劇移除時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 將我的片單裡的戲劇移除。_
-
-
-- insert
-```
-mutation MyMutation {
-  delete_users_drama(where: {drama_id: {_eq: "469"}, list: {_eq: true}}) {
-    returning {
-      drama_id
-      drama {
-        title
-      }
-      list
-      user {
-        name
-        id
-      }
-    }
-    affected_rows
-  }
-}
-
-
-```
-- Response
-```
-{
-  "data": {
-    "delete_users_drama": {
-      "returning": [
-        {
-          "drama_id": 469,
-          "drama": {
-            "title": "陳情令"
-          },
-          "list": true,
-          "user": {
-            "name": "momo",
-            "id": "facebook|2937085519703458",
-          }
-        }
-      ],
-      "affected_rows": 1
-    }
-  }
-}
-
-```
-
-## 8.3 取得我的片單
-_打此 api 取得用戶加入到我的片單的列表。_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 取得用戶的我的片單。_
-
-- Query
-```
-query MyQuery {
-  users_drama(where: {list: {_eq: true}}) {
-    drama_id
-    drama {
-      title
-      thumbnail
-    }
-  }
-}
-```
-
-- Response
-```json
-{
-  "data": {
-    "users_drama": [
-      {
-        "drama_id": 469,
-        "drama": {
-          "title": "陳情令",
-          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg"
-        }
-      },
-      {
-        "drama_id": 1,
-        "drama": {
-          "title": "我的情敵是自己",
-          "thumbnail": "https://hd.itsfun.com.tw/img/3/cad/wZwpmLHRDNxQjM1ckMyADMy0SMvcjMyADMy8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg"
-        }
-      },
-      {
-        "drama_id": 5,
-        "drama": {
-          "title": "谷文昌",
-          "thumbnail": "https://hd.itsfun.com.tw/img/5/095/wZwpmLiJ3dyMjbxIjcz02XzIDOwkTMwIzLzIDOw8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg"
-        }
-      }
-    ]
-  }
-}
-```
-
-
-# 9. 個人化首頁
-
-## 9.1 推薦用戶戲劇列表
-_先取得用戶偏好戲劇地區及戲劇類型_
-_規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位，之後才打 api 取得用戶偏好的戲劇地區/類型結果。_
+## 6.6 取得用戶偏好地區/類型
+_打此 api 取得用戶偏好戲劇地區及戲劇類型。_
 
 ```
 query MyQuery {
@@ -2774,26 +2426,531 @@ query MyQuery {
   }
 }
 ```
-_再打api 6.3取得符合條件的戲劇列表。_
+
+# 7. 我的評分
+
+## 7.1 新增評分 [喜歡]
+_用戶對戲劇評分為喜歡時打此 api ，like 值等於 true 表示喜歡。_
+_
+
+- insert
+```
+mutation MyMutation {
+  insert_users_drama(objects: {like: true, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
+    returning {
+      id
+      drama_id
+      drama {
+        title
+      }
+      like
+      user {
+        name
+        id
+      }
+    }
+  }
+}
+
+
+```
+
+- Response
+```
+{
+  "data": {
+    "insert_users_drama": {
+      "returning": [
+        {
+          "id": 35,
+          "drama_id": 45,
+          "drama": {
+            "title": "醫妃難囚 第2季"
+          },
+          "like": true,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+
+## 7.2 新增評分 [不喜歡]
+_用戶對戲劇評分為不喜歡時打此 api，like 值等於 false 表示不喜歡。當 affected rows 的值回傳= 1 表示移除資料成功。_
+
+- insert
+```
+mutation MyMutation {
+  insert_users_drama(objects: {like: false, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
+    returning {
+      id
+      drama_id
+      drama {
+        title
+      }
+      like
+      user {
+        name
+        id
+      }
+    }
+    affected_rows
+  }
+}
+
+
+```
+- Response
+```
+{
+  "data": {
+    "insert_users_drama": {
+      "returning": [
+        {
+          "id": 35,
+          "drama_id": 45,
+          "drama": {
+            "title": "醫妃難囚 第2季"
+          },
+          "like": false,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
+        }
+      ],
+      "affected_rows": 1
+    }
+  }
+}
+
+```
+
+## 7.3 移除我的評分
+_對戲劇取消評分狀態時打此 api，將 like 值 update 為 null 移除評分資料。_
+
+- insert
+```
+mutation MyMutation {
+  insert_users_drama(objects: {like: null, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
+    returning {
+      id
+      drama_id
+      drama {
+        title
+      }
+      like
+      user {
+        name
+        id
+      }
+    }
+  }
+}
+
+
+```
+
+- Response
+```
+{
+  "data": {
+    "insert_users_drama": {
+      "returning": [
+        {
+          "id": 35,
+          "drama_id": 45,
+          "drama": {
+            "title": "醫妃難囚 第2季"
+          },
+          "like": null,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+
+## 7.4 我的評分列表
+_打此 api 取得用戶評分為喜歡的戲劇列表。_
 
 - Query
 ```
-query {
-  drama(where: {
-    _and: [
-    {drama_types: {type: {name: {_in: ["奇幻","愛情"]}}}},
-    {drama_types: {type: {name: {_in: ["陸劇","美劇"]}}}},
-    ], active: {_eq: true}}, limit: 10 , order_by: {year: desc}) {
-    id
-    title
-    thumbnail
+query MyQuery {
+  users_drama(where: {like: {_eq: true}}) {
+    drama_id
+    drama {
+      title
+      thumbnail
+    }
+  }
+}
+```
+
+- Response
+```json
+{
+  "data": {
+      "users_drama": [
+          {
+              "drama_id": 33321,
+              "drama": {
+                  "title": "香蜜沉沉燼如霜",
+                  "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/15341356017.jpg"
+              }
+          },
+          {
+              "drama_id": 469,
+              "drama": {
+                  "title": "陳情令",
+                  "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg"
+              }
+          }
+      ]
+  }
+}
+```
+
+# 8. 我的片單
+
+## 8.1 新增我的片單
+_用戶要加入戲劇至我的片單時打此 api，list 值等於 true 表示加入至我的片單。_
+
+- insert
+```
+mutation MyMutation {
+  insert_users_drama(objects: {list: true, drama_id: "469"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: list}) {
+    returning {
+      drama_id
+      drama {
+        title
+      }
+      list
+      user {
+        name
+        id
+      }
+    }
+  }
+}
+
+
+```
+- Response
+```
+{
+  "data": {
+    "insert_users_drama": {
+      "returning": [
+        {
+          "drama_id": 469,
+          "drama": {
+            "title": "陳情令"
+          },
+          "list": true,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+
+## 8.2 移除我的片單
+_用戶要將已加入我的片單的戲劇移除時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
+
+
+- insert
+```
+mutation MyMutation {
+  delete_users_drama(where: {drama_id: {_eq: "469"}, list: {_eq: true}}) {
+    returning {
+      drama_id
+      drama {
+        title
+      }
+      list
+      user {
+        name
+        id
+      }
+    }
+    affected_rows
+  }
+}
+
+
+```
+- Response
+```
+{
+  "data": {
+    "delete_users_drama": {
+      "returning": [
+        {
+          "drama_id": 469,
+          "drama": {
+            "title": "陳情令"
+          },
+          "list": true,
+          "user": {
+            "name": "momo",
+            "id": "facebook|2937085519703458",
+          }
+        }
+      ],
+      "affected_rows": 1
+    }
+  }
+}
+
+```
+
+## 8.3 取得我的片單
+_打此 api 取得用戶加入到我的片單的列表。_
+
+- Query
+```
+query MyQuery {
+  users_drama(where: {list: {_eq: true}}) {
+    drama_id
+    drama {
+      title
+      thumbnail
+    }
+  }
+}
+```
+
+- Response
+```json
+{
+  "data": {
+    "users_drama": [
+      {
+        "drama_id": 469,
+        "drama": {
+          "title": "陳情令",
+          "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/5903-imfiehr0524158.jpg"
+        }
+      },
+      {
+        "drama_id": 1,
+        "drama": {
+          "title": "我的情敵是自己",
+          "thumbnail": "https://hd.itsfun.com.tw/img/3/cad/wZwpmLHRDNxQjM1ckMyADMy0SMvcjMyADMy8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg"
+        }
+      },
+      {
+        "drama_id": 5,
+        "drama": {
+          "title": "谷文昌",
+          "thumbnail": "https://hd.itsfun.com.tw/img/5/095/wZwpmLiJ3dyMjbxIjcz02XzIDOwkTMwIzLzIDOw8ibj5SYidmbpFXdq5yZtl2LvoDc0RHa.jpg"
+        }
+      }
+    ]
   }
 }
 ```
 
 
+# 9. 個人化首頁
+
+## 9.1 個人化戲劇列表
+_先打 6.6 取得用戶勾選偏好的戲劇地區/類型之後，再打 6.3 query篩選過後的戲劇列表結果。_
 
 
+## 9.2 個人化新聞列表
+_先打 6.6 取得用戶勾選偏好的戲劇地區/類型之後，再打 1.5 query篩選過後的新聞列表結果。_
+_須由前端判斷 query 的是 news 資料表，並於前端顯示「新聞」的標籤。_
+
+- Query
+```
+{
+  news(where: {_or: [
+    {title: {_ilike: "%陳情令%"}}, 
+    {title: {_ilike: "%人間至味是清歡%"}}, 
+    {title: {_ilike: "%陪你到世界之巔%"}}]}, limit: 15, order_by: {created_at: desc}) {
+    id
+    title
+    excerpt
+    thumbnail
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "news": [
+      {
+        "id": 54,
+        "title": "《陳情令》結局裡魏無羨這個態度，證明了將注定與聶導決裂",
+        "excerpt": "聶懷桑並不是思想刻板的人，不像聶大那樣非黑即白。他一直都很崇拜魏無羨，經常說的話就是「魏兄，你很囂張啊」！在藍氏修學的時候，魏無羨回答藍啟仁的問題時，說出的第四種辦法：將怨氣為己所用。所有人都覺得這是邪魔外道的想法，不可理喻。只有聶懷桑覺得這個想法很酷。後來魏無羨走非常道，除了師姐待他如常以及藍湛別扭的表示了一下憂心要彈琴幫他，也只有聶懷桑來看過魏無羨。",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/94cfdf48d30633830239c53e40da9c33.jpg"
+      },
+      {
+        "id": 52,
+        "title": "《陳情令》花絮：肖戰和王一博就為了這個吵了九分鐘？",
+        "excerpt": "在最新播出的幾集中，有些細心的網友發現，《慶餘年》有些場景怎麼那麼眼熟?比如言冰雲(肖戰 飾)第一次遇到范建(張若昀 飾)的那片竹林，和電視劇《陳情令》的取景地是同一座山，只不過彼時《慶餘年》在山腳，《陳情令》在山頂。",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/d0c91ad5819235194e4a4f3bffd5cef8.jpg"
+      },
+      {
+        "id": 51,
+        "title": "《陳情令》新花絮釋出，王一博片場不吃飯全打遊戲？",
+        "excerpt": "說到《陳情令》這部劇，對於我們觀眾來說，已經是十分熟悉的作品了。作為去年夏天熱度和影響力都非常高的作品，不僅劇情好看，劇組後期製作，每位演員們的演技和表現都很精彩，並且這部劇完結後，熱度依舊很高，並且還走出國門，在國外幾個國家上映，可以說很優秀了。",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/e0298a57f1d85dcfe765573af9e0fb1f.jpg"
+      },
+      {
+        "id": 50,
+        "title": "王一博拍《陳情令》穿幫小鏡頭，手機封面暴露與肖戰關係",
+        "excerpt": "大家喜歡王一博，當然更喜歡他和肖戰一起拍的陳情令，這一部電視劇在2019年就已經播放完成，但是很多人把這部電視劇反反復復的看了好幾遍，尤其是對其中的男主角肖戰和王一博的愛更是深厚。不過在觀看《陳情令》的時候，並沒有發現穿幫的環節，但是最近幾天網友們又重新刷了幾遍，卻發現王一博在拍這部劇的時候，手機意外出鏡，快讓我們一起去看看吧！",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/00cb049df389ba761797032ad2bde265.jpg"
+      },
+      {
+        "id": 49,
+        "title": "同為《陳情令》登上頂流，為什麼王一博肖戰如今處境大不同？",
+        "excerpt": "王一博剛解鎖了SuperELLE史上首次單人三封，在最新發布的明星勢力榜中，王一博更是位列第三。和趙麗穎的新劇《有翡》也是備受期待，每周的《天天向上》也是為王一博增加了不少曝光度。",
+        "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/57de19cf2409e03e902a5282d44cbd14.jpg"
+      }
+    ]
+  }
+}
+```
+
+
+## 9.3 個人化討論列表
+_先打 6.6 取得用戶勾選偏好的戲劇地區/類型之後，再打 api 篩選過後的討論列表結果。_
+_須由前端判斷 query 的是 forum 資料表，並於前端顯示「討論」的標籤。_
+
+- Query
+```
+{
+  forum(where: {_or: [
+    {title: {_ilike: "%陳情令%"}}, 
+    {title: {_ilike: "%人間至味是清歡%"}}, 
+    {title: {_ilike: "%陪你到世界之巔%"}}]}, limit: 10, order_by: {created_at: desc}) {
+    id
+    title
+    author {
+			nickname
+    }
+    thumbnail
+    forum_types {
+      type {
+        name
+        label
+      }
+    }
+  }
+}
+```
+
+- Response
+```json
+{
+  "data": {
+    "forum": [
+      {
+        "id": 4050,
+        "title": "[閒聊] 人間至味是清歡-翟至味cut（有雷）#王一博",
+        "author": {
+          "nickname": "Ptt"
+        },
+        "thumbnail": "https://i.imgur.com/RzSMHQj.gif",
+        "forum_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          }
+        ]
+      },
+      {
+        "id": 4049,
+        "title": "[心得] 《陳情令》完食滿月雜感 圖多#肖戰#王一博",
+        "author": {
+          "nickname": "Ptt"
+        },
+        "thumbnail": "https://i.imgur.com/VpZ1Ql4l.jpg",
+        "forum_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          }
+        ]
+      },
+      {
+        "id": 4048,
+        "title": "[閒聊] 陳情令王一博演的藍忘機是不是台詞最少的陸劇男主",
+        "author": {
+          "nickname": "Ptt"
+        },
+        "thumbnail": "https://i.imgur.com/RP7I9DIl.jpg",
+        "forum_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          }
+        ]
+      },
+      {
+        "id": 4047,
+        "title": "[閒聊] 安利陪你到世界之巔的王一博",
+        "author": {
+          "nickname": "Ptt"
+        },
+        "thumbnail": "https://i.imgur.com/RVPrhLBl.png",
+        "forum_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          }
+        ]
+      },
+      {
+        "id": 4046,
+        "title": "#陸劇#陪你到世界之巔#王一博",
+        "author": {
+          "nickname": "Dcard"
+        },
+        "thumbnail": "https://imgur.dcard.tw/1WhU27D.jpg",
+        "forum_types": [
+          {
+            "type": {
+              "name": "陸劇",
+              "label": "category"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 
 *待討論*
 
