@@ -36,8 +36,7 @@
     - [6.2 偏好類型列表](#62-偏好類型列表)
     - [6.3 預測偏好戲劇列表](#63-預測偏好戲劇列表)
     - [6.4 取得用戶偏好地區/類型](#64-取得用戶偏好地區類型)
-    - [6.5 新增用戶偏好地區/類型](#65-新增用戶偏好地區類型)
-    - [6.6 移除用戶偏好地區/類型](#66-移除用戶偏好地區類型)
+    - [6.5 新增/移除用戶偏好地區或類型](#65-新增移除用戶偏好地區或類型)
 - [7. 我的評分](#7-我的評分)
     - [7.1 取得我的評分](#71-取得我的評分)
     - [7.2 新增我的評分](#72-新增我的評分)
@@ -49,9 +48,8 @@
     - [9.2 個人化新聞列表](#92-個人化新聞列表)
     - [9.3 個人化討論列表](#93-個人化討論列表)
 - [10. 好友功能](#10-好友功能)
-    - [取得好友id](#取得好友id)
-    - [加入好友](#加入好友)
-    - [移除好友](#移除好友)
+    - [10.1 加入好友](#101-加入好友)
+    - [10.2 移除好友](#102-移除好友)
 
 <!-- /TOC -->
 _用戶token規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位。_
@@ -2073,10 +2071,11 @@ query {
 
 # 6. 個人化偏好
 _地區、類型、標籤等 type資料都放在同一個 table，根據需要篩選的結果打不同的 label 取得要的 type 值。_
+_規則：用戶初次登入時打一次 6.1 / 6.2，接下來都直接打 6.4 取得用戶表示為 true 的值。_
 
 ## 6.1 偏好地區列表
 _用戶登入之後打 label = category 做篩選，顯示所有戲劇地區列表讓用戶選擇偏好的戲劇地區。_
-
+_前端規則：用戶點選地區時，打 6.5 對該地區評為喜歡。_
 
 - Query
 ```
@@ -2134,6 +2133,7 @@ _用戶登入之後打 label = category 做篩選，顯示所有戲劇地區列�
 ## 6.2 偏好類型列表
 _用戶登入之後打 label = taxonomy 做篩選，顯示前 25 筆熱門戲劇類型列表讓用戶選擇偏好的戲劇類型。_
 _打此 api 取得前 25 筆戲劇類型的資料，依據 id 由小至大排序。_
+_前端規則：用戶點選類型時，打 6.5 對該類型評為喜歡。_
 
 - Query
 ```
@@ -2408,8 +2408,8 @@ query{
 }
 ```
 
-## 6.5 新增用戶偏好地區/類型
-_紀錄用戶偏好的戲劇地區/戲劇類型時打此 api。_
+## 6.5 新增/移除用戶偏好地區或類型
+_紀錄/移除用戶偏好的戲劇地區及戲劇類型時打此 api。_
 
 
 - insert
@@ -2451,50 +2451,6 @@ mutation MyMutation {
 
 ```
 
-## 6.6 移除用戶偏好地區/類型
-_移除用戶偏好戲劇地區/戲劇類型時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
-
-- insert
-```
-mutation MyMutation {
-  delete_users_type(where: {type_id: {_eq: "4"}}) {
-    returning {
-      type_id
-      type {
-        name
-      }
-
-    }
-    affected_rows
-  }
-}
-
-
-```
-
-- Response
-```
-{
-    "data": {
-        "delete_users_type": {
-            "returning": [
-                {
-                    "type_id": 4,
-                    "type": {
-                        "name": "陸劇"
-                    },
-                    "user": {
-                        "name": "momo",
-                        "id": "facebook|2937085519703458",
-                    }
-                }
-            ],
-            "affected_rows": 1
-        }
-    }
-}
-
-```
 
 # 7. 我的評分
 
@@ -2503,8 +2459,8 @@ _打此 api 取得用戶評分為喜歡的戲劇列表。_
 
 - Query
 ```
-query{
-  users_drama(where: {like: {_eq: 1}}) {
+{
+  users_drama(where: {prefer: {_eq: "yes"}}) {
     drama_id
     drama {
       title
@@ -2540,22 +2496,23 @@ query{
 ```
 
 ## 7.2 新增我的評分
-_用戶對戲劇評分時打此 api ，like 值等於 1 表示喜歡 / like 值等於 2 表示不喜歡 / like 值等於 0 表示取消評分。_
+_用戶對戲劇評分時打此 api ，prefer 值等於 yes 表示喜歡 / prefer 值等於 no 表示不喜歡 / prefer 值等於 0 表示取消評分。_
 _
 
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {like: 1, drama_id: "45"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: like}) {
+  insert_users_drama(objects: {drama_id: "33321", prefer: "yes"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: prefer}) {
     returning {
       drama_id
       drama {
         title
       }
-      like
+      prefer
     }
   }
 }
+
 
 ```
 
@@ -2566,11 +2523,11 @@ mutation MyMutation {
     "insert_users_drama": {
       "returning": [
         {
-          "drama_id": 45,
+          "drama_id": 33321,
           "drama": {
-            "title": "醫妃難囚 第2季"
+            "title": "香蜜沉沉燼如霜"
           },
-          "like": 1,
+          "prefer": "yes"
         }
       ]
     }
@@ -2648,6 +2605,7 @@ mutation MyMutation {
 }
 
 ```
+
 - Response
 ```
 {
@@ -2819,118 +2777,71 @@ _須由前端判斷 query 的是 forum 資料表，並於前端顯示「討論�
 }
 ```
 
-
-
-*待討論*
-
 # 10. 好友功能
 
-## 取得好友id
 
-- Query
-```
-query{
-  users {
-    id
-    name
-    email
-  }
-}
-```
-
-- Response
-```json
-{
-  "data": {
-    "users": [
-      {
-        "id": "auth0|5e0e1dfd2a54ec0e81957eae",
-        "name": "newlin76710",
-        "email": "newlin76710@gmail.com"
-      },
-      {
-        "id": "google-oauth2|108568795206028468295",
-        "name": "newlin76710",
-        "email": "newlin76710@gmail.com"
-      },
-      {
-        "id": "facebook|10158439973393729",
-        "name": "dixchen.5201",
-        "email": "dixchen.5201@gmail.com"
-      }
-    ]
-  }
-}
-```
-
-## 加入好友
-_加入好友請打此 api。_
+## 10.1 加入好友
+_需要先打 5.1 搜尋好友取得好友 id 之後才打 api 加入好友。_
 
 - insert
 ```
 mutation MyMutation {
-  insert_users_friend(objects: {user_id: "facebook|2693296460749033", friend_id: "google-oauth2|112954340964054959161"}, on_conflict: {constraint: users_friend_user_id_friend_id_key, update_columns: friend_id}) {
+  insert_users_friend(objects: {friend_id: "google-oauth2|104979379483629761548"}, on_conflict: {constraint: users_friend_user_id_friend_id_key, update_columns: friend_id}) {
     returning {
-      id
-      user_id
-      friend_id
+      userByUserId {
+        name
+      }
     }
   }
 }
+
 ```
+
 - Response
 ```
 {
   "data": {
-    "insert_users_drama": {
+    "insert_users_friend": {
       "returning": [
         {
-          "id": 16,
-          "user_id": "facebook|2693296460749033",
-          "drama_id": 45,
-          "drama": {
-            "title": "醫妃難囚 第2季"
-          },
-          "like": null
+          "userByUserId": {
+            "name": "依洛斯"
+          }
         }
-      ],
-      "affected_rows": 1
+      ]
     }
   }
 }
 
 ```
 
-## 移除好友
+## 10.2 移除好友
 _移除好友請打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_users_friend(where: {user_id: {_eq: "facebook|2693296460749033"}, friend_id: {_eq: "google-oauth2|112954340964054959161"}}) {
-    affected_rows
+  delete_users_friend(where: {friend_id: {_eq: "google-oauth2|104979379483629761548"}}) {
     returning {
-      id
-      user_id
-      friend_id
+      userByUserId {
+        name
+      }
     }
+    affected_rows
   }
 }
+
 ```
 - Response
 ```
 {
   "data": {
-    "insert_users_drama": {
+    "delete_users_friend": {
       "returning": [
         {
-          "id": 16,
-          "user_id": "facebook|2693296460749033",
-          "drama_id": 45,
-          "drama": {
-            "title": "醫妃難囚 第2季"
-          },
-          "like": null
+          "userByUserId": {
+            "name": "依洛斯"
+          }
         }
       ],
       "affected_rows": 1
