@@ -51,6 +51,7 @@
 - [10. 好友功能](#10-好友功能)
     - [10.1 加入好友](#101-加入好友)
     - [10.2 移除好友](#102-移除好友)
+    - [10.3 取得好友名單](#103-取得好友名單)
 
 <!-- /TOC -->
 _用戶token規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位。_
@@ -2665,7 +2666,7 @@ _個人化首頁文章排序規則：前端根據 9.2 / 9.3 回傳 created at �
 
 
 ## 9.1 個人化戲劇列表
-_先打 6.6 取得用戶勾選偏好的戲劇地區/類型之後，再打 6.3 顯示篩選過後的戲劇列表結果。_
+_先打 6.4 取得用戶勾選偏好的戲劇地區/類型之後，再打 6.3 顯示篩選過後的戲劇列表結果。_
 
 
 ## 9.2 個人化新聞列表
@@ -2684,7 +2685,7 @@ _須由前端判斷 query 的是 news 資料表，並於前端顯示「新聞」
     title
     excerpt
     thumbnail
-    created_at
+    created_atㄗ
   }
 }
 
@@ -2813,7 +2814,6 @@ _須由前端判斷 query 的是 forum 資料表，並於前端顯示「討論�
 
 # 10. 好友功能
 
-
 ## 10.1 加入好友
 _需要先打 5.1 搜尋好友取得好友 id 之後才打 api 加入好友。_
 
@@ -2822,9 +2822,7 @@ _需要先打 5.1 搜尋好友取得好友 id 之後才打 api 加入好友。_
 mutation MyMutation {
   insert_users_friend(objects: {friend_id: "google-oauth2|104979379483629761548"}, on_conflict: {constraint: users_friend_user_id_friend_id_key, update_columns: friend_id}) {
     returning {
-      userByUserId {
-        name
-      }
+      friend_id
     }
   }
 }
@@ -2838,9 +2836,7 @@ mutation MyMutation {
     "insert_users_friend": {
       "returning": [
         {
-          "userByUserId": {
-            "name": "依洛斯"
-          }
+          "friend_id": "google-oauth2|104979379483629761548"
         }
       ]
     }
@@ -2857,9 +2853,7 @@ _移除好友請打此 api，當 affected rows 的值回傳= 1 表示移除資�
 mutation MyMutation {
   delete_users_friend(where: {friend_id: {_eq: "google-oauth2|104979379483629761548"}}) {
     returning {
-      userByUserId {
-        name
-      }
+      friend_id
     }
     affected_rows
   }
@@ -2873,13 +2867,44 @@ mutation MyMutation {
     "delete_users_friend": {
       "returning": [
         {
-          "userByUserId": {
-            "name": "依洛斯"
-          }
+          "friend_id": "google-oauth2|104979379483629761548"
         }
       ],
       "affected_rows": 1
     }
+  }
+}
+
+```
+
+## 10.3 取得好友名單
+_取得好友名單打此 api。_
+
+- Query
+```
+{
+  users_friend {
+    friend_id
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "users_friend": [
+      {
+        "friend_id": "google-oauth2|112954340964054959161"
+      },
+      {
+        "friend_id": "facebook|3427286247300412"
+      },
+      {
+        "friend_id": "google-oauth2|104979379483629761548"
+      }
+    ]
   }
 }
 
