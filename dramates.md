@@ -1341,6 +1341,7 @@ query {
 
 - Query
 ```
+{
   forum_aggregate(where: {_and: [
     {created_at: {_gt: "2020-04-01"}}, 
     {created_at: {_lt: "2020-04-30"}}], 
@@ -1349,6 +1350,7 @@ query {
       count
     }
   }
+}
 
 ```
 
