@@ -20,8 +20,9 @@
     - [2.9 戲劇相關討論列表](#29-戲劇相關討論列表)
     - [2.10 戲劇季列表](#210-戲劇季列表)
 - [3. 討論區](#3-討論區)
-    - [3.1 討論區輪播列表](#31-討論區輪播列表)
-    - [3.2 討論列表頁](#32-討論列表頁)
+    - [3.1 討論區熱門主題輪播列表](#31-討論區熱門主題輪播列表)
+    - [3.2 討論區熱門主題文章列表](#32-討論區熱門主題文章列表)
+    - [3.3 討論列表頁](#33-討論列表頁)
 - [4. 關鍵字](#4-關鍵字)
     - [4.1 熱門關鍵字列表](#41-熱門關鍵字列表)
 - [5. 搜尋結果](#5-搜尋結果)
@@ -1295,18 +1296,67 @@ query {
 
 # 3. 討論區
 
-## 3.1 討論區輪播列表
+## 3.1 討論區熱門主題輪播列表
 
-_進入討論區首頁時，打此 api，即顯示討論區輪播列表。不限內容數量，採用人工調整。_
-
+_進入討論區首頁時，打此 api，即顯示熱門討論主題列表。不限內容數量，採用人工調整。_
 
 - Query
 ```
 query {
   forum_carousel {
     id
-    caption
-    cover
+    name
+  }
+}
+
+```
+
+- Response
+```json
+{
+    "data": {
+        "forum_carousel": [
+            {
+                "id": 4007,
+                "name": "親愛的熱愛的"
+            },
+            {
+                "id": 4001,
+                "name": "陳情令"
+            },
+            {
+                "id": 4009,
+                "name": "有翡"
+            }
+        ]
+    }
+}
+```
+
+## 3.2 討論區熱門主題文章列表
+
+_點擊進入討論區熱門討論主題時，打此 api，即顯示包含此熱門關鍵字的討論區文章列表。_
+_規則：先打 3.1 取得熱門關鍵字，用 title 打 api 顯示篩選過後的新聞列表結果_
+
+- Query
+```
+{
+  forum(where: {_and: [
+    {created_at: {_gt: "2020-04-01"}}, 
+    {created_at: {_lt: "2020-04-30"}}], 
+    title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}) {
+    id
+    title
+    source
+    created_at
+  }
+  forum_aggregate(where: {_and: [
+    {created_at: {_gt: "2020-04-01"}}, 
+    {created_at: {_lt: "2020-04-30"}}], 
+    title: {_ilike: "%陳情令%"}},) {
+    aggregate {
+      count
+    }
   }
 }
 
@@ -1317,28 +1367,31 @@ query {
 ```json
 {
   "data": {
-    "forum_carousel": [
+    "forum": [
       {
-        "id": 1,
-        "caption": "《陳情令》日本播兩周，有人瞞著老公看？王一博肖戰吸粉原因不同",
-        "cover": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/03/e9fa887e11021d5fafb128be4dcd4655.jpg"
+        "id": 11297,
+        "title": "小說改編電視劇(以陳情令為例) 問卷",
+        "source": "Dcard",
+        "created_at": "2020-04-26T14:14:44.724"
       },
       {
-        "id": 35,
-        "caption": "《親愛的，熱愛的》盤點高冷男喜歡上人時的反常表現",
-        "cover": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/b0de8efbb78dd3f540a4da853ee4a14c.jpg"
+        "id": 10549,
+        "title": "#陳情令之亂魄 即將再度被擊落陳情令的坑底",
+        "source": "Dcard",
+        "created_at": "2020-04-23T06:55:26.367"
       },
       {
-        "id": 37,
-        "caption": "《鬢邊不是海棠紅》范湘兒結局：一生只愛程鳳台，最終卻被搶走了男人",
-        "cover": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/bcf8262496b522209482bd547083b89d.jpg"
+        "id": 10203,
+        "title": "[閒聊] 還要繼續追陳情令嗎",
+        "source": "Ptt",
+        "created_at": "2020-04-21T23:29:13"
       }
     ]
   }
 }
 ```
 
-## 3.2 討論列表頁
+## 3.3 討論列表頁
 
 _進入討論首頁時，打此 api，即顯示討論最新列表。_
 
