@@ -1303,7 +1303,9 @@ query {
 _進入討論區首頁時，打此 api，即顯示熱門討論主題列表，採用人工調整。_
 _取得文章數量規則：先打取得熱門主題 api 再用回傳的 name 欄位當作關鍵字，打取得熱門主題文章數 api 搜尋 title 包含這個關鍵字的討論文章，列出數量。_
 
+
 ### 取得熱門主題
+
 - Query
 ```
 query {
@@ -1363,15 +1365,16 @@ _點擊進入討論區熱門討論主題時，打此 api，即顯示包含此熱
 {
   forum(where: {_and: [
     {created_at: {_gt: "2020-04-01"}}, 
-    {created_at: {_lt: "2020-04-30"}}], 
-    title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}) {
+    {created_at: {_lt: "2020-05-30"}}], title: {_ilike: "%韞色過濃%"}}, order_by: {created_at: desc}) {
     id
     title
     source
     created_at
     thumbnail
+    source_author
   }
 }
+
 
 ```
 
@@ -1382,25 +1385,28 @@ _點擊進入討論區熱門討論主題時，打此 api，即顯示包含此熱
   "data": {
     "forum": [
       {
-        "id": 11297,
-        "title": "小說改編電視劇(以陳情令為例) 問卷",
-        "source": "Dcard",
-        "created_at": "2020-04-26T14:14:44.724",
-        "thumbnail": "https://img.gemarketing.com.tw/20180207200350_12.jpg"
-      },
-      {
-        "id": 10549,
-        "title": "#陳情令之亂魄 即將再度被擊落陳情令的坑底",
-        "source": "Dcard",
-        "created_at": "2020-04-23T06:55:26.367",
-        "thumbnail": "http://i.imgur.com/7DDa8Jw.jpg"
-      },
-      {
-        "id": 10203,
-        "title": "[閒聊] 還要繼續追陳情令嗎",
+        "id": 15996,
+        "title": "Re: [心得] 韞色過濃13-14",
         "source": "Ptt",
-        "created_at": "2020-04-21T23:29:13",
-        "thumbnail": "https://img.gemarketing.com.tw/20180207200350_12.jpg"
+        "created_at": "2020-05-11T07:47:21",
+        "thumbnail": "https://i2.kknews.cc/SIG=na6aub/6390005200p95oors9p.jpg",
+        "source_author": "cxj"
+      },
+      {
+        "id": 15725,
+        "title": "Re: [心得] 韞色過濃11-12",
+        "source": "Ptt",
+        "created_at": "2020-05-10T10:23:00",
+        "thumbnail": "https://img.gemarketing.com.tw/20180207200350_12.jpg",
+        "source_author": "cxj"
+      },
+      {
+        "id": 15260,
+        "title": "#陸劇 韞色過濃",
+        "source": "Dcard",
+        "created_at": "2020-05-09T04:45:57.817",
+        "thumbnail": "https://megapx-assets.dcard.tw/images/94f55b26-7845-4459-b934-7c112a9cb9e2/640.jpeg",
+        "source_author": "仙女🧚🏻‍♀️"
       }
     ]
   }
