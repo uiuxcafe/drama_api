@@ -1366,7 +1366,7 @@ _點擊進入討論區熱門討論主題時，打此 api，即顯示包含此熱
 {
   forum(where: {_and: [
     {created_at: {_gt: "2020-04-01"}}, 
-    {created_at: {_lt: "2020-05-30"}}], title: {_ilike: "%韞色過濃%"}}, order_by: {created_at: desc}) {
+    {created_at: {_lt: "2020-05-30"}}], title: {_ilike: "%陳情令%"}}, order_by: {created_at: desc}) {
     id
     title
     source
