@@ -33,6 +33,7 @@
         - [戲劇](#戲劇)
         - [討論](#討論)
         - [好友](#好友)
+        - [判斷是否為好友](#判斷是否為好友)
     - [5.2篩選搜尋](#52篩選搜尋)
 - [6. 個人化偏好](#6-個人化偏好)
     - [6.1 偏好地區列表](#61-偏好地區列表)
@@ -2074,15 +2075,14 @@ query {
 ```
 {
   users(where: 
-    {name: {_ilike: "%mo%"}}, order_by: {created_at: desc}, limit: 5) {
+    {name: {_ilike: "%mo%"}}, order_by: {created_at: desc}, limit: 15) {
     id
     name
     picture
   }
 }
-
-
 ```
+
 - Response
 ```json
 {
@@ -2094,6 +2094,19 @@ query {
         "picture": "https://lh3.googleusercontent.com/a-/AOh14Gjk2WZ4lRE3Ly2G1gqILc6VqoJ3DpIGDhDpClAHow"
       }
     ]
+  }
+}
+```
+
+
+### 判斷是否為好友
+_使用用戶的id及搜尋到的朋友id去搜尋user friend資料表，若有回傳id即代表已經為朋友。_
+
+- Query
+```
+{
+  users_follow(where: {user_id: {_eq: "facebook|4341819205843928"}, follow_id: {_eq: "google-oauth2|104202043101011726223"}}) {
+    id
   }
 }
 ```
@@ -2895,10 +2908,16 @@ _取得好友名單打此 api。_
 - Query
 ```
 {
-  users_friend {
-    friend_id
+  users_follow{
+    follow_id
+    user {
+      picture
+      name
+      email
+    }
   }
 }
+
 
 ```
 
@@ -2906,15 +2925,30 @@ _取得好友名單打此 api。_
 ```json
 {
   "data": {
-    "users_friend": [
+    "users_follow": [
       {
-        "friend_id": "google-oauth2|112954340964054959161"
+        "follow_id": "facebook|3427286247300412",
+        "user": {
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3427286247300412&height=50&width=50&ext=1591848168&hash=AeToQQMOfqIUcfRP",
+          "name": "劉佳昕",
+          "email": "rainbowstar2488@hotmail.com"
+        }
       },
       {
-        "friend_id": "facebook|3427286247300412"
+        "follow_id": "google-oauth2|104202043101011726223",
+        "user": {
+          "picture": "https://lh3.googleusercontent.com/a-/AOh14Gi_rSwm_EO90cG6c76bTmY0VWpJlgsFKLudEBZ8",
+          "name": "eros主題派對",
+          "email": "ek21eros@gmail.com"
+        }
       },
       {
-        "friend_id": "google-oauth2|104979379483629761548"
+        "follow_id": "google-oauth2|111067088211843555375",
+        "user": {
+          "picture": "https://lh5.googleusercontent.com/-9YqwBT-HitQ/AAAAAAAAAAI/AAAAAAAAAAA/AAKWJJM0S6f4ElPYlYjDzq0_Ju1eH_qMbQ/photo.jpg",
+          "name": "Doris Liu",
+          "email": "doris@uiuxcafe.com"
+        }
       }
     ]
   }
@@ -2928,9 +2962,9 @@ _需要先打 5.1 搜尋好友取得好友 id 之後才打 api 加入好友。_
 - insert
 ```
 mutation MyMutation {
-  insert_users_friend(objects: {friend_id: "google-oauth2|104979379483629761548"}, on_conflict: {constraint: users_friend_user_id_friend_id_key, update_columns: friend_id}) {
+  insert_users_follow(objects: {follow_id: "google-oauth2|104979379483629761548"}, on_conflict: {constraint: users_follow_user_id_follow_id_key, update_columns: follow_id}) {
     returning {
-      friend_id
+      follow_id
     }
   }
 }
@@ -2941,10 +2975,10 @@ mutation MyMutation {
 ```
 {
   "data": {
-    "insert_users_friend": {
+    "insert_users_follow": {
       "returning": [
         {
-          "friend_id": "google-oauth2|104979379483629761548"
+          "follow_id": "google-oauth2|104979379483629761548"
         }
       ]
     }
@@ -2959,9 +2993,9 @@ _移除好友請打此 api，當 affected rows 的值回傳= 1 表示移除資�
 - insert
 ```
 mutation MyMutation {
-  delete_users_friend(where: {friend_id: {_eq: "google-oauth2|104979379483629761548"}}) {
+  delete_users_follow(where: {follow_id: {_eq: "google-oauth2|104979379483629761548"}}) {
     returning {
-      friend_id
+      follow_id
     }
     affected_rows
   }
@@ -2972,10 +3006,10 @@ mutation MyMutation {
 ```
 {
   "data": {
-    "delete_users_friend": {
+    "delete_users_follow": {
       "returning": [
         {
-          "friend_id": "google-oauth2|104979379483629761548"
+          "follow_id": "google-oauth2|104979379483629761548"
         }
       ],
       "affected_rows": 1
