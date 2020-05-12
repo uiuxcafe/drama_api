@@ -2100,7 +2100,7 @@ query {
 
 
 ### 判斷是否為好友
-_使用用戶的id及搜尋到的朋友id去搜尋user friend資料表，若有回傳id即代表已經為朋友。_
+_規則：使用用戶的id及搜尋到的朋友id去搜尋user friend資料表，若有回傳id即代表已經為朋友。_
 
 - Query
 ```
@@ -2915,7 +2915,7 @@ _取得好友名單打此 api。_
       name
       email
     }
-  }
+  } 
 }
 
 
@@ -2962,9 +2962,10 @@ _需要先打 5.1 搜尋好友取得好友 id 之後才打 api 加入好友。_
 - insert
 ```
 mutation MyMutation {
-  insert_users_follow(objects: {follow_id: "google-oauth2|104979379483629761548"}, on_conflict: {constraint: users_follow_user_id_follow_id_key, update_columns: follow_id}) {
+  insert_users_follow(objects: {follow_id: "google-oauth2|104202043101011726223"}, on_conflict: {update_columns: follow_id, constraint: users_friend_user_id_friend_id_key}) {
     returning {
       follow_id
+      id
     }
   }
 }
@@ -2978,7 +2979,7 @@ mutation MyMutation {
     "insert_users_follow": {
       "returning": [
         {
-          "follow_id": "google-oauth2|104979379483629761548"
+          "follow_id": "google-oauth2|104202043101011726223"
         }
       ]
     }
@@ -2993,7 +2994,7 @@ _移除好友請打此 api，當 affected rows 的值回傳= 1 表示移除資�
 - insert
 ```
 mutation MyMutation {
-  delete_users_follow(where: {follow_id: {_eq: "google-oauth2|104979379483629761548"}}) {
+  delete_users_follow(where: {follow_id: {_eq: "google-oauth2|104202043101011726223"}}) {
     returning {
       follow_id
     }
@@ -3009,7 +3010,7 @@ mutation MyMutation {
     "delete_users_follow": {
       "returning": [
         {
-          "follow_id": "google-oauth2|104979379483629761548"
+          "follow_id": "google-oauth2|104202043101011726223"
         }
       ],
       "affected_rows": 1
