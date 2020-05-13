@@ -1302,7 +1302,7 @@ query {
 ## 3.1 討論區熱門主題輪播列表
 
 _進入討論區首頁時，打此 api，即顯示熱門討論主題列表，採用人工調整。_
-_取得文章數量規則：先打取得熱門主題 api 再用回傳的 name 欄位當作關鍵字，打取得熱門主題文章數 api 搜尋 title 包含這個關鍵字的討論文章，列出數量。_
+_取得文章數量規則：先打取得熱門主題 api 再用回傳的 name 欄位當作關鍵字，打取得熱門主題文章數 api 搜尋 title 包含這個關鍵字的討論文章，列出數量。前端需自動更新 create at 的時間及範圍（一個月）_
 
 
 ### 取得熱門主題
@@ -1357,6 +1357,20 @@ query {
 
 ```
 
+- Response
+
+```json
+{
+    "data": {
+        "forum_aggregate": {
+            "aggregate": {
+                "count": 9
+            }
+        }
+    }
+}
+```
+
 ## 3.2 討論區熱門主題文章列表
 
 _點擊進入討論區熱門討論主題時，打此 api，即顯示包含此熱門關鍵字的討論區文章列表。_
@@ -1387,28 +1401,28 @@ _用 3.1 的 name 欄位來搜尋 title 包含這個關鍵字的討論文章列�
   "data": {
     "forum": [
       {
-        "id": 15996,
-        "title": "Re: [心得] 韞色過濃13-14",
+        "id": 4049,
+        "title": "[心得] 《陳情令》完食滿月雜感 圖多#肖戰#王一博",
         "source": "Ptt",
-        "created_at": "2020-05-11T07:47:21",
-        "thumbnail": "https://i2.kknews.cc/SIG=na6aub/6390005200p95oors9p.jpg",
-        "source_author": "cxj"
+        "created_at": "2020-04-08T13:39:16.939412",
+        "thumbnail": "https://i.imgur.com/VpZ1Ql4l.jpg",
+        "source_author": "momo"
       },
       {
-        "id": 15725,
-        "title": "Re: [心得] 韞色過濃11-12",
+        "id": 4048,
+        "title": "[閒聊] 陳情令王一博演的藍忘機是不是台詞最少的陸劇男主",
         "source": "Ptt",
-        "created_at": "2020-05-10T10:23:00",
-        "thumbnail": "https://img.gemarketing.com.tw/20180207200350_12.jpg",
-        "source_author": "cxj"
+        "created_at": "2020-04-08T13:37:54.068836",
+        "thumbnail": "https://i.imgur.com/RP7I9DIl.jpg",
+        "source_author": "momo"
       },
       {
-        "id": 15260,
-        "title": "#陸劇 韞色過濃",
+        "id": 4045,
+        "title": "#推 #陳情令 #王一博 (微雷",
         "source": "Dcard",
-        "created_at": "2020-05-09T04:45:57.817",
-        "thumbnail": "https://megapx-assets.dcard.tw/images/94f55b26-7845-4459-b934-7c112a9cb9e2/640.jpeg",
-        "source_author": "仙女🧚🏻‍♀️"
+        "created_at": "2020-04-08T13:33:45.536625",
+        "thumbnail": "https://imgur.dcard.tw/PVXLrc3.png",
+        "source_author": "momo"
       }
     ]
   }
@@ -2101,7 +2115,7 @@ query {
 
 
 ### 好友判斷
-_規則：使用用戶的 id 及搜尋到的朋友 id 去搜尋 user friend 資料表，若有回傳 id 即代表已經為朋友。_
+_規則：使用用戶的 id 及搜尋到欲追蹤的 id 去搜尋 user follow 資料表，若有回傳 id 即代表已經為朋友。_
 
 - Query
 ```
@@ -2376,7 +2390,7 @@ _前端規則：用戶點選類型時，打 6.5 對選取類型評為喜歡，�
 ```
 
 ## 6.3 預測偏好戲劇列表
-_用戶登入後，根據 6.1 & 6.2 用戶選擇偏好的戲劇地區及類型後，打此 api 獲得符合篩選的戲劇列表讓用戶選擇偏好的戲劇。以年份由新至舊排序，limit=15。_
+_用戶登入後，根據 6.1 & 6.2 用戶選擇偏好的戲劇地區及類型後，打此 api 獲得符合篩選的戲劇列表讓用戶選擇偏好的戲劇。以年份由進到遠排序，limit=15。_
 
 - Query
 ```
@@ -2759,7 +2773,7 @@ _先打 6.4 取得用戶勾選偏好的戲劇地區/類型之後，再打 6.3 �
 
 
 ## 9.2 個人化新聞列表
-_先執行 9.1 流程取得個人化戲劇列表，再用戲劇 title 打 api 顯示篩選過後的新聞列表結果。以 created_at 時間新至舊排序。_
+_先執行 9.1 流程取得個人化戲劇列表，再用戲劇 title 打 api 顯示篩選過後的新聞列表結果。以 created_at 時間近到遠排序。_
 _須由前端判斷 query 的是 news 資料表，並於前端顯示「新聞」的標籤。_
 
 
@@ -2813,7 +2827,7 @@ _須由前端判斷 query 的是 news 資料表，並於前端顯示「新聞」
 
 
 ## 9.3 個人化討論列表
-_先執行 9.1 流程取得個人化戲劇列表，再用戲劇 title 打 api 顯示篩選過後的討論列表結果。以 created_at 時間新至舊排序。_
+_先執行 9.1 流程取得個人化戲劇列表，再用戲劇 title 打 api 顯示篩選過後的討論列表結果。以 created_at 時間近到遠排序。_
 _須由前端判斷 query 的是 forum 資料表，並於前端顯示「討論」的標籤。_
 
 - Query
@@ -2958,7 +2972,7 @@ _取得好友名單打此 api。_
 ```
 
 ## 10.2 加入好友
-_需要先打 5.1 搜尋好友 api 取得欲加入的好友 id 之後才打此 api ，將 friend_id 欄位中的 user id 加入好友。_
+_需要先打 5.1 搜尋好友 api 取得欲加入的好友 id 之後才打此 api ，將 follow_id 欄位中的 user id 加入好友。_
 
 - insert
 ```
@@ -2990,7 +3004,7 @@ mutation MyMutation {
 ```
 
 ## 10.3 移除好友
-_移除好友時打此 api，將 friend_id 欄位中的 user id 資料移除，當 affected rows 的值回傳= 1 表示移除資料成功。
+_移除好友時打此 api，將 follow_id 欄位中的 user id 資料移除，當 affected rows 的值回傳= 1 表示移除資料成功。
 （affected rows 的值回傳= 0 表示此筆資料不需要更新）_
 
 - insert
