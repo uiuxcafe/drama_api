@@ -2247,7 +2247,7 @@ query {
 - query
 ```
 {
-  users(where: 
+  user(where: 
     {name: {_ilike: "%mo%"}}, order_by: {created_at: desc}, limit: 15) {
     id
     name
@@ -2260,7 +2260,7 @@ query {
 ```json
 {
   "data": {
-    "users": [
+    "user": [
       {
         "id": "google-oauth2|104460022116583966210",
         "name": "Momo Xie",
@@ -2278,7 +2278,7 @@ _規則：使用用戶的 id 及搜尋到欲追蹤的 id 去搜尋 user follow �
 - Query
 ```
 {
-  users_follow(where: {user_id: {_eq: "facebook|4341819205843928"}, follow_id: {_eq: "google-oauth2|104202043101011726223"}}) {
+  user_follow(where: {user_id: {_eq: "facebook|4341819205843928"}, follow_id: {_eq: "google-oauth2|104202043101011726223"}}) {
     id
   }
 }
@@ -2608,7 +2608,7 @@ _打此 api 取得用戶偏好戲劇地區及戲劇類型列表。label 值等�
 
 ```
 query{
-  users_type(where: 
+  user_type(where: 
     {type: {label: {_in: ["category","taxonomy"]}}}) {
     type_id
     type {
@@ -2624,7 +2624,7 @@ query{
 ```json
 {
   "data": {
-    "users_type": [
+    "user_type": [
       {
         "type_id": 1,
         "type": {
@@ -2679,7 +2679,7 @@ _紀錄用戶偏好的戲劇地區及戲劇類型時打此 api，type_id 欄位�
 - insert
 ```
 mutation MyMutation {
-  insert_users_type(objects: {type_id: "4"}, on_conflict: {constraint: users_type_user_id_type_id_key, update_columns: type_id}) {
+  insert_user_type(objects: {type_id: "4"}, on_conflict: {constraint: users_type_user_id_type_id_key, update_columns: type_id}) {
     returning {
       type_id
       type {
@@ -2689,13 +2689,14 @@ mutation MyMutation {
   }
 }
 
+
 ```
 
 - Response
 ```
 {
   "data": {
-    "insert_users_type": {
+    "insert_user_type": {
       "returning": [
         {
           "type_id": 4,
@@ -2716,7 +2717,7 @@ _移除用戶偏好的戲劇地區及戲劇類型時打此 api，type_id 欄位�
 - insert
 ```
 mutation MyMutation {
-  delete_users_type(where: {type_id: {_eq: "4"}}) {
+  delete_user_type(where: {type_id: {_eq: "4"}}) {
     returning {
       type_id
       type {
@@ -2733,7 +2734,7 @@ mutation MyMutation {
 ```
 {
   "data": {
-    "delete_users_type": {
+    "delete_user_type": {
       "returning": [
         {
           "type_id": 4,
@@ -2757,7 +2758,7 @@ _打此 api 取得用戶評分為喜歡的戲劇列表。（prefer 值等於 yes
 - Query
 ```
 {
-  users_drama(where: {prefer: {_eq: "yes"}}) {
+  user_drama(where: {prefer: {_eq: "yes"}}) {
     drama_id
     drama {
       title
@@ -2772,7 +2773,7 @@ _打此 api 取得用戶評分為喜歡的戲劇列表。（prefer 值等於 yes
 ```json
 {
   "data": {
-      "users_drama": [
+      "user_drama": [
           {
               "drama_id": 33321,
               "drama": {
@@ -2798,7 +2799,7 @@ _用戶對戲劇評分時打此 api ，prefer 值等於 yes 表示喜歡 / prefe
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {drama_id: "33321", prefer: "yes"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: prefer}) {
+  insert_user_drama(objects: {drama_id: "33321", prefer: "yes"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: prefer}) {
     returning {
       drama_id
       drama {
@@ -2809,14 +2810,13 @@ mutation MyMutation {
   }
 }
 
-
 ```
 
 - Response
 ```
 {
   "data": {
-    "insert_users_drama": {
+    "insert_user_drama": {
       "returning": [
         {
           "drama_id": 33321,
@@ -2840,7 +2840,7 @@ _打此 api 取得用戶加入到我的片單的列表。_
 - Query
 ```
 query{
-  users_drama(where: {list: {_eq: true}}) {
+  user_drama(where: {list: {_eq: true}}) {
     drama_id
     drama {
       title
@@ -2855,7 +2855,7 @@ query{
 ```json
 {
   "data": {
-    "users_drama": [
+    "user_drama": [
       {
         "drama_id": 469,
         "drama": {
@@ -2888,17 +2888,17 @@ _用戶要加入戲劇至我的片單時打此 api，list 值等於 true 表示�
 - insert
 ```
 mutation MyMutation {
-  insert_users_drama(objects: {list: true, drama_id: "469"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: list}) {
+  insert_user_drama(objects: {list: true, drama_id: "469"}, on_conflict: {constraint: users_drama_user_id_drama_id_key, update_columns: list}) {
     returning {
       drama_id
       drama {
         title
       }
       list
-
     }
   }
 }
+
 
 ```
 
@@ -2906,7 +2906,7 @@ mutation MyMutation {
 ```
 {
   "data": {
-    "insert_users_drama": {
+    "insert_user_drama": {
       "returning": [
         {
           "drama_id": 469,
@@ -2930,7 +2930,7 @@ _取得好友名單打此 api。_
 - Query
 ```
 {
-  users_follow{
+  user_follow{
     follow_id
     user {
       picture
@@ -2947,7 +2947,7 @@ _取得好友名單打此 api。_
 ```json
 {
   "data": {
-    "users_follow": [
+    "user_follow": [
       {
         "follow_id": "facebook|3427286247300412",
         "user": {
@@ -2984,7 +2984,7 @@ _需要先打 5.1 搜尋好友 api 取得欲加入的好友 id 之後才打此 a
 - insert
 ```
 mutation MyMutation {
-  insert_users_follow(objects: {follow_id: "google-oauth2|104202043101011726223"}, on_conflict: {update_columns: follow_id, constraint: users_friend_user_id_friend_id_key}) {
+  insert_user_follow(objects: {follow_id: "google-oauth2|104202043101011726223"}, on_conflict: {update_columns: follow_id, constraint: users_friend_user_id_friend_id_key}) {
     returning {
       follow_id
       id
@@ -2992,13 +2992,14 @@ mutation MyMutation {
   }
 }
 
+
 ```
 
 - Response
 ```
 {
   "data": {
-    "insert_users_follow": {
+    "insert_user_follow": {
       "returning": [
         {
           "follow_id": "google-oauth2|104202043101011726223"
@@ -3017,7 +3018,7 @@ _移除好友時打此 api，將 follow_id 欄位中的 user id 資料移除，�
 - insert
 ```
 mutation MyMutation {
-  delete_users_follow(where: {follow_id: {_eq: "google-oauth2|104202043101011726223"}}) {
+  delete_user_follow(where: {follow_id: {_eq: "google-oauth2|104202043101011726223"}}) {
     returning {
       follow_id
     }
@@ -3030,7 +3031,7 @@ mutation MyMutation {
 ```
 {
   "data": {
-    "delete_users_follow": {
+    "delete_user_follow": {
       "returning": [
         {
           "follow_id": "google-oauth2|104202043101011726223"
