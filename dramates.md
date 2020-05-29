@@ -56,6 +56,22 @@
     - [9.1 取得好友名單](#91-取得好友名單)
     - [9.2 加入好友](#92-加入好友)
     - [9.3 移除好友](#93-移除好友)
+- [10. 發文功能](#10-發文功能)
+    - [10.1 發文](#101-發文)
+        - [封面圖](#封面圖)
+    - [10.2 編輯文章](#102-編輯文章)
+    - [10.3 移除文章](#103-移除文章)
+    - [10.4 取得我的發文列表](#104-取得我的發文列表)
+    - [10.5 取得我的發文詳細頁](#105-取得我的發文詳細頁)
+- [11. 按讚功能](#11-按讚功能)
+    - [11.1 按讚討論文章](#111-按讚討論文章)
+    - [11.2 按讚新聞文章](#112-按讚新聞文章)
+    - [11.3 討論文章收回按讚](#113-討論文章收回按讚)
+    - [11.4 新聞文章收回按讚](#114-新聞文章收回按讚)
+- [12. 留言功能](#12-留言功能)
+    - [留言](#留言)
+    - [編輯留言](#編輯留言)
+    - [移除留言](#移除留言)
 
 <!-- /TOC -->
 _用戶token規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位。_
@@ -3042,4 +3058,514 @@ mutation MyMutation {
   }
 }
 
+```
+
+# 10. 發文功能
+
+## 10.1 發文
+_新增我的文章打此 api ，更新規則為變更 title / content / thumnail / category 的內容。_
+_category id 1 =台劇、id 2 =日劇、id 3 =美劇、id 4 =陸劇、id 5 =韓劇、id 41 =其他。_
+_前端需要判斷此 api 打一次之後即代表發文成功，不讓用戶重複案發文按鈕。_
+
+### 封面圖
+_由前端判斷文章是否有圖片，有圖片就取得第一張圖作為 thumnail，沒有則 thumnail 留空不顯示文章封面圖。_
+
+- insert
+```
+mutation MyMutation {
+  insert_user_post(objects: {
+    title: "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑", 
+    category_id: "4", 
+    content: "要說這段時間最熱的綜藝節目，就要數《青春有你2》和《創造營2020》兩檔女團選秀節目了，兩個節目在話題度上和選手實力上一直都在暗暗的PK，從結果來看，似乎早就播出的《青你2》略占上風，而俗話說「有女生的地方就有江湖」，創3怎麼會甘拜下風？今天小妹兒就來說說這還沒成團就開始鬥的女孩兒個中代表——陳卓璇。  <img class=\"alignnone size-full wp-image-455359\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/d61c3ec37fc541518bba46c4855363f8.png.aspx_.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"1280\" height=\"674\" />", 
+    thumbnail: "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/d61c3ec37fc541518bba46c4855363f8.png.aspx_.png"}, 
+    on_conflict: {constraint: user_post_pkey, update_columns: content}) {
+    affected_rows
+    returning {
+      user_id
+      title
+      content
+      thumbnail
+      type {
+        name
+      }
+    }
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "insert_user_post": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "user_id": "facebook|4341819205843928",
+          "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+          "content": "要說這段時間最熱的綜藝節目，就要數《青春有你2》和《創造營2020》兩檔女團選秀節目了，兩個節目在話題度上和選手實力上一直都在暗暗的PK，從結果來看，似乎早就播出的《青你2》略占上風，而俗話說「有女生的地方就有江湖」，創3怎麼會甘拜下風？今天小妹兒就來說說這還沒成團就開始鬥的女孩兒個中代表——陳卓璇。  <img class=\"alignnone size-full wp-image-455359\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/d61c3ec37fc541518bba46c4855363f8.png.aspx_.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"1280\" height=\"674\" />",
+          "thumbnail": "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/d61c3ec37fc541518bba46c4855363f8.png.aspx_.png",
+          "type": {
+            "name": "陸劇"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+## 10.2 編輯文章
+_用戶要編輯已發文的我的文章時打此 api。_
+
+- update
+```
+mutation MyMutation {
+  update_user_post(where: {id: {_eq: "1"}}, _set: {title: "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑", content: "事情是這樣，《創3》播到第四期，第一輪淘汰之際，一個看起來「柔柔弱弱」的女生陳卓璇，突然登上了熱搜榜第一的位置。 <img class=\"alignnone size-full wp-image-455304\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/950f2cf96c874c4cb1023f5cb1100690.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"660\" height=\"393\" />", thumbnail: "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/b781515c5c6e4397ad591b692a796bee.jpeg", category_id: "3"}) {
+    affected_rows
+    returning {
+      title
+      content
+      thumbnail
+      type {
+        name
+      }
+    }
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "update_user_post": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+          "content": "事情是這樣，《創3》播到第四期，第一輪淘汰之際，一個看起來「柔柔弱弱」的女生陳卓璇，突然登上了熱搜榜第一的位置。 <img class=\"alignnone size-full wp-image-455304\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/950f2cf96c874c4cb1023f5cb1100690.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"660\" height=\"393\" />",
+          "thumbnail": "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/b781515c5c6e4397ad591b692a796bee.jpeg",
+          "type": {
+            "name": "美劇"
+          }
+        }
+      ]
+    }
+  }
+}
+
+```
+
+## 10.3 移除文章
+_用戶要移除已發文的我的文章時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
+
+- insert
+```
+mutation MyMutation {
+  delete_user_post(where: {id: {_eq: "19"}}) {
+    affected_rows
+    returning {
+      title
+    }
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "delete_user_post": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+        }
+      ]
+    }
+  }
+}
+
+```
+
+## 10.4 取得我的發文列表
+_打此 api 取得用戶發文過的我的文章列表，排序時間根據近期到遠排序。_
+
+- Query
+```
+query MyQuery {
+  user_post(order_by: {created_at: desc}) {
+    id
+    title
+    thumbnail
+    created_at
+    type {
+      name
+    }
+    comment_count
+    like_count
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "user_post": [
+      {
+        "id": 16,
+        "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+        "thumbnail": "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/d61c3ec37fc541518bba46c4855363f8.png.aspx_.png",
+        "created_at": "2020-05-29T11:28:23.61134",
+        "type": {
+          "name": "陸劇"
+        },
+        "comment_count": 0,
+        "like_count": 0
+      },
+      {
+        "id": 1,
+        "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+        "thumbnail": "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/b781515c5c6e4397ad591b692a796bee.jpeg",
+        "created_at": "2020-05-29T10:37:53.088898",
+        "type": {
+          "name": "美劇"
+        },
+        "comment_count": 0,
+        "like_count": 0
+      }
+    ]
+  }
+}
+```
+
+## 10.5 取得我的發文詳細頁
+_打此 api 取得用戶我的文章詳細頁。_
+
+- Query
+```
+query MyQuery {
+  user_post(where: {id: {_eq: "1"}}) {
+    id
+    title
+    content
+    created_at
+    type {
+      name
+    }
+    user {
+      name
+      picture
+    }
+    comment_count
+    like_count
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "user_post": [
+      {
+        "id": 1,
+        "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+        "content": "事情是這樣，《創3》播到第四期，第一輪淘汰之際，一個看起來「柔柔弱弱」的女生陳卓璇，突然登上了熱搜榜第一的位置。 <img class=\"alignnone size-full wp-image-455304\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/950f2cf96c874c4cb1023f5cb1100690.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"660\" height=\"393\" />",
+        "created_at": "2020-05-29T10:37:53.088898",
+        "type": {
+          "name": "美劇"
+        },
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        },
+        "comment_count": 0,
+        "like_count": 0
+      }
+    ]
+  }
+}
+```
+
+# 11. 按讚功能
+
+## 11.1 按讚討論文章
+_對討論文章按讚打此 api，當 affected rows 的值回傳= 1 表示按讚成功。_
+
+- insert
+```
+mutation MyMutation {
+  insert_user_like(objects: {table: "user_post", table_id: "1", prefer: "yes"}, on_conflict: {constraint: user_like_pkey, update_columns: prefer}) {
+    affected_rows
+    returning {
+      prefer
+      table
+    }
+  }
+  update_user_post(where: {id: {_eq: "1"}}, _inc: {like_count: "1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "insert_user_like": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "prefer": "yes",
+          "table": "news"
+        }
+      ]
+    },
+    "update_user_post": {
+      "affected_rows": 1
+    }
+  }
+}
+```
+
+## 11.2 按讚新聞文章
+_對新聞文章按讚打此 api，當 affected rows 的值回傳= 1 表示按讚成功。_
+
+- insert
+```
+mutation MyMutation {
+  insert_user_like(objects: {table: "news", table_id: "1", prefer: "yes"}, on_conflict: {constraint: user_like_pkey, update_columns: prefer}) {
+    affected_rows
+    returning {
+      prefer
+      table
+    }
+  }
+  update_news(where: {id: {_eq: "1"}}, _inc: {like_count: "1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "insert_user_like": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "prefer": "yes",
+          "table": "news"
+        }
+      ]
+    },
+    "update_news": {
+      "affected_rows": 1
+    }
+  }
+}
+```
+## 11.3 討論文章收回按讚
+_對按讚過的討論文章收回讚打此 api，當 affected rows 的值回傳= 1 表示收回成功。_
+
+- insert
+```
+mutation MyMutation {
+  delete_user_like(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}}) {
+    affected_rows
+    returning {
+      table
+      prefer
+    }
+  }
+  update_user_post(where: {id: {_eq: "1"}}, _inc: {like_count: "-1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "delete_user_like": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "table": "user_post",
+          "prefer": "yes"
+        }
+      ]
+    },
+    "update_user_post": {
+      "affected_rows": 1
+    }
+  }
+}
+```
+
+## 11.4 新聞文章收回按讚
+_對按讚過的新聞文章收回讚打此 api，當 affected rows 的值回傳= 1 表示收回成功。_
+
+- insert
+```
+mutation MyMutation {
+  delete_user_like(where: {table: {_eq: "news"}, table_id: {_eq: "1"}}) {
+    affected_rows
+    returning {
+      table
+      prefer
+    }
+  }
+  update_news(where: {id: {_eq: "1"}}, _inc: {like_count: "-1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "delete_user_like": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "table": "news",
+          "prefer": "yes"
+        }
+      ]
+    },
+    "update_news": {
+      "affected_rows": 1
+    }
+  }
+}
+```
+
+# 12. 留言功能
+
+## 留言
+_對討論文章留言打此 api，當 affected rows 的值回傳= 1 表示留言成功。_
+
+- insert
+```
+mutation MyMutation {
+  insert_user_comment(objects: {table: "user_post", table_id: "1", content: "我很喜歡陳情令耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+    affected_rows
+    returning {
+      table
+      content
+    }
+  }
+  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "insert_user_comment": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "table": "user_post",
+          "content": "我很喜歡陳情令耶！"
+        }
+      ]
+    },
+    "update_user_post": {
+      "affected_rows": 1
+    }
+  }
+}
+```
+
+## 編輯留言
+_編輯討論文章區的留言打此 api，當 affected rows 的值回傳= 1 表示編輯成功。_
+
+- insert
+```
+mutation MyMutation {
+  update_user_comment(where: {table: {_eq: "user_post"}, id: {_eq: "1"}}, _set: {content: "陳情令真的必看"}) {
+    affected_rows
+    returning {
+      table
+      content
+    }
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "update_user_comment": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "table": "user_post",
+          "content": "陳情令真的必看"
+        }
+      ]
+    }
+  }
+}
+```
+
+## 移除留言
+_移除討論文章區的留言打此 api，當 affected rows 的值回傳= 1 表示編輯成功。_
+
+- insert
+```
+mutation MyMutation {
+  delete_user_comment(where: {id: {_eq: "5"}}) {
+    affected_rows
+    returning {
+      content
+    }
+  }
+  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "-1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "delete_user_comment": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "content": "陳情令很好看啊"
+        }
+      ]
+    },
+    "update_user_post": {
+      "affected_rows": 1
+    }
+  }
+}
 ```
