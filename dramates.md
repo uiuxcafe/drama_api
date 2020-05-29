@@ -75,6 +75,7 @@
     - [新增新聞文章留言](#新增新聞文章留言)
     - [編輯新聞文章留言](#編輯新聞文章留言)
     - [移除新聞文章留言](#移除新聞文章留言)
+    - [留言列表](#留言列表)
 
 <!-- /TOC -->
 _用戶token規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位。_
@@ -3714,6 +3715,105 @@ mutation MyMutation {
     "update_news": {
       "affected_rows": 1
     }
+  }
+}
+```
+
+## 留言列表
+- insert
+```
+query MyQuery {
+  user_comment(where: {table: {_eq: "news"}, table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
+    id
+    content
+    created_at
+    user {
+      name
+      picture
+    }
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "user_comment": [
+      {
+        "id": 31,
+        "content": "推+1",
+        "created_at": "2020-05-29T17:58:29.201091",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 30,
+        "content": "推薦大家",
+        "created_at": "2020-05-29T17:58:24.610597",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 29,
+        "content": "真的好看",
+        "created_at": "2020-05-29T17:58:19.949616",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 28,
+        "content": "陳情令萬歲",
+        "created_at": "2020-05-29T17:58:05.958963",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 27,
+        "content": "哈哈哈",
+        "created_at": "2020-05-29T17:57:57.982588",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 26,
+        "content": "夏天回憶！",
+        "created_at": "2020-05-29T17:51:11.753763",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 25,
+        "content": "陳情令！！",
+        "created_at": "2020-05-29T17:51:06.295326",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 23,
+        "content": "pick她！",
+        "created_at": "2020-05-29T17:46:15.799139",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      }
+    ]
   }
 }
 ```
