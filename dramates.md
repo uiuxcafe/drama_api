@@ -9,6 +9,7 @@
     - [1.6 新聞相關戲劇列表](#16-新聞相關戲劇列表)
     - [1.7 新聞相關討論列表](#17-新聞相關討論列表)
     - [1.8 個人化新聞列表](#18-個人化新聞列表)
+    - [新聞留言列表](#新聞留言列表)
 - [2. 戲劇區](#2-戲劇區)
     - [2.1 戲劇輪播列表](#21-戲劇輪播列表)
     - [2.2 戲劇列表頁](#22-戲劇列表頁)
@@ -29,6 +30,7 @@
     - [3.3 討論列表頁](#33-討論列表頁)
     - [3.4 個人化討論列表](#34-個人化討論列表)
     - [3.5 比對討論標題](#35-比對討論標題)
+    - [討論留言列表](#討論留言列表)
 - [4. 關鍵字](#4-關鍵字)
     - [4.1 熱門關鍵字列表](#41-熱門關鍵字列表)
 - [5. 搜尋結果](#5-搜尋結果)
@@ -75,7 +77,6 @@
     - [新增新聞文章留言](#新增新聞文章留言)
     - [編輯新聞文章留言](#編輯新聞文章留言)
     - [移除新聞文章留言](#移除新聞文章留言)
-    - [留言列表](#留言列表)
 
 <!-- /TOC -->
 _用戶token規則：前端需要抓取用戶的 token 值帶入到 Request Headers 裡的 Authorization 欄位。_
@@ -136,6 +137,7 @@ query {
 ## 1.2 新聞列表頁
 
 _進入新聞首頁時，打此 api，即顯示新聞最新列表。_
+＿
 
 _前端規則：新聞列表頁預設 10 筆資料，當資料不足 10 筆，視為最後一頁，並在資料末端顯示「沒有更多資料了」。進入畫面第一次打此 api，offset 預設為 0，當用戶 load more 時，offset 增加 10。_
 
@@ -191,7 +193,7 @@ query {
 ## 1.3 新聞詳細頁
 
 _點選新聞後，打此 api，即取得該篇新聞詳細資料。_
-
+_進入詳細頁後打新聞留言列表 api，取得每篇新聞的留言。_
 
 - 新聞 WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
 
@@ -655,6 +657,51 @@ _須由前端判斷 query 的是 news 資料表，並於前端顯示「新聞」
         "excerpt": "說到《陳情令》這部劇，對於我們觀眾來說，已經是十分熟悉的作品了。作為去年夏天熱度和影響力都非常高的作品，不僅劇情好看，劇組後期製作，每位演員們的演技和表現都很精彩，並且這部劇完結後，熱度依舊很高，並且還走出國門，在國外幾個國家上映，可以說很優秀了。",
         "thumbnail": "https://ek21.com/news/drama/wp-content/uploads/sites/10/2020/04/e0298a57f1d85dcfe765573af9e0fb1f.jpg",
         "created_at": "2020-04-08T12:07:54.748655"
+      }
+    ]
+  }
+}
+```
+
+## 新聞留言列表
+- insert
+```
+query MyQuery {
+  user_comment(where: {table: {_eq: "news"}, table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
+    id
+    content
+    created_at
+    user {
+      name
+      picture
+    }
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "user_comment": [
+      {
+        "id": 31,
+        "content": "推+1",
+        "created_at": "2020-05-29T17:58:29.201091",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 23,
+        "content": "pick她！",
+        "created_at": "2020-05-29T17:46:15.799139",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
       }
     ]
   }
@@ -1738,6 +1785,50 @@ _用來比對討論區的文章 title 是否包含這些關鍵字（戲劇title�
           }
         ],
         "created_at": "2020-04-08T13:37:54.068836"
+      }
+    ]
+  }
+}
+```
+
+## 討論留言列表
+- insert
+```
+query MyQuery {
+  user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
+    id
+    content
+    created_at
+    user {
+      name
+      picture
+    }
+  }
+}
+```
+
+- Response
+```json
+{
+  "data": {
+    "user_comment": [
+      {
+        "id": 22,
+        "content": "我很喜歡陳情令耶！",
+        "created_at": "2020-05-29T17:18:37.333258",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
+      },
+      {
+        "id": 16,
+        "content": "陳情令真的必看",
+        "created_at": "2020-05-29T17:09:15.543086",
+        "user": {
+          "name": "依洛斯",
+          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
+        }
       }
     ]
   }
@@ -3251,6 +3342,7 @@ query MyQuery {
 
 ## 10.5 取得我的發文詳細頁
 _打此 api 取得用戶我的文章詳細頁。_
+_進入詳細頁後打討論留言列表 api，取得每篇新聞的留言。_
 
 - Query
 ```
@@ -3715,105 +3807,6 @@ mutation MyMutation {
     "update_news": {
       "affected_rows": 1
     }
-  }
-}
-```
-
-## 留言列表
-- insert
-```
-query MyQuery {
-  user_comment(where: {table: {_eq: "news"}, table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
-    id
-    content
-    created_at
-    user {
-      name
-      picture
-    }
-  }
-}
-
-```
-
-- Response
-```json
-{
-  "data": {
-    "user_comment": [
-      {
-        "id": 31,
-        "content": "推+1",
-        "created_at": "2020-05-29T17:58:29.201091",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      },
-      {
-        "id": 30,
-        "content": "推薦大家",
-        "created_at": "2020-05-29T17:58:24.610597",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      },
-      {
-        "id": 29,
-        "content": "真的好看",
-        "created_at": "2020-05-29T17:58:19.949616",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      },
-      {
-        "id": 28,
-        "content": "陳情令萬歲",
-        "created_at": "2020-05-29T17:58:05.958963",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      },
-      {
-        "id": 27,
-        "content": "哈哈哈",
-        "created_at": "2020-05-29T17:57:57.982588",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      },
-      {
-        "id": 26,
-        "content": "夏天回憶！",
-        "created_at": "2020-05-29T17:51:11.753763",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      },
-      {
-        "id": 25,
-        "content": "陳情令！！",
-        "created_at": "2020-05-29T17:51:06.295326",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      },
-      {
-        "id": 23,
-        "content": "pick她！",
-        "created_at": "2020-05-29T17:46:15.799139",
-        "user": {
-          "name": "依洛斯",
-          "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
-      }
-    ]
   }
 }
 ```
