@@ -1535,8 +1535,6 @@ _用 3.1 的 name 欄位來搜尋 title 包含這個關鍵字的討論文章列�
     created_at
     thumbnail
     source_author
-    like_count
-    comment_count
   }
 }
 
@@ -1556,8 +1554,6 @@ _用 3.1 的 name 欄位來搜尋 title 包含這個關鍵字的討論文章列�
         "created_at": "2020-04-08T13:39:16.939412",
         "thumbnail": "https://i.imgur.com/VpZ1Ql4l.jpg",
         "source_author": "momo",
-        "like_count": 1,
-        "comment_count": 1
       },
       {
         "id": 4006,
@@ -1566,8 +1562,6 @@ _用 3.1 的 name 欄位來搜尋 title 包含這個關鍵字的討論文章列�
         "created_at": "2020-04-06T14:04:22.422091",
         "thumbnail": "https://i.imgur.com/sXTYPcA.jpg",
         "source_author": "momo",
-        "like_count": 0,
-        "comment_count": 0
       }
     ]
   }
@@ -1596,8 +1590,6 @@ query {
       image_profile
     }
     source_url
-    like_count
-    comment_count
   }
 }
 
@@ -1617,8 +1609,6 @@ query {
       image_profile
     }
     source_url
-    like_count
-    comment_count
   }
 }
 
@@ -1638,8 +1628,6 @@ query {
       image_profile
     }
     source_url
-    like_count
-    comment_count
   }
 }
 
@@ -1659,8 +1647,6 @@ query {
       image_profile
     }
     source_url
-    like_count
-    comment_count
   }
 }
 
@@ -1680,8 +1666,6 @@ query {
       image_profile
     }
     source_url
-    like_count
-    comment_count
   }
 }
 
@@ -1702,9 +1686,7 @@ query {
           "username": "Dcard",
           "image_profile": "https://firebasestorage.googleapis.com/v0/b/dramate-70869.appspot.com/o/forum_dacrd.png?alt=media&token=12ba9aac-58ea-461d-910d-3f7276a60e60"
         },
-        "source_url": "https://www.dcard.tw/f/ea_series/p/233381461",
-        "like_count": 0,
-        "comment_count": 0
+        "source_url": "https://www.dcard.tw/f/ea_series/p/233381461"
       },
       {
         "id": 3999,
@@ -1715,9 +1697,7 @@ query {
           "username": "Dcard",
           "image_profile": "https://firebasestorage.googleapis.com/v0/b/dramate-70869.appspot.com/o/forum_dacrd.png?alt=media&token=12ba9aac-58ea-461d-910d-3f7276a60e60"
         },
-        "source_url": "https://www.dcard.tw/f/ea_series/p/233254502",
-        "like_count": 0,
-        "comment_count": 0
+        "source_url": "https://www.dcard.tw/f/ea_series/p/233254502"
       }
     ]
   }
