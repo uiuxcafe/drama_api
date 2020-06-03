@@ -72,11 +72,9 @@
     - [11.4 新聞文章收回按讚](#114-新聞文章收回按讚)
 - [12. 留言功能](#12-留言功能)
     - [12.1 新增討論文章留言](#121-新增討論文章留言)
-    - [回覆討論區其他用戶留言](#回覆討論區其他用戶留言)
     - [12.2 編輯討論文章留言](#122-編輯討論文章留言)
     - [12.3 移除討論文章留言](#123-移除討論文章留言)
     - [12.4 新增新聞文章留言](#124-新增新聞文章留言)
-    - [回覆新聞區其他用戶留言](#回覆新聞區其他用戶留言)
     - [12.5 編輯新聞文章留言](#125-編輯新聞文章留言)
     - [12.6 移除新聞文章留言](#126-移除新聞文章留言)
 
@@ -3575,30 +3573,13 @@ mutation MyMutation {
 _對討論文章留言打此 api，當 affected rows 的值回傳= 1 表示留言成功。_
 _table id = 用戶發文文章(user post) ，所以要同時更新 insert 跟 update 的 id。_
 
+_情境一：回覆討論文章請打 table = user post。_
+_情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
+
 - insert
 ```
 mutation MyMutation {
   insert_user_comment(objects: {table: "user_post", table_id: "1", content: "我很喜歡陳情令耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
-    affected_rows
-    returning {
-      id
-      table
-      content
-    }
-  }
-  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
-    affected_rows
-  }
-}
-
-```
-## 回覆討論區其他用戶留言
-_回覆其他用戶的留言時打此 api，table id ＝要回覆的留言id。_
-
-- insert
-```
-mutation MyMutation {
-  insert_user_comment(objects: {table: "user_comment", table_id: "16", content: "真的好看耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
@@ -3721,30 +3702,13 @@ mutation MyMutation {
 _對新聞文章留言打此 api，當 affected rows 的值回傳= 1 表示留言成功。_
 _table id = 新聞文章(news) id ，所以要同時更新 insert 跟 update 的 id。_
 
+_情境一：回覆討論文章請打 table = news。_
+_情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
+
 - insert
 ```
 mutation MyMutation {
   insert_user_comment(objects: {table: "news", table_id: "1", content: "哈哈哈"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
-    affected_rows
-    returning {
-      id
-      table
-      content
-    }
-  }
-  update_news(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
-    affected_rows
-  }
-}
-
-```
-## 回覆新聞區其他用戶留言
-_回覆其他用戶的留言時打此 api，table id ＝要回覆的留言id。_
-
-- insert
-```
-mutation MyMutation {
-  insert_user_comment(objects: {table: "user_comment", table_id: "23", content: "真的好看耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
