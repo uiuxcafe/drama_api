@@ -72,9 +72,11 @@
     - [11.4 新聞文章收回按讚](#114-新聞文章收回按讚)
 - [12. 留言功能](#12-留言功能)
     - [12.1 新增討論文章留言](#121-新增討論文章留言)
+    - [回覆討論區其他用戶留言](#回覆討論區其他用戶留言)
     - [12.2 編輯討論文章留言](#122-編輯討論文章留言)
     - [12.3 移除討論文章留言](#123-移除討論文章留言)
     - [12.4 新增新聞文章留言](#124-新增新聞文章留言)
+    - [回覆新聞區其他用戶留言](#回覆新聞區其他用戶留言)
     - [12.5 編輯新聞文章留言](#125-編輯新聞文章留言)
     - [12.6 移除新聞文章留言](#126-移除新聞文章留言)
 
@@ -201,7 +203,7 @@ _前端規則：新聞列表頁預設 10 筆資料，當資料不足 10 筆，�
 ## 1.3 新聞詳細頁
 
 _點選新聞後，打此 api，即取得該篇新聞詳細資料。_
-_進入詳細頁後打 1.9 新聞留言列表 api，取得每篇新聞的留言。_
+_進入詳細頁後打 1.9 新聞留言列表，取得每篇新聞的留言。_
 
 - 新聞 WF [https://whimsical.com/6peTte9KXein4Za26dMfTQ]
 
@@ -221,6 +223,8 @@ query {
         label
       }
     }
+    like_count
+    comment_count
   }
 }
 
@@ -273,7 +277,9 @@ query {
               "label": "tag"
             }
           }
-        ]
+        ],
+        "like_count": 0,
+        "comment_count": 8
       }
     ]
   }
@@ -2467,7 +2473,6 @@ _前端規則：用戶點選地區時，打 6.5 對選取地區評為喜歡，�
   }
 }
 
-
 ```
 
 - Response
@@ -3389,8 +3394,8 @@ query MyQuery {
           "name": "依洛斯",
           "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
         },
-        "comment_count": 0,
-        "like_count": 0
+        "comment_count": 6,
+        "like_count": 1
       }
     ]
   }
@@ -3587,6 +3592,26 @@ mutation MyMutation {
 }
 
 ```
+## 回覆討論區其他用戶留言
+_回覆其他用戶的留言時打此 api，table id ＝要回覆的留言id。_
+
+- insert
+```
+mutation MyMutation {
+  insert_user_comment(objects: {table: "user_comment", table_id: "16", content: "真的好看耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+    affected_rows
+    returning {
+      id
+      table
+      content
+    }
+  }
+  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
+    affected_rows
+  }
+}
+
+```
 
 - Response
 ```json
@@ -3700,6 +3725,26 @@ _table id = 新聞文章(news) id ，所以要同時更新 insert 跟 update 的
 ```
 mutation MyMutation {
   insert_user_comment(objects: {table: "news", table_id: "1", content: "哈哈哈"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+    affected_rows
+    returning {
+      id
+      table
+      content
+    }
+  }
+  update_news(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
+    affected_rows
+  }
+}
+
+```
+## 回覆新聞區其他用戶留言
+_回覆其他用戶的留言時打此 api，table id ＝要回覆的留言id。_
+
+- insert
+```
+mutation MyMutation {
+  insert_user_comment(objects: {table: "user_comment", table_id: "23", content: "真的好看耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
