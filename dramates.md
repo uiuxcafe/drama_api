@@ -3448,11 +3448,12 @@ mutation MyMutation {
 
 ## 11.2 討論文章收回按讚
 _對按讚過的討論文章收回讚打此 api，當 affected rows 的值回傳= 1 表示收回成功。_
+_第一個 table id = 用戶發文文章(user post) 的 id ，第二個的 id 是按讚的 id。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_user_like(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}}) {
+  delete_user_like(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}, id: {_eq: "105"}}) {
     affected_rows
     returning {
       table
@@ -3463,6 +3464,7 @@ mutation MyMutation {
     affected_rows
   }
 }
+
 
 ```
 
@@ -3497,6 +3499,7 @@ mutation MyMutation {
   insert_user_like(objects: {table: "news", table_id: "1", prefer: "yes"}, on_conflict: {constraint: user_like_pkey, update_columns: prefer}) {
     affected_rows
     returning {
+      id
       prefer
       table
     }
@@ -3516,6 +3519,7 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
+          "id": 108,
           "prefer": "yes",
           "table": "news"
         }
@@ -3530,11 +3534,12 @@ mutation MyMutation {
 
 ## 11.4 新聞文章收回按讚
 _對按讚過的新聞文章收回讚打此 api，當 affected rows 的值回傳= 1 表示收回成功。_
+_第一個 table id = 新聞(news) 的 id ，第二個的 id 是按讚的 id。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_user_like(where: {table: {_eq: "news"}, table_id: {_eq: "1"}}) {
+  delete_user_like(where: {table: {_eq: "news"}, table_id: {_eq: "1"}, id: {_eq: "108"}}) {
     affected_rows
     returning {
       table
@@ -3566,6 +3571,7 @@ mutation MyMutation {
     }
   }
 }
+
 ```
 
 
@@ -3578,6 +3584,7 @@ _table id = 用戶發文文章(user post) ，所以要同時更新 insert 跟 up
 _情境一：回覆討論文章請打 table = user post。_
 _情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
 
+### 情境一 對討論文章留言
 - insert
 ```
 mutation MyMutation {
@@ -3606,6 +3613,46 @@ mutation MyMutation {
         {
           "id": 22,
           "table": "user_post",
+          "content": "我很喜歡陳情令耶！"
+        }
+      ]
+    },
+    "update_user_post": {
+      "affected_rows": 1
+    }
+  }
+}
+```
+
+### 情境二 回覆別人討論文章留言
+- insert
+```
+mutation MyMutation {
+  insert_user_comment(objects: {table: "user_comment", content: "我很喜歡陳情令耶！", table_id: "37"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+    affected_rows
+    returning {
+      id
+      table
+      content
+    }
+  }
+  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "insert_user_comment": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "id": 45,
+          "table": "user_comment",
           "content": "我很喜歡陳情令耶！"
         }
       ]
