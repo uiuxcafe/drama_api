@@ -3413,6 +3413,7 @@ mutation MyMutation {
   insert_user_like(objects: {table: "user_post", table_id: "1", prefer: "yes"}, on_conflict: {constraint: user_like_pkey, update_columns: prefer}) {
     affected_rows
     returning {
+      id
       prefer
       table
     }
@@ -3432,8 +3433,9 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
+          "id": 105,
           "prefer": "yes",
-          "table": "news"
+          "table": "user_post"
         }
       ]
     },
