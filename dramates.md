@@ -3609,6 +3609,7 @@ _對討論文章留言打此 api，同時此討論文章的留言數也須增加
 _id 規則：table id = 用戶發文文章(user post) 的 id = update 的 id，所以要同時更新 table id 跟 update 的 id。_
 
 _情境一：回覆討論文章請打 table = user post。_
+
 _情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
 
 ### 情境一 對討論文章留言
@@ -3777,6 +3778,7 @@ _對新聞文章留言打此 api，同時此新聞文章的留言數也須增加
 _id 規則：table id = 新聞文章(news) id= update 的 id ，所以要同時更新 table id 跟 update 的 id。_
 
 _情境一：回覆新聞文章請打 table = news。_
+
 _情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
 
 ### 情境一 回覆新聞文章
