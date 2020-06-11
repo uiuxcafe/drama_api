@@ -78,6 +78,8 @@
     - [12.2 編輯討論文章留言](#122-編輯討論文章留言)
     - [12.3 移除討論文章留言](#123-移除討論文章留言)
     - [12.4 新增新聞文章留言](#124-新增新聞文章留言)
+        - [情境一 回覆新聞文章](#情境一-回覆新聞文章)
+        - [情境二 回覆別人新聞文章留言](#情境二-回覆別人新聞文章留言)
     - [12.5 編輯新聞文章留言](#125-編輯新聞文章留言)
     - [12.6 移除新聞文章留言](#126-移除新聞文章留言)
 
@@ -3185,14 +3187,14 @@ mutation MyMutation {
 ```
 
 # 10. 發文功能
-
+_發文測試用 id :用戶發文(user post) id = 35(移除文章時不使用測試用 id)_
 ## 10.1 發文
-_新增我的文章打此 api ，更新規則為變更 title / content / thumnail / category 的內容。_
+_新增我的文章打此 api ，輸入 title / content / thumbnail / category 的內容，當 affected rows 的值回傳= 1 表示新增成功。回傳 id 為用戶發文 id_
 _category id 1 =台劇、id 2 =日劇、id 3 =美劇、id 4 =陸劇、id 5 =韓劇、id 41 =其他。_
-_前端需要判斷此 api 打一次之後即代表發文成功，不讓用戶重複案發文按鈕。_
+_前端需要判斷此 api 打一次之後即代表發文成功，不讓用戶重複按發文按鈕。_
 
 ### 封面圖
-_由前端判斷文章是否有圖片，有圖片就取得第一張圖作為 thumnail，沒有則 thumnail 留空不顯示文章封面圖。_
+_由前端判斷文章是否有圖片，有圖片就取得第一張圖作為 thumbnail，沒有則 thumbnail 留空不顯示文章封面圖。_
 
 - insert
 ```
@@ -3243,12 +3245,12 @@ mutation MyMutation {
 ```
 
 ## 10.2 編輯文章
-_用戶要編輯已發文的我的文章時打此 api。_
+_用戶要編輯自己已發文的文章時打此 api。更新規則為變更 title / content / thumbnail / category 的內容，當 affected rows 的值回傳= 1 表示編輯成功。_
 
 - update
 ```
 mutation MyMutation {
-  update_user_post(where: {id: {_eq: "1"}}, _set: {title: "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑", content: "事情是這樣，《創3》播到第四期，第一輪淘汰之際，一個看起來「柔柔弱弱」的女生陳卓璇，突然登上了熱搜榜第一的位置。 <img class=\"alignnone size-full wp-image-455304\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/950f2cf96c874c4cb1023f5cb1100690.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"660\" height=\"393\" />", thumbnail: "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/b781515c5c6e4397ad591b692a796bee.jpeg", category_id: "3"}) {
+  update_user_post(where: {id: {_eq: "35"}}, _set: {title: "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑", content: "事情是這樣，《創3》播到第四期，第一輪淘汰之際，一個看起來「柔柔弱弱」的女生陳卓璇，突然登上了熱搜榜第一的位置。 <img class=\"alignnone size-full wp-image-455304\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/950f2cf96c874c4cb1023f5cb1100690.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"660\" height=\"393\" />", thumbnail: "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/b781515c5c6e4397ad591b692a796bee.jpeg", category_id: "3"}) {
     affected_rows
     returning {
       title
@@ -3286,7 +3288,7 @@ mutation MyMutation {
 ```
 
 ## 10.3 移除文章
-_用戶要移除已發文的我的文章時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
+_用戶要移除自己已發文的文章時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
 
 - insert
 ```
@@ -3319,7 +3321,7 @@ mutation MyMutation {
 ```
 
 ## 10.4 取得我的發文列表
-_打此 api 取得用戶發文過的我的文章列表，排序時間根據近期到遠排序。_
+_打此 api 取得用戶已發文的文章列表，以 created at 時間近到遠排序。_
 
 - Query
 ```
@@ -3372,13 +3374,13 @@ query MyQuery {
 ```
 
 ## 10.5 取得我的發文詳細頁
-_打此 api 取得用戶我的文章詳細頁。_
-_進入詳細頁後打 3.6 討論留言列表 api，取得每篇新聞的留言。_
+_打此 api 取得用戶已發文文章詳細頁。_
+_進入詳細頁後打 3.6 討論留言列表 api，取得此發文文章的所有留言。_
 
 - Query
 ```
 query MyQuery {
-  user_post(where: {id: {_eq: "1"}}) {
+  user_post(where: {id: {_eq: "35"}}) {
     id
     title
     content
@@ -3403,7 +3405,7 @@ query MyQuery {
   "data": {
     "user_post": [
       {
-        "id": 1,
+        "id": 35,
         "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
         "content": "事情是這樣，《創3》播到第四期，第一輪淘汰之際，一個看起來「柔柔弱弱」的女生陳卓璇，突然登上了熱搜榜第一的位置。 <img class=\"alignnone size-full wp-image-455304\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/950f2cf96c874c4cb1023f5cb1100690.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"660\" height=\"393\" />",
         "created_at": "2020-05-29T10:37:53.088898",
@@ -3424,15 +3426,15 @@ query MyQuery {
 
 
 # 11. 按讚功能
-
+_按讚測試用 id :用戶發文(user post) id = 35，新聞文章(news) id = 1。_
 ## 11.1 按讚討論文章
-_對討論文章按讚打此 api，當 affected rows 的值回傳= 1 表示按讚成功。_
-_table id = 用戶發文文章(user post) 的 id，所以要同時更新 insert 跟 update 的 id。_
+_對討論文章按讚打此 api，同時此討論文章的按讚數也須增加 1 ，當兩個 affected rows 的值回傳= 1 表示按讚成功。回傳的 id 為按讚 id。_
+_id 規則：table id = 用戶發文文章 (user post) 的 id = update 的 id，所以要同時更新 table id 跟 update 的 id。_
 
 - insert
 ```
 mutation MyMutation {
-  insert_user_like(objects: {table: "user_post", table_id: "1", prefer: "yes"}, on_conflict: {constraint: user_like_pkey, update_columns: prefer}) {
+  insert_user_like(objects: {table: "user_post", table_id: "35", prefer: "yes"}, on_conflict: {constraint: user_like_pkey, update_columns: prefer}) {
     affected_rows
     returning {
       id
@@ -3440,7 +3442,7 @@ mutation MyMutation {
       table
     }
   }
-  update_user_post(where: {id: {_eq: "1"}}, _inc: {like_count: "1"}) {
+  update_user_post(where: {id: {_eq: "35"}}, _inc: {like_count: "1"}) {
     affected_rows
   }
 }
@@ -3469,20 +3471,20 @@ mutation MyMutation {
 ```
 
 ## 11.2 討論文章收回按讚
-_對按讚過的討論文章收回讚打此 api，當 affected rows 的值回傳= 1 表示收回成功。_
-_第一個 table id = 用戶發文文章(user post) 的 id ，第二個的 id 是按讚的 id。_
+_對按讚過的討論文章收回讚打此 api，同時此討論文章的按讚數也須減少 1。當兩個 affected rows 的值回傳= 1 表示收回成功。_
+_id 規則：table id = 用戶發文文章 (user post) 的 id ，下一個的  id 為按讚的 id。與 11.1 一樣需要同時更新 table id 跟 update 的 id。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_user_like(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}, id: {_eq: "105"}}) {
+  delete_user_like(where: {table: {_eq: "user_post"}, table_id: {_eq: "35"}, id: {_eq: "105"}}) {
     affected_rows
     returning {
       table
       prefer
     }
   }
-  update_user_post(where: {id: {_eq: "1"}}, _inc: {like_count: "-1"}) {
+  update_user_post(where: {id: {_eq: "35"}}, _inc: {like_count: "-1"}) {
     affected_rows
   }
 }
@@ -3512,8 +3514,8 @@ mutation MyMutation {
 
 
 ## 11.3 按讚新聞文章
-_對新聞文章按讚打此 api，當 affected rows 的值回傳= 1 表示按讚成功。_
-_table id = 新聞文章(news) 的 id ，所以要同時更新 insert 跟 update 的 id。_
+_對新聞文章按讚打此 api，同時此新聞文章的按讚數也須增加 1 ，當兩個 affected rows 的值回傳= 1 表示按讚成功。回傳的 id 為按讚 id。_
+_id 規則：table id = 新聞文章 (news) 的 id ，所以要同時更新  table id 跟 update 的 id。_
 
 - insert
 ```
@@ -3555,8 +3557,8 @@ mutation MyMutation {
 ```
 
 ## 11.4 新聞文章收回按讚
-_對按讚過的新聞文章收回讚打此 api，當 affected rows 的值回傳= 1 表示收回成功。_
-_第一個 table id = 新聞(news) 的 id ，第二個的 id 是按讚的 id。_
+_對按讚過的新聞文章收回讚打此 api，同時此新聞文章的按讚數也須減少 1 ，當兩個 affected rows 的值回傳= 1 表示收回成功。_
+_id 規則：table id = 新聞(news) 的 id ，下一個的  id 為按讚的 id。與 11.3 一樣需要同時更新 table id 跟 update 的 id。_
 
 - insert
 ```
@@ -3598,10 +3600,13 @@ mutation MyMutation {
 
 
 # 12. 留言功能
+_留言測試用 id：_
+_討論用戶發文(user post) id = 35，留言(user comment)id = 60。(移除留言時不使用測試用 id)_
+_新聞文章(news) id = 1，留言(user comment)id = 30。(移除留言時不使用測試用 id)_
 
 ## 12.1 新增討論文章留言
-_對討論文章留言打此 api，當 affected rows 的值回傳= 1 表示留言成功。_
-_table id = 用戶發文文章(user post) ，所以要同時更新 insert 跟 update 的 id。_
+_對討論文章留言打此 api，同時此討論文章的留言數也須增加 1 ，當兩個 affected rows 的值回傳= 1 表示留言成功。回傳的 id 為留言 id。_
+_id 規則：table id = 用戶發文文章(user post) 的 id = update 的 id，所以要同時更新 table id 跟 update 的 id。_
 
 _情境一：回覆討論文章請打 table = user post。_
 _情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
@@ -3610,7 +3615,7 @@ _情境二：回覆別人留言打 table = user comment，並將 table id 改為
 - insert
 ```
 mutation MyMutation {
-  insert_user_comment(objects: {table: "user_post", table_id: "1", content: "我很喜歡陳情令耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+  insert_user_comment(objects: {table: "user_post", table_id: "35", content: "我很喜歡陳情令耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
@@ -3618,7 +3623,7 @@ mutation MyMutation {
       content
     }
   }
-  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
+  update_user_post(where: {id: {_eq: "35"}}, _inc: {comment_count: "1"}) {
     affected_rows
   }
 }
@@ -3650,7 +3655,7 @@ mutation MyMutation {
 - insert
 ```
 mutation MyMutation {
-  insert_user_comment(objects: {table: "user_comment", content: "我很喜歡陳情令耶！", table_id: "37"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+  insert_user_comment(objects: {table: "user_comment", content: "我很喜歡陳情令耶！", table_id: "60"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
@@ -3658,7 +3663,7 @@ mutation MyMutation {
       content
     }
   }
-  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
+  update_user_post(where: {id: {_eq: "35"}}, _inc: {comment_count: "1"}) {
     affected_rows
   }
 }
@@ -3673,7 +3678,7 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 45,
+          "id": 61,
           "table": "user_comment",
           "content": "我很喜歡陳情令耶！"
         }
@@ -3688,13 +3693,12 @@ mutation MyMutation {
 
 ## 12.2 編輯討論文章留言
 _編輯討論文章區的留言打此 api，當 affected rows 的值回傳= 1 表示編輯成功。_
-_第一個 table id = 用戶發文文章(user post) 的 id ，第二個的 id 是留言的 id。_
-
+_id 規則：table id = 用戶發文文章(user post) 的 id ，下一個的 id 是留言的 id。_
 
 - insert
 ```
 mutation MyMutation {
-  update_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}, id: {_eq: "15"}}, 
+  update_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "35"}, id: {_eq: "60"}}, 
   _set: {content: "藍湛！！"}) {
     affected_rows
     returning {
@@ -3715,7 +3719,7 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 15,
+          "id": 60,
           "table": "user_post",
           "content": "藍湛！！"
         }
@@ -3726,14 +3730,13 @@ mutation MyMutation {
 ```
 
 ## 12.3 移除討論文章留言
-_移除討論文章區的留言打此 api，當 affected rows 的值回傳= 1 表示編輯成功。_
-_delete id 規則：第一個 table id = 用戶發文文章(user post) 的 id ，第二個的 id 是留言的 id。_
-_update user post id 規則：取得的 id 為用戶發文文章(user post) 的 id。_
+_移除討論文章區的留言打此 api，同時此討論文章的留言數也須減少 1。當兩個 affected rows 的值回傳= 1 表示移除成功。_
+_id 規則：table id = 用戶發文文章(user post) 的 id，下一個的 id 是留言的 id，與 12.1 一樣需要同時更新 table id 跟 update 的 id。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}, id: {_eq: "17"}}) {
+  delete_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "35"}, id: {_eq: "61"}}) {
     affected_rows
     returning {
       id
@@ -3756,7 +3759,7 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 17,
+          "id": 61,
           "table": "user_post",
           "content": "我很喜歡陳情令耶！"
         }
@@ -3770,12 +3773,13 @@ mutation MyMutation {
 ```
 
 ## 12.4 新增新聞文章留言
-_對新聞文章留言打此 api，當 affected rows 的值回傳= 1 表示留言成功。_
-_table id = 新聞文章(news) id ，所以要同時更新 insert 跟 update 的 id。_
+_對新聞文章留言打此 api，同時此新聞文章的留言數也須增加 1。當兩個 affected rows 的值回傳= 1 表示留言成功。_
+_id 規則：table id = 新聞文章(news) id= update 的 id ，所以要同時更新 table id 跟 update 的 id。_
 
-_情境一：回覆討論文章請打 table = news。_
+_情境一：回覆新聞文章請打 table = news。_
 _情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
 
+### 情境一 回覆新聞文章
 - insert
 ```
 mutation MyMutation {
@@ -3802,8 +3806,48 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 24,
+          "id": 30,
           "table": "news",
+          "content": "哈哈哈"
+        }
+      ]
+    },
+    "update_news": {
+      "affected_rows": 1
+    }
+  }
+}
+```
+
+### 情境二 回覆別人新聞文章留言
+- insert
+```
+mutation MyMutation {
+  insert_user_comment(objects: {table: "user_comment", table_id: "30", content: "哈哈哈"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+    affected_rows
+    returning {
+      id
+      table
+      content
+    }
+  }
+  update_news(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
+    affected_rows
+  }
+}
+
+```
+
+- Response
+```json
+{
+  "data": {
+    "insert_user_comment": {
+      "affected_rows": 1,
+      "returning": [
+        {
+          "id": 31,
+          "table": "user_comment",
           "content": "哈哈哈"
         }
       ]
@@ -3817,12 +3861,12 @@ mutation MyMutation {
 
 ## 12.5 編輯新聞文章留言
 _編輯新聞文章區的留言打此 api，當 affected rows 的值回傳= 1 表示編輯成功。_
-_第一個 table id = 新聞文章(news) id ，第二個的 id 是留言的 id。_
+_id 規則：table id = 新聞文章(news) id ，下一個的 id 是留言的 id。_
 
 - insert
 ```
 mutation MyMutation {
-  update_user_comment(where: {table: {_eq: "news"}, table_id: {_eq: "1"}, id: {_eq: "23"}}, 
+  update_user_comment(where: {table: {_eq: "news"}, table_id: {_eq: "1"}, id: {_eq: "30"}}, 
   _set: {content: "pick她！"}) {
     affected_rows
     returning {
@@ -3843,7 +3887,7 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 23,
+          "id": 30,
           "table": "news",
           "content": "pick她！"
         }
@@ -3854,9 +3898,8 @@ mutation MyMutation {
 ```
 
 ## 12.6 移除新聞文章留言
-_移除新聞文章區的留言打此 api，當 affected rows 的值回傳= 1 表示編輯成功。_
-_delete id 規則：第一個 table id = 新聞文章(news) id ，第二個的 id 是留言的 id。_
-_update news id 規則：取得的 id 為新聞文章(news) id 。_
+_移除新聞文章區的留言打此 api，同時此新聞文章的留言數也須減少 1。當兩個 affected rows 的值回傳= 1 表示移除成功。_
+_id 規則：table id = 新聞文章(news) id ，下一個的 id 是留言的 id，與 12.4 一樣需要同時更新 table id 跟 update 的 id。_
 
 - insert
 ```
