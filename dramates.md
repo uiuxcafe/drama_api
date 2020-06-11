@@ -3288,16 +3288,22 @@ mutation MyMutation {
 ```
 
 ## 10.3 移除文章
-_用戶要移除自己已發文的文章時打此 api，當 affected rows 的值回傳= 1 表示移除資料成功。_
+_用戶要移除自己已發文的文章時打此 api，當 affected rows 的值有回傳表示移除資料成功。_
 
 - insert
 ```
 mutation MyMutation {
-  delete_user_post(where: {id: {_eq: "19"}}) {
+  delete_user_post(where: {id: {_eq: "40"}}) {
     affected_rows
     returning {
       title
     }
+  }
+  delete_user_comment(where: {family_table_id: {_eq: "40"}, family_table: {_eq: "user_post"}}) {
+    affected_rows
+  }
+  delete_user_like(where: {table: {_eq: "user_post"}, table_id: {_eq: "40"}}) {
+    affected_rows
   }
 }
 
@@ -3311,9 +3317,15 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+          "title": "「維多利亞的秘密」正式宣佈破產，從此見不到超模了？"
         }
       ]
+    },
+    "delete_user_comment": {
+      "affected_rows": 3
+    },
+    "delete_user_like": {
+      "affected_rows": 1
     }
   }
 }
@@ -3608,23 +3620,28 @@ _新聞文章(news) id = 1，留言(user comment)id = 30。(移除留言時不�
 _對討論文章留言打此 api，同時此討論文章的留言數也須增加 1 ，當兩個 affected rows 的值回傳= 1 表示留言成功。回傳的 id 為留言 id。_
 _id 規則：table id = 用戶發文文章(user post) 的 id = update 的 id，所以要同時更新 table id 跟 update 的 id。_
 
-_情境一：回覆討論文章請打 table = user post。_
-
-_情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
-
 ### 情境一 對討論文章留言
+_情境一：回覆討論文章請打 table = user post。_
+_family table = 取得哪個 table 的資料，取得討論文章則打 table = user post；family table id = 取得哪一篇文章打該文章 id。_
+
 - insert
 ```
 mutation MyMutation {
-  insert_user_comment(objects: {table: "user_post", table_id: "35", content: "我很喜歡陳情令耶！"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+  insert_user_comment(objects: {
+    table: "user_post", table_id: "41", 
+    content: "很意外", 
+    family_table: "user_post", family_table_id: "41"
+    }, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
       table
       content
+      family_table
+      family_table_id
     }
   }
-  update_user_post(where: {id: {_eq: "35"}}, _inc: {comment_count: "1"}) {
+  update_user_post(where: {id: {_eq: "41"}}, _inc: {comment_count: "1"}) {
     affected_rows
   }
 }
@@ -3639,9 +3656,11 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 22,
+          "id": 84,
           "table": "user_post",
-          "content": "我很喜歡陳情令耶！"
+          "content": "很意外",
+          "family_table": "user_post",
+          "family_table_id": 41
         }
       ]
     },
@@ -3653,18 +3672,26 @@ mutation MyMutation {
 ```
 
 ### 情境二 回覆別人討論文章留言
+_情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id；family table = user post 代表取得取得討論文章的資料；family table id = 取得哪一篇文章打該文章 id。_
+
 - insert
 ```
 mutation MyMutation {
-  insert_user_comment(objects: {table: "user_comment", content: "我很喜歡陳情令耶！", table_id: "60"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+  insert_user_comment(objects: {
+  table: "user_comment", table_id: "81", 
+  content: "真假！", 
+  family_table: "user_post", family_table_id: "41",
+  }, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
       table
       content
+      family_table
+      family_table_id
     }
   }
-  update_user_post(where: {id: {_eq: "35"}}, _inc: {comment_count: "1"}) {
+  update_user_post(where: {id: {_eq: "41"}}, _inc: {comment_count: "1"}) {
     affected_rows
   }
 }
@@ -3679,9 +3706,11 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 61,
+          "id": 86,
           "table": "user_comment",
-          "content": "我很喜歡陳情令耶！"
+          "content": "真假！",
+          "family_table": "user_post",
+          "family_table_id": 41
         }
       ]
     },
