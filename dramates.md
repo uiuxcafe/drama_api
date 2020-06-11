@@ -10,6 +10,7 @@
     - [1.7 新聞相關討論列表](#17-新聞相關討論列表)
     - [1.8 個人化新聞列表](#18-個人化新聞列表)
     - [1.9 新聞留言列表](#19-新聞留言列表)
+    - [回覆留言列表](#回覆留言列表)
 - [2. 戲劇區](#2-戲劇區)
     - [2.1 戲劇輪播列表](#21-戲劇輪播列表)
     - [2.2 戲劇列表頁](#22-戲劇列表頁)
@@ -72,6 +73,8 @@
     - [11.4 新聞文章收回按讚](#114-新聞文章收回按讚)
 - [12. 留言功能](#12-留言功能)
     - [12.1 新增討論文章留言](#121-新增討論文章留言)
+        - [情境一 對討論文章留言](#情境一-對討論文章留言)
+        - [情境二 回覆別人討論文章留言](#情境二-回覆別人討論文章留言)
     - [12.2 編輯討論文章留言](#122-編輯討論文章留言)
     - [12.3 移除討論文章留言](#123-移除討論文章留言)
     - [12.4 新增新聞文章留言](#124-新增新聞文章留言)
@@ -688,6 +691,23 @@ _須由前端判斷 query 的是 news 資料表，並於前端顯示「新聞」
 ```
 query MyQuery {
   user_comment(where: {table: {_eq: "news"}, table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
+    id
+    content
+    created_at
+    user {
+      name
+      picture
+    }
+  }
+}
+
+```
+## 回覆留言列表 
+_table id需改為回覆哪一則留言的id。_
+- insert
+```
+query MyQuery {
+  user_comment(where: {table: {_eq: "user_comment"}, table_id: {_eq: "37"}}, order_by: {created_at: desc}) {
     id
     content
     created_at
@@ -3185,6 +3205,7 @@ mutation MyMutation {
     on_conflict: {constraint: user_post_pkey, update_columns: content}) {
     affected_rows
     returning {
+      id
       user_id
       title
       content
@@ -3206,8 +3227,9 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
+          "id": 38,
           "user_id": "facebook|4341819205843928",
-          "title": "《創造營2020》陳卓璇語出驚人上微博熱搜，被翻出黑料原來也曾嗆過林俊傑",
+          "title": "《創造營2020》翻出黑料原來也曾嗆過林俊傑",
           "content": "要說這段時間最熱的綜藝節目，就要數《青春有你2》和《創造營2020》兩檔女團選秀節目了，兩個節目在話題度上和選手實力上一直都在暗暗的PK，從結果來看，似乎早就播出的《青你2》略占上風，而俗話說「有女生的地方就有江湖」，創3怎麼會甘拜下風？今天小妹兒就來說說這還沒成團就開始鬥的女孩兒個中代表——陳卓璇。  <img class=\"alignnone size-full wp-image-455359\" title=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" src=\"https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/d61c3ec37fc541518bba46c4855363f8.png.aspx_.png\" alt=\"嫉妒隊友拍廣告質問節目組,公開懟林俊傑海泉,實力不配野心的她想走黑紅路線?\" width=\"1280\" height=\"674\" />",
           "thumbnail": "https://ek21.com/news/star/wp-content/uploads/sites/4/2020/05/d61c3ec37fc541518bba46c4855363f8.png.aspx_.png",
           "type": {
