@@ -10,7 +10,6 @@
     - [1.7 新聞相關討論列表](#17-新聞相關討論列表)
     - [1.8 個人化新聞列表](#18-個人化新聞列表)
     - [1.9 新聞留言列表](#19-新聞留言列表)
-    - [回覆留言列表](#回覆留言列表)
 - [2. 戲劇區](#2-戲劇區)
     - [2.1 戲劇輪播列表](#21-戲劇輪播列表)
     - [2.2 戲劇列表頁](#22-戲劇列表頁)
@@ -73,13 +72,13 @@
     - [11.4 新聞文章收回按讚](#114-新聞文章收回按讚)
 - [12. 留言功能](#12-留言功能)
     - [12.1 新增討論文章留言](#121-新增討論文章留言)
-        - [情境一 對討論文章留言](#情境一-對討論文章留言)
+        - [情境一 回覆討論文章](#情境一-回覆討論文章)
         - [情境二 回覆別人討論文章留言](#情境二-回覆別人討論文章留言)
     - [12.2 編輯討論文章留言](#122-編輯討論文章留言)
     - [12.3 移除討論文章留言](#123-移除討論文章留言)
     - [12.4 新增新聞文章留言](#124-新增新聞文章留言)
         - [情境一 回覆新聞文章](#情境一-回覆新聞文章)
-        - [情境二 回覆別人新聞文章留言](#情境二-回覆別人新聞文章留言)
+        - [情境二 回覆別人討論文章留言](#情境二-回覆別人討論文章留言-1)
     - [12.5 編輯新聞文章留言](#125-編輯新聞文章留言)
     - [12.6 移除新聞文章留言](#126-移除新聞文章留言)
 
@@ -689,10 +688,11 @@ _須由前端判斷 query 的是 news 資料表，並於前端顯示「新聞」
 ```
 
 ## 1.9 新聞留言列表
+_family table = 要取得的 table_
 - insert
 ```
 query MyQuery {
-  user_comment(where: {table: {_eq: "news"}, table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
+  user_comment(where: {family_table: {_eq: "news"}, family_table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
     id
     content
     created_at
@@ -700,56 +700,49 @@ query MyQuery {
       name
       picture
     }
+    table
+    table_id
+    family_table
+    family_table_id
   }
 }
 
 ```
-## 回覆留言列表 
-_table id需改為回覆哪一則留言的id。_
-- insert
-```
-query MyQuery {
-  user_comment(where: {table: {_eq: "user_comment"}, table_id: {_eq: "37"}}, order_by: {created_at: desc}) {
-    id
-    content
-    created_at
-    user {
-      name
-      picture
-    }
-  }
-}
-
-```
-
 - Response
 ```json
 {
   "data": {
     "user_comment": [
       {
-        "id": 31,
-        "content": "推+1",
-        "created_at": "2020-05-29T17:58:29.201091",
+        "id": 92,
+        "content": "對啊",
+        "created_at": "2020-06-12T17:08:28.873344",
         "user": {
           "name": "依洛斯",
           "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
+        },
+        "table": "user_comment",
+        "table_id": 81,
+        "family_table": "news",
+        "family_table_id": 1
       },
       {
-        "id": 23,
-        "content": "pick她！",
-        "created_at": "2020-05-29T17:46:15.799139",
+        "id": 88,
+        "content": "很意外",
+        "created_at": "2020-06-12T16:23:24.315761",
         "user": {
           "name": "依洛斯",
           "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
+        },
+        "table": "news",
+        "table_id": 1,
+        "family_table": "news",
+        "family_table_id": 1
       }
     ]
   }
 }
 ```
-
 
 # 2. 戲劇區
 
@@ -1827,7 +1820,7 @@ _用來比對討論區的文章 title 是否包含這些關鍵字（戲劇title�
 - insert
 ```
 query MyQuery {
-  user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "1"}}, order_by: {created_at: desc}) {
+  user_comment(where: {family_table: {_eq: "user_post"}, family_table_id: {_eq: "41"}}, order_by: {created_at: desc}) {
     id
     content
     created_at
@@ -1835,8 +1828,13 @@ query MyQuery {
       name
       picture
     }
+    table
+    table_id
+    family_table
+    family_table_id
   }
 }
+
 ```
 
 - Response
@@ -1845,22 +1843,30 @@ query MyQuery {
   "data": {
     "user_comment": [
       {
-        "id": 22,
-        "content": "我很喜歡陳情令耶！",
-        "created_at": "2020-05-29T17:18:37.333258",
+        "id": 86,
+        "content": "真假！",
+        "created_at": "2020-06-11T17:55:08.148964",
         "user": {
           "name": "依洛斯",
           "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
+        },
+        "table": "user_comment",
+        "table_id": 81,
+        "family_table": "user_post",
+        "family_table_id": 41
       },
       {
-        "id": 16,
-        "content": "陳情令真的必看",
-        "created_at": "2020-05-29T17:09:15.543086",
+        "id": 82,
+        "content": "很意外",
+        "created_at": "2020-06-11T17:26:50.95749",
         "user": {
           "name": "依洛斯",
           "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4341819205843928&height=50&width=50&ext=1591941501&hash=AeT-zdvNOU2FZvEM"
-        }
+        },
+        "table": "user_post",
+        "table_id": 41,
+        "family_table": "user_post",
+        "family_table_id": 41
       }
     ]
   }
@@ -3620,7 +3626,7 @@ _新聞文章(news) id = 1，留言(user comment)id = 30。(移除留言時不�
 _對討論文章留言打此 api，同時此討論文章的留言數也須增加 1 ，當兩個 affected rows 的值回傳= 1 表示留言成功。回傳的 id 為留言 id。_
 _id 規則：table id = 用戶發文文章(user post) 的 id = update 的 id，所以要同時更新 table id 跟 update 的 id。_
 
-### 情境一 對討論文章留言
+### 情境一 回覆討論文章
 _情境一：回覆討論文章請打 table = user post。_
 _family table = 取得哪個 table 的資料，取得討論文章則打 table = user post；family table id = 取得哪一篇文章打該文章 id。_
 
@@ -3728,7 +3734,7 @@ _id 規則：table id = 用戶發文文章(user post) 的 id ，下一個的 id 
 - insert
 ```
 mutation MyMutation {
-  update_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "35"}, id: {_eq: "60"}}, 
+  update_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "41"}, id: {_eq: "81"}}, 
   _set: {content: "藍湛！！"}) {
     affected_rows
     returning {
@@ -3766,7 +3772,7 @@ _id 規則：table id = 用戶發文文章(user post) 的 id，下一個的 id �
 - insert
 ```
 mutation MyMutation {
-  delete_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "35"}, id: {_eq: "61"}}) {
+  delete_user_comment(where: {table: {_eq: "user_post"}, table_id: {_eq: "41"}, id: {_eq: "81"}}) {
     affected_rows
     returning {
       id
@@ -3774,7 +3780,7 @@ mutation MyMutation {
       content
     }
   }
-  update_user_post(where: {id: {_eq: "1"}}, _inc: {comment_count: "-1"}) {
+  update_user_post(where: {id: {_eq: "41"}}, _inc: {comment_count: "-1"}) {
     affected_rows
   }
 }
@@ -3789,9 +3795,9 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 61,
+          "id": 81,
           "table": "user_post",
-          "content": "我很喜歡陳情令耶！"
+          "content": "藍湛！！"
         }
       ]
     },
@@ -3806,20 +3812,21 @@ mutation MyMutation {
 _對新聞文章留言打此 api，同時此新聞文章的留言數也須增加 1。當兩個 affected rows 的值回傳= 1 表示留言成功。_
 _id 規則：table id = 新聞文章(news) id= update 的 id ，所以要同時更新 table id 跟 update 的 id。_
 
-_情境一：回覆新聞文章請打 table = news。_
-
-_情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id。_
-
 ### 情境一 回覆新聞文章
+_情境一：回覆新聞文章請打 table = news。_
+_family table = 取得哪個 table 的資料，取得新聞文章則打 table = news；family table id = 取得哪一篇文章打該文章 id。_
+
 - insert
 ```
 mutation MyMutation {
-  insert_user_comment(objects: {table: "news", table_id: "1", content: "哈哈哈"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+  insert_user_comment(objects: {table: "news", table_id: "1", content: "很意外", family_table: "news", family_table_id: "1"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
       table
       content
+      family_table
+      family_table_id
     }
   }
   update_news(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
@@ -3837,9 +3844,11 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 30,
+          "id": 88,
           "table": "news",
-          "content": "哈哈哈"
+          "content": "很意外",
+          "family_table": "news",
+          "family_table_id": 1
         }
       ]
     },
@@ -3849,17 +3858,22 @@ mutation MyMutation {
   }
 }
 ```
-
-### 情境二 回覆別人新聞文章留言
+### 情境二 回覆別人討論文章留言
+_情境二：回覆別人留言打 table = user comment，並將 table id 改為該留言的 id；family table = news 代表取得取得新聞文章的資料；family table id = 取得哪一篇文章打該文章 id。_
 - insert
 ```
 mutation MyMutation {
-  insert_user_comment(objects: {table: "user_comment", table_id: "30", content: "哈哈哈"}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
+  insert_user_comment(objects: {
+    table: "user_comment", table_id: "81", 
+    content: "真假！", 
+    family_table: "news", family_table_id: "1",}, on_conflict: {constraint: user_comment_pkey, update_columns: content}) {
     affected_rows
     returning {
       id
       table
       content
+      family_table
+      family_table_id
     }
   }
   update_news(where: {id: {_eq: "1"}}, _inc: {comment_count: "1"}) {
@@ -3877,9 +3891,11 @@ mutation MyMutation {
       "affected_rows": 1,
       "returning": [
         {
-          "id": 31,
+          "id": 90,
           "table": "user_comment",
-          "content": "哈哈哈"
+          "content": "真假！",
+          "family_table": "news",
+          "family_table_id": 1
         }
       ]
     },
